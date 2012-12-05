@@ -4,6 +4,7 @@ int Deagle=0;
 void loadobj(BITMAP *buffer)
             {
                     pHouse=load_bitmap("./Images/pHouse.bmp", NULL);
+                    house_1=load_bitmap("./Images/house_1.bmp", NULL);
                     Store1=load_bitmap("./Images/House1.bmp", NULL);
                     grass1=load_bitmap("./Images/grass1.bmp", NULL);
                     road1=load_bitmap("./Images/road1.bmp", NULL);
@@ -139,6 +140,13 @@ void loadobj(BITMAP *buffer)
                  house[2].SSX=204;
                  house[2].SSY=362;
                  
+                 house[3].mbmap=true;
+                 house[3].bitmap=house_1;
+                 house[3].x1=1200;
+                 house[3].y1=230;
+                 house[3].SSX=416;
+                 house[3].SSY=343;
+                 
                  wall[20].x1=1152;
                  wall[20].x2=1152;
                  wall[20].y1=700;
@@ -264,6 +272,15 @@ void loadobj(BITMAP *buffer)
                  grass[8].x1=630;
                  grass[8].y1=800;
                  
+                 grass[9].x1=630+821;
+                 grass[9].y1=-881;
+                 
+                 grass[10].x1=630+821;
+                 grass[10].y1=-40;
+                 
+                 
+                 grass[11].x1=630+821;
+                 grass[11].y1=800;
                
                  bed[0].bmap=true;
                  bed[0].bitmap=hfurniture;
@@ -378,10 +395,8 @@ void loadobj(BITMAP *buffer)
                  deagle[0].SSY=10;
                  deagle[0].SSX1=0;
                  deagle[0].item=Deagle;
-                 
-
-                 
-                 
+            
+            
                  deagle[1].isitem=true;
                  deagle[1].mbmap=true;
                  deagle[1].bitmap=items;
@@ -560,21 +575,37 @@ void loadobj(BITMAP *buffer)
                  wall[19].x2=415;
                  wall[19].y1=100;
                  wall[19].y2=240;
+                 
+                 wall[20].x1=79;
+                 wall[20].x2=79;
+                 wall[20].y1=55;
+                 wall[20].y2=177;
+                 
+                 wall[21].x1=415;
+                 wall[21].x2=415;
+                 wall[21].y1=100;
+                 wall[21].y2=240;
                   }
                  
                                   int i2=0;
                  void drawobjects(BITMAP *buffer)
                  {
-                      
 grass[i2].bitmap=grass1;
 grass[i2].bmap=true;     
 grass[i2].SSX=821;
 grass[i2].SSY=841;
 grass[i2].collide=false;
+grass[i2].x2=-910;
+grass[i2].y2=-882;
+
+fence[i2].x2=-910;
+fence[i2].y2=-882;
+
+
 door[i2].isdoor=true;
 i2++;
 
-if (i2>20)
+if (i2>19)
 i2=0;
 
                       grass[0].draw();
@@ -586,6 +617,9 @@ i2=0;
                       grass[6].draw();
                       grass[7].draw();
                       grass[8].draw();
+                      grass[9].draw();
+                      grass[10].draw();
+                      grass[11].draw();
                       
                            wall[0].draw(); 
                            wall[1].draw(); 
@@ -636,6 +670,7 @@ i2=0;
                            
                            house[0].draw();
                            house[2].draw();
+                           house[3].draw();
                            
                            toilet[0].draw();
                            

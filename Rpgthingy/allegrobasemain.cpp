@@ -1,6 +1,7 @@
 
 #include <allegro.h>
-
+#include <iostream>
+#include <fstream>
 
 #define black makecol( 0, 0, 0)
 #define white makecol( 255, 255, 255)
@@ -14,6 +15,7 @@ BITMAP *buffer;
 BITMAP *playerB;
 BITMAP *testB;
 BITMAP *pHouse;
+BITMAP *house_1;
 BITMAP *grass1;
 BITMAP *road1;
 BITMAP *fence1;
@@ -22,6 +24,11 @@ BITMAP *hfurniture;
 BITMAP *SSanim;
 BITMAP *Store1;
 BITMAP *items;
+
+int mx1;
+int mx2;
+int my1;
+int my2;
 
  int cAct=0;
 int wallmax=100;
@@ -254,7 +261,15 @@ if (isopen==true && SSX1==0)
 void OBJECTS::draw()
 {
   
-     
+  if (collide==true)
+  {
+     x2=x1+SSX1;
+     y2=y1+SSY1;
+}
+else 
+{
+     }
+  
      if (bmap==true)
      {
      blit(bitmap, buffer, SSX1, SSY1, x1+cam, y1+cam2, SSX, SSY);
@@ -262,7 +277,6 @@ void OBJECTS::draw()
      
      if (mbmap==true)
      {
-                     
                      if (ispersistent!=true)
                      {
                                                                if (player.itemeq==true && equipped==true && isitem==true && player.itemout==true)   
@@ -322,7 +336,15 @@ void OBJECTS::draw()
      if (hB==true)
      blit(bitmap, buffer, SSX1, SSY1, hX+cam, hY+cam2, SSX, SSY);
       
+      
+    
+     
+     
     collision();
+     if (mbmap!=true && collide!=true)
+     {
+     line(buffer, x1+cam, y1+cam2, x2+cam, y2+cam2, makecol(255, 0, 0));
+     }
      }
 
 
@@ -372,7 +394,7 @@ int gravity(int y)
      }
 
 
-
+using namespace std;
 int main(){
  
  
@@ -401,6 +423,7 @@ background=load_bitmap("./Images/worldmap.bmp", NULL);
 
 while (!key[KEY_ESC])
 {
+      
       timer1++;
       
       rest(5);
@@ -416,6 +439,39 @@ if (timer1>=40)
                }
 
 
+if (mouse_b & 1 && mx1==0 && my1==0)
+{
+            mx1=mouse_x;
+my1=mouse_y;
+
+            ofstream Fpos;
+            Fpos.open("Fpos.txt");
+            Fpos << mx1+cam;
+            Fpos << endl;
+            Fpos << my1+cam2;
+            Fpos.close();
+            }
+            else if (mouse_b & 1 && mx1>0 && my1>0)
+{
+               mx2=mouse_x;
+my2=mouse_y;
+            ofstream Fpos;
+            Fpos.open("Fpos.txt");
+            Fpos << mx1+cam;
+            Fpos << endl;
+            Fpos << my1+cam2;
+            Fpos << endl;
+            Fpos << endl;
+            Fpos << mx2+cam;
+            Fpos << endl;
+            Fpos << my2+cam2;
+            Fpos.close();
+            }
+
+textprintf(buffer,font,400,60,makecol(255,0,0), " x1: %i", mx1+cam);
+textprintf(buffer,font,400,70,makecol(255,0,0), " x2: %i", mx2);
+textprintf(buffer,font,480,60,makecol(255,0,0), " y1: %i", my1+cam2);
+textprintf(buffer,font,480,70,makecol(255,0,0), " y2: %i", my2);
 blit (buffer, screen, 0, 0, 0, 0, SW, SH);
 clear_bitmap(buffer);
 }

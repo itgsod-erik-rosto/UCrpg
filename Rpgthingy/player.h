@@ -232,24 +232,21 @@ void PLAYER::draw()
      if (isNPC==true && isTravelroute!=true)
        masked_blit(bitmap, buffer, SSX, SSY, x-r+cam, y-r+cam2, 40, 40);
        
-       if (isTravelroute==true)
-       line(buffer, x_1+cam, y_1+cam2, x_2+cam, y_2+cam2, makecol(255, 0, 0));
-       
      masked_blit(items, buffer, 30, 18, posx, posy, 40, 40);
      
  if (dir==4)
-                       line(buffer, gshotX-10, gshotY, gshotX, gshotY, makecol(0,255,0));
+                       line(buffer, gshotX-10, gshotY, gshotX, gshotY, makecol(255,255,0));
             
  if (dir==2)
-                       line(buffer, gshotX, gshotY, gshotX+10, gshotY, makecol(0,255,0));
+                       line(buffer, gshotX, gshotY, gshotX+10, gshotY, makecol(255,255,0));
                        
                        
  if (dir==3)
-                       line(buffer, gshotX, gshotY-10, gshotX, gshotY, makecol(0,255,0));
+                       line(buffer, gshotX, gshotY-10, gshotX, gshotY, makecol(255,255,0));
             
             
  if (dir==1)
-                       line(buffer, gshotX, gshotY, gshotX, gshotY+10, makecol(0,255,0));
+                       line(buffer, gshotX, gshotY, gshotX, gshotY+10, makecol(255,255,0));
             
                        
      animation(buffer);
