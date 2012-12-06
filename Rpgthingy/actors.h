@@ -1,4 +1,5 @@
 
+ BITMAP *shadow;
 void loadch(BITMAP *buffer)
 {
      player.itemout=false;
@@ -13,12 +14,13 @@ void loadch(BITMAP *buffer)
             player.SSY=0;
             player.bitmap=load_bitmap("./Images/sofia.bmp", NULL);
             
+             shadow=load_bitmap("./Images/shadow.bmp", NULL);
                 
               test1.itemout=false;
      test1.activate=false;
       test1.speed=2;
       test1.isMoving=false;
-                 test1.x=1320-test1.r;
+                 test1.x=1325-test1.r;
                  test1.y=1015;
             test1.r=20;     
             test1.dir=2;

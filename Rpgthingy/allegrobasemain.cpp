@@ -1,54 +1,12 @@
 
 #include <allegro.h>
 #include <iostream>
-#include <fstream>
-
-#define black makecol( 0, 0, 0)
-#define white makecol( 255, 255, 255)
-#define red makecol(255, 0, 0)
-#define cam int (ofX)*-1-640
-#define cam2 int (ofY)*-1-700
-
-BITMAP *HUD;
-BITMAP *background;
-BITMAP *buffer;
-BITMAP *playerB;
-BITMAP *testB;
-BITMAP *pHouse;
-BITMAP *house_1;
-BITMAP *grass1;
-BITMAP *road1;
-BITMAP *fence1;
-BITMAP *hSS1;
-BITMAP *hfurniture;
-BITMAP *SSanim;
-BITMAP *Store1;
-BITMAP *items;
-
-int mx1;
-int mx2;
-int my1;
-int my2;
-
- int cAct=0;
-int wallmax=100;
-int itemtimer=0;
-int Tobjects=2;
-
-int objectsdrawn=0;
-
-int timer1=0;
-
-float ofX=-650;
-float ofY=-470;
-
-int i;
-
-int SW=1080;
-int SH=670;
 
 
-    
+
+
+int i10=0;
+ 
  
 struct OBJECTS
 {
@@ -71,6 +29,8 @@ struct OBJECTS
 
 bool hB;
 
+bool ishouse;
+bool isobject;
 bool isopen;
  bool isitem;
  bool ispersistent;
@@ -105,29 +65,29 @@ void collision();
        
        }
         
-       deagle[10],
-       gunFIRE[10],
-       wall[300], 
-       road[10], 
-       hud[1],
-       trail[10], 
-       house[10], 
-       grass[30], 
-       fence[30], 
-       bed[10], 
-       mat[10], 
-       shopcounterGR[10],
-       shoppay[10],
-       bush[10], 
-       cupboard[10],
-       sink[10],
-       simonsbreda[10],
-       toilet[10],
-       bathtub[10],
-       fridge[10],
-       stove[10],
-       kitchensink[10],
-       door[10];
+       deagle[1000],
+       gunFIRE[1000],
+       wall[1000], 
+       road[1000], 
+       hud[1000],
+       trail[1000], 
+       house[1000], 
+       grass[1000], 
+       fence[1000], 
+       bed[1000], 
+       mat[1000], 
+       shopcounterGR[1000],
+       shoppay[1000],
+       bush[1000], 
+       cupboard[1000],
+       sink[1000],
+       simonsbreda[1000],
+       toilet[1000],
+       bathtub[1000],
+       fridge[1000],
+       stove[1000],
+       kitchensink[1000],
+       door[1000];
        
        #include <player.h>
        
@@ -208,7 +168,7 @@ if (isactivated==true && isitem==true && key[KEY_Q] && player.itemeq==true && pl
     if (test1.dir==1)
     test1.y+=test1.speed;
 }
-
+if (!key[KEY_LCONTROL])
       if (actor[0].y>=y1+cam2-actor[0].r && actor[0].y<=y2+cam2+actor[0].r && actor[0].x>=x1+cam-actor[0].r && actor[0].x <=x2+cam+actor[0].r && collide!=true 
       || (SSY1==87 && actor[cAct].x>=x1-15+cam && actor[cAct].x<=x1+15+cam && actor[cAct].y>=y1+cam2 && actor[cAct].y<=y1+SSY+cam2 && isopen!=true && isdoor==true)
       ||(SSY1==0 && actor[cAct].x>=x1+cam && actor[cAct].x<=x1+SSX+cam && actor[cAct].y>=y1-15+cam2 && actor[cAct].y<=y1+15+cam2 && isopen!=true && isdoor==true)
@@ -276,6 +236,7 @@ else
      }
      
      if (mbmap==true)
+     if(!key[KEY_LCONTROL] || collide!=false || isitem==true || isdoor==true || ishouse!=true)  
      {
                      if (ispersistent!=true)
                      {
@@ -311,10 +272,11 @@ else
      
      }
      
-                                     if (isitem!=true)       
+                                     if (isitem!=true)     
+                                     {
+                                     
      masked_blit(bitmap, buffer, SSX1, SSY1, x1+cam, y1+cam2, SSX, SSY);
-     
-     
+       }
                                      if (isitem==true && isactivated!=true)   
                                          
      masked_blit(bitmap, buffer, SSX1, SSY1, x1+cam, y1+cam2, SSX, SSY);
@@ -341,10 +303,11 @@ else
      
      
     collision();
-     if (mbmap!=true && collide!=true)
-     {
-     line(buffer, x1+cam, y1+cam2, x2+cam, y2+cam2, makecol(255, 0, 0));
-     }
+     
+ 
+   if ((collide!=true && mbmap!=true && SSX==0 || SSY==0 ))
+       line(buffer, x1+cam, y1+cam2, x2+cam, y2+cam2, makecol(255, 0, 0));
+
      }
 
 
@@ -359,13 +322,8 @@ else
       void drawworld (void)
       {
            i++;
-           
-        
-                
-                
-     
-          
-   
+
+
      drawobjects(buffer);
      
           
@@ -373,25 +331,13 @@ else
           player.draw();                 
           test1.draw();
           
-          
-          travelroute[3].draw();                
-          travelroute[0].draw();                
-          travelroute[1].draw();                
-          travelroute[2].draw();                
+        
           
                            if (mouse_x!=SW/2 && mouse_y!=SH/2)
      circlefill(buffer, mouse_x, mouse_y, 2, makecol(255,0,0));
 }
 
-int gravity(int y)
-{
-    
-    
-    
-  
-     
-     return y;
-     }
+
 
 
 using namespace std;
@@ -423,6 +369,11 @@ background=load_bitmap("./Images/worldmap.bmp", NULL);
 
 while (!key[KEY_ESC])
 {
+      savetimer++;
+      if (savetimer>=201)
+      {
+                      savetimer=0;
+                      }
       
       timer1++;
       
@@ -439,39 +390,43 @@ if (timer1>=40)
                }
 
 
-if (mouse_b & 1 && mx1==0 && my1==0)
-{
-            mx1=mouse_x;
-my1=mouse_y;
 
+            if (savetimer>=200)
+{
+               
             ofstream Fpos;
             Fpos.open("Fpos.txt");
-            Fpos << mx1+cam;
+            Fpos << player.x-cam+750+540;
             Fpos << endl;
-            Fpos << my1+cam2;
+            Fpos << player.y-cam2+835+555;
+            Fpos << endl;
+            Fpos << player.isNPC;
+            Fpos << endl;
+            Fpos << player.itemout;
+            Fpos << endl;
+            Fpos << player.isMoving;
+            Fpos << endl;
+            Fpos << player.isrunning;
+            Fpos << endl;
+            Fpos << player.itemeq;
+            Fpos << endl;
+            Fpos << player.item[20];
+            Fpos << endl;
+            
+            
             Fpos.close();
-            }
-            else if (mouse_b & 1 && mx1>0 && my1>0)
-{
-               mx2=mouse_x;
-my2=mouse_y;
-            ofstream Fpos;
-            Fpos.open("Fpos.txt");
-            Fpos << mx1+cam;
-            Fpos << endl;
-            Fpos << my1+cam2;
-            Fpos << endl;
-            Fpos << endl;
-            Fpos << mx2+cam;
-            Fpos << endl;
-            Fpos << my2+cam2;
-            Fpos.close();
+         
             }
 
-textprintf(buffer,font,400,60,makecol(255,0,0), " x1: %i", mx1+cam);
-textprintf(buffer,font,400,70,makecol(255,0,0), " x2: %i", mx2);
-textprintf(buffer,font,480,60,makecol(255,0,0), " y1: %i", my1+cam2);
-textprintf(buffer,font,480,70,makecol(255,0,0), " y2: %i", my2);
+  
+            
+            
+            
+textprintf(buffer,font,400,60,makecol(255,0,0), " x1: %i", player.x-cam+750+540);
+textprintf(buffer,font,480,60,makecol(255,0,0), " y1: %i", player.y-cam2+835+555);
+
+textprintf(buffer,font,400,5,makecol(255,0,0), " saveTimer: %i", savetimer);
+
 blit (buffer, screen, 0, 0, 0, 0, SW, SH);
 clear_bitmap(buffer);
 }

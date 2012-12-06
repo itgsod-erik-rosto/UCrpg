@@ -1,3 +1,6 @@
+         
+          #include <declarations.h>
+          
              struct PLAYER
                  {
                        int Rnd;
@@ -31,6 +34,7 @@ bool isMoving;
 bool isTravelroute;
 bool isOnTravelroute;
 bool hasTarget;
+bool isrunning;
 
 bool activate;
 bool itemeq;
@@ -125,6 +129,7 @@ void PLAYER::controls()
      if (isMoving==true && isNPC==true)
      {
          if (dir==1)
+         
          y--;   
          
          if (dir==2)
@@ -176,6 +181,7 @@ void PLAYER::controls()
                     
     if (key[KEY_W] && isNPC!=true)
     {
+                   isMoving=true;
         SSX=0;
     ofY-=speed;
     if (!key[KEY_SPACE])
@@ -184,6 +190,7 @@ void PLAYER::controls()
 }
 else if (key[KEY_S] && isNPC!=true)
     {
+        isMoving=true;
         SSX=0;
         if (!key[KEY_SPACE])
          dir=3;
@@ -192,6 +199,7 @@ else if (key[KEY_S] && isNPC!=true)
 }
     else if (key[KEY_A] && isNPC!=true)
     {
+         isMoving=true;
         SSX=0;
         if (!key[KEY_SPACE])
          dir=2;
@@ -201,6 +209,7 @@ else if (key[KEY_S] && isNPC!=true)
   
     else if (key[KEY_D] && isNPC!=true)
    {
+         isMoving=true;
         SSX=0;
         if (!key[KEY_SPACE])
          dir=4;
@@ -217,21 +226,38 @@ else if (dir==3)
  SSX=0;
 if (key[KEY_LSHIFT] && isNPC!=true)
 {
+                    isrunning=true;
+                    
+                    if (isrunning==true)
+                    {
                    speed=5;
+                   clear_keybuf();
                    }
-                   else speed=2;
                    
+                   else if (isrunning==false) 
+                   speed=2;
+                   clear_keybuf();
+                   }
+                   else if (!key[KEY_LSHIFT])
+                   {
+                   isrunning=false;
+                   speed=2;
+                   }
                   
                
 }
 void PLAYER::draw()
 {
     if (isNPC!=true && isTravelroute!=true)
+    {
+                  
      masked_blit(bitmap, buffer, SSX, SSY, x-r, y-r, 40, 40);
-     
+  
+     }
      if (isNPC==true && isTravelroute!=true)
+     {
        masked_blit(bitmap, buffer, SSX, SSY, x-r+cam, y-r+cam2, 40, 40);
-       
+       } 
      masked_blit(items, buffer, 30, 18, posx, posy, 40, 40);
      
  if (dir==4)

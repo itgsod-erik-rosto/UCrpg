@@ -1,3 +1,5 @@
+#include <fstream>
+using namespace std;
 
 int Deagle=0;
 
@@ -132,6 +134,8 @@ void loadobj(BITMAP *buffer)
                  house[0].y1=80;
                  house[0].SSX=541;
                  house[0].SSY=521;
+                 house[0].isobject=false;
+                 house[0].ishouse=true;
                  
                  house[2].mbmap=true;
                  house[2].bitmap=Store1;
@@ -139,6 +143,8 @@ void loadobj(BITMAP *buffer)
                  house[2].y1=700;
                  house[2].SSX=204;
                  house[2].SSY=362;
+                 house[2].isobject=false;
+                 house[2].ishouse=true;
                  
                  house[3].mbmap=true;
                  house[3].bitmap=house_1;
@@ -146,50 +152,58 @@ void loadobj(BITMAP *buffer)
                  house[3].y1=230;
                  house[3].SSX=416;
                  house[3].SSY=343;
+                 house[3].isobject=false;
+                 house[3].ishouse=true;
                  
-                 wall[20].x1=1152;
-                 wall[20].x2=1152;
-                 wall[20].y1=700;
-                 wall[20].y2=900;
+                 wall[30].x1=1152;
+                 wall[30].x2=1152;
+                 wall[30].y1=700;
+                 wall[30].y2=900;
                  
-                 wall[21].x1=1152;
-                 wall[21].x2=1152+house[2].SSX-10;
-                 wall[21].y1=700;
-                 wall[21].y2=700;
+                 wall[31].x1=1152;
+                 wall[31].x2=1152+house[2].SSX-10;
+                 wall[31].y1=700;
+                 wall[31].y2=700;
                  
-                 wall[22].x1=1152+house[2].SSX;
-                 wall[22].x2=1152+house[2].SSX;
-                 wall[22].y1=700;
-                 wall[22].y2=700+house[2].SSY;
+                 wall[32].x1=1152+house[2].SSX;
+                 wall[32].x2=1152+house[2].SSX;
+                 wall[32].y1=700;
+                 wall[32].y2=700+house[2].SSY;
                  
-                 wall[23].x1=1152;
-                 wall[23].x2=1152;
-                 wall[23].y1=998;
-                 wall[23].y2=700+house[2].SSY;
+                 wall[33].x1=1152;
+                 wall[33].x2=1152;
+                 wall[33].y1=998;
+                 wall[33].y2=700+house[2].SSY;
                  
-                 wall[24].x1=1152;
-                 wall[24].x2=1152+house[2].SSX-10;
-                 wall[24].y1=700+house[2].SSY;
-                 wall[24].y2=700+house[2].SSY;
+                 wall[34].x1=1152;
+                 wall[34].x2=1152+house[2].SSX-10;
+                 wall[34].y1=700+house[2].SSY;
+                 wall[34].y2=700+house[2].SSY;
                  
                  fence[0].mbmap=true;
                  fence[0].bitmap=fence1;
                  fence[0].x1=-90;
+                 fence[0].x2=-90+500;
                  fence[0].y1=-40;
+                 fence[0].y2=-40;
                  fence[0].SSX=500;
                  fence[0].SSY=6;
                  
                  fence[1].mbmap=true;
                  fence[1].bitmap=fence1;
                  fence[1].x1=-90+250+110;
+                 fence[1].x2=-90+250+110;
                  fence[1].y1=-40;
+                 fence[1].y2=6;
                  fence[1].SSX=500;
                  fence[1].SSY=6;
                  
                  fence[2].mbmap=true;
                  fence[2].bitmap=fence1;
                  fence[2].x1=-90+250+250+310;
+                 fence[2].x2=450;
                  fence[2].y1=-40;
+                 fence[2].y2=-40;
                  fence[2].SSX=450;
                  fence[2].SSY=215;
                  fence[2].SSX1=1;
@@ -321,7 +335,6 @@ void loadobj(BITMAP *buffer)
                  kitchensink[0].SSY1=0;
                  kitchensink[0].collide=true;
                  
-              
                  stove[0].bmap=true;
                  stove[0].bitmap=hfurniture;
                  stove[0].x1=165+36;
@@ -576,15 +589,57 @@ void loadobj(BITMAP *buffer)
                  wall[19].y1=100;
                  wall[19].y2=240;
                  
-                 wall[20].x1=79;
-                 wall[20].x2=79;
-                 wall[20].y1=55;
-                 wall[20].y2=177;
+                 wall[20].x1=1205;
+                 wall[20].x2=1205;
+                 wall[20].y1=223+5;
+                 wall[20].y2=348+5;
                  
-                 wall[21].x1=415;
-                 wall[21].x2=415;
-                 wall[21].y1=100;
-                 wall[21].y2=240;
+                 wall[21].x1=1205;
+                 wall[21].x2=1615;
+                 wall[21].y1=223+5;
+                 wall[21].y2=223+5;
+                 
+                  wall[22].x1=1615;
+                 wall[22].x2=1615;
+                 wall[22].y1=223+5;
+                 wall[22].y2=565;
+                 
+                  wall[23].x1=1205;
+                 wall[23].x2=1615;
+                 wall[23].y1=565;
+                 wall[23].y2=565;
+                 
+                  wall[24].x1=1205;
+                 wall[24].x2=1205;
+                 wall[24].y1=435;
+                 wall[24].y2=565;
+                 
+                 wall[25].x1=house[3].x1+5;
+                 wall[25].x2=house[3].x1+330;
+                 wall[25].y1=house[3].y1+123;
+                 wall[25].y2=house[3].y1+123;
+                 
+                 
+                 wall[26].x1=house[3].x1+5;
+                 wall[26].x2=house[3].x1+190;
+                 wall[26].y1=house[3].y1+205;
+                 wall[26].y2=house[3].y1+205;
+                 
+                 wall[27].x1=house[3].x1+190;
+                 wall[27].x2=house[3].x1+190;
+                 wall[27].y1=house[3].y1+205;
+                 wall[27].y2=house[3].y1+270;
+                 
+                 wall[28].x1=house[3].x1+315;
+                 wall[28].x2=house[3].x1+315;
+                 wall[28].y1=house[3].y1+205;
+                 wall[28].y2=house[3].y1+270;
+                 
+                 wall[29].x1=house[3].x1+315;
+                 wall[29].x2=house[3].x1+415;
+                 wall[29].y1=house[3].y1+205;
+                 wall[29].y2=house[3].y1+205;
+               
                   }
                  
                                   int i2=0;
@@ -597,17 +652,25 @@ grass[i2].SSY=841;
 grass[i2].collide=false;
 grass[i2].x2=-910;
 grass[i2].y2=-882;
+wall[i2].collide=false;
 
 fence[i2].x2=-910;
 fence[i2].y2=-882;
 
 
 door[i2].isdoor=true;
+
+
+            
+            
 i2++;
-
-if (i2>19)
+if (i2>100)
+{
 i2=0;
+}
 
+  
+                       
                       grass[0].draw();
                       grass[1].draw();
                       grass[2].draw();
@@ -646,7 +709,23 @@ i2=0;
                            wall[22].draw(); 
                            wall[23].draw(); 
                            wall[24].draw(); 
-                            
+                           wall[25].draw(); 
+                           wall[26].draw(); 
+                           wall[27].draw(); 
+                           wall[28].draw(); 
+                           wall[29].draw(); 
+                           wall[30].draw(); 
+                           wall[31].draw(); 
+                           wall[32].draw(); 
+                           wall[33].draw(); 
+                           wall[34].draw(); 
+                           wall[35].draw(); 
+                           wall[36].draw(); 
+                           wall[37].draw(); 
+                           wall[38].draw(); 
+                           wall[39].draw(); 
+                           wall[40].draw(); 
+                           
                          trail[0].draw();
                         trail[1].draw();
                         trail[2].draw();
@@ -657,7 +736,16 @@ i2=0;
                            road[2].draw();
                       
                       
-                      fence[0].draw();
+                      
+                           
+                           house[0].draw();
+                           house[2].draw();
+                           house[3].draw();
+                           
+                           set_trans_blender(128, 128, 128, 128);
+                       draw_trans_sprite(buffer, shadow , player.x-player.r , player.y-player.r);
+                       
+                       fence[0].draw();
                       fence[1].draw();
                       fence[2].draw();
                       fence[3].draw();
@@ -667,10 +755,6 @@ i2=0;
                            fence[6].draw();
                            fence[7].draw();
                            fence[8].draw();
-                           
-                           house[0].draw();
-                           house[2].draw();
-                           house[3].draw();
                            
                            toilet[0].draw();
                            
