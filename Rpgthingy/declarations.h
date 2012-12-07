@@ -11,6 +11,7 @@ BITMAP *playerB;
 BITMAP *testB;
 BITMAP *pHouse;
 BITMAP *house_1;
+BITMAP *house_2;
 BITMAP *grass1;
 BITMAP *road1;
 BITMAP *fence1;
@@ -27,7 +28,13 @@ int my1;
 int my2;
 int savetimer;
 
+int Fobjects;
+int i10=0;
+ int ctimer=0;
+ int stimer=0;
+ bool quit;
  int cAct=0;
+ 
 int wallmax=100;
 int itemtimer=0;
 int Tobjects=2;

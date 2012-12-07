@@ -108,14 +108,27 @@ if ((key[KEY_W] || key[KEY_A] || key[KEY_S] || key[KEY_D]) && isNPC!=true)
                                  
                                  if (isNPC==true)
                                  {
+                                                 if (player.gunfire==true)
                                  if (player.gshotX>=x+cam-r && player.gshotX<=x+cam+r && player.gshotY>=y+cam2-r && player.gshotY<=y+cam2+r)
                                  if (player.dir==4)
+                                 {
+                                                   HP-=10;
                                  x+=10;
+                                 }
                                  else if (player.dir==3)
+                                 {
+                                      HP-=10;
                                  y+=10;
+                                 }
                                  else if (player.dir==2)
+                                 {
+                                      HP-=10;
                                  x-=10;
+                                 }
                                  else if (player.dir==1)
+                                 {
+                                      HP-=10;
                                  y-=10;
+                                 }
 }
 }

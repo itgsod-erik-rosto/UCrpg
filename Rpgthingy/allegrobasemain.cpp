@@ -1,12 +1,7 @@
 
 #include <allegro.h>
 #include <iostream>
-
-
-
-
-int i10=0;
- 
+#include <string>
  
 struct OBJECTS
 {
@@ -47,6 +42,7 @@ bool isopen;
        
        bool isdoor;
        bool isactivated;
+       bool istarget;
        
        int SSX1;
        int SSY1;
@@ -75,6 +71,7 @@ void collision();
        grass[1000], 
        fence[1000], 
        bed[1000], 
+       target[1000],
        mat[1000], 
        shopcounterGR[1000],
        shoppay[1000],
@@ -156,18 +153,82 @@ if (isactivated==true && isitem==true && key[KEY_Q] && player.itemeq==true && pl
                              }
                              }
                              
-                              if (test1.x>=x1+cam && test1.x<=x2+cam && test1.y>=y1+cam2 && test1.y<=y2+cam2 && test1.isNPC==true && collide==true)
-                                  {
-                                                              
-    if (test1.dir==4)
-    test1.x-=test1.speed;
-    if (test1.dir==3)
-    test1.y-=test1.speed;
-    if (test1.dir==2)
-    test1.x+=test1.speed;
-    if (test1.dir==1)
-    test1.y+=test1.speed;
-}
+                         
+if (istarget!=true)
+{
+if (test1.x>=x1-20 && test1.x<=x2+20
+&& test1.y>=y1-20 && test1.y<=y2+20 && collide!=true
+|| (test1.x>=x1-10 
+&& test1.x<=x1+SSX+10
+&& test1.y>=y1-10 
+&& test1.y<=y1+SSY+10
+&& collide==true)
+
+ || (SSY1==87 
+ && test1.x>=x1-15
+ && test1.x<=x1+15
+ && test1.y>=y1
+ && test1.y<=y1+SSY
+ && isopen!=true 
+ && isdoor==true)
+ 
+ ||(SSY1==0 
+ && test1.x>=x1
+ && test1.x<=x1+SSX
+ && test1.y>=y1-15
+ && test1.y<=y1+15
+ && isopen!=true 
+ && isdoor==true))
+{
+    test1.iscollided=true;
+    test1.isMoving=false;
+    
+                  if (test1.dir==1)
+                  test1.y+=test1.speed;
+                  else if (test1.dir==3)
+                  test1.y-=test1.speed;
+                  else if (test1.dir==2)
+                  test1.x+=test1.speed;
+                  else if (test1.dir==4)
+                  test1.x-=test1.speed;
+                  
+                  }
+                  else test1.iscollided=false;
+                  }
+                  
+                  if (istarget!=true)
+{
+if (player.gshotX>=x1-20+cam && player.gshotX<=x2+20+cam
+&& player.gshotY>=y1-20+cam2 && player.gshotY<=y2+20+cam2 && collide!=true
+|| (player.gshotX>=x1-10+cam 
+&& player.gshotX<=x1+SSX+10+cam
+&& player.gshotY>=y1-10 +cam2
+&& player.gshotY<=y1+SSY+10+cam2
+&& collide==true)
+
+ || (SSY1==87 
+ && player.gshotX>=x1-15+cam
+ && player.gshotX<=x1+15+cam
+ && player.gshotY>=y1+cam2
+ && player.gshotY<=y1+SSY+cam2
+ && isopen!=true 
+ && isdoor==true)
+ 
+ ||(SSY1==0 
+ && player.gshotX>=x1+cam
+ && player.gshotX<=x1+SSX+cam
+ && player.gshotY>=y1-15+cam2
+ && player.gshotY<=y1+15+cam2
+ && isopen!=true 
+ && isdoor==true))
+{
+    circlefill(buffer, player.gshotX, player.gshotY, 5, makecol(255, 255, 0));
+              
+              player.gshotX=-1000;
+              player.gshotY=-1000;
+                  }
+                  }
+                  
 if (!key[KEY_LCONTROL])
       if (actor[0].y>=y1+cam2-actor[0].r && actor[0].y<=y2+cam2+actor[0].r && actor[0].x>=x1+cam-actor[0].r && actor[0].x <=x2+cam+actor[0].r && collide!=true 
       || (SSY1==87 && actor[cAct].x>=x1-15+cam && actor[cAct].x<=x1+15+cam && actor[cAct].y>=y1+cam2 && actor[cAct].y<=y1+SSY+cam2 && isopen!=true && isdoor==true)
@@ -299,9 +360,6 @@ else
      blit(bitmap, buffer, SSX1, SSY1, hX+cam, hY+cam2, SSX, SSY);
       
       
-    
-     
-     
     collision();
      
  
@@ -324,13 +382,15 @@ else
            i++;
 
 
+
      drawobjects(buffer);
      
           
        
           player.draw();                 
           test1.draw();
-          
+          NPC[0].draw();
+          NPC[1].draw();
         
           
                            if (mouse_x!=SW/2 && mouse_y!=SH/2)
@@ -342,7 +402,9 @@ else
 
 using namespace std;
 int main(){
- 
+    
+    
+
  
 
  
@@ -358,19 +420,35 @@ int main(){
  
     set_color_depth (32);
     set_gfx_mode( GFX_AUTODETECT_WINDOWED, SW, SH, 0, 0);
+    set_window_title("Tjocka katter.");
     buffer = create_bitmap (SW, SH);
     
     
    
    
 background=load_bitmap("./Images/worldmap.bmp", NULL);
+
+
+clear_to_color(screen, makecol(255, 255, 255));
+  textprintf_ex(screen,font,510,SH/2, makecol(255, 0, 0), -1, "Loading game...", NULL);
  loadobj(buffer);
     loadch(buffer);
 
-while (!key[KEY_ESC])
+ifstream load;
+            load.open("save.dat");
+  
+            load >> ofX;
+            load >> ofY;
+            load >> player.HP;
+            load >> player.dir;
+            
+            load.close();
+
+
+while (quit!=true || savetimer!=0)
 {
       savetimer++;
-      if (savetimer>=201)
+      if (savetimer>=211)
       {
                       savetimer=0;
                       }
@@ -378,8 +456,8 @@ while (!key[KEY_ESC])
       timer1++;
       
       rest(5);
-      
 
+if (quit!=true)
 drawworld();
   
    
@@ -391,11 +469,19 @@ if (timer1>=40)
 
 
 
-            if (savetimer>=200)
+            if (savetimer>=210)
 {
                
             ofstream Fpos;
-            Fpos.open("Fpos.txt");
+            Fpos.open("save.dat");
+            Fpos << ofX;
+            Fpos << endl;
+            Fpos << ofY;
+            Fpos << endl;
+            Fpos << player.HP;
+            Fpos << endl;
+            Fpos << player.dir;
+            Fpos << endl;
             Fpos << player.x-cam+750+540;
             Fpos << endl;
             Fpos << player.y-cam2+835+555;
@@ -412,20 +498,47 @@ if (timer1>=40)
             Fpos << endl;
             Fpos << player.item[20];
             Fpos << endl;
+             
             
             
             Fpos.close();
          
+         
+     
+ ofstream cache;
+     cache.open("objects.dat");
+     
+     cache.close();
+     
             }
+          
+  if (key[KEY_ESC])
+            {
+                   savetimer=1;
+                   quit=true;
+                   }
+            
+          if (quit!=true)  
+          {
+textprintf(buffer,font,400,60,makecol(255,0,0), " x: %i", player.x-cam+750+540);
+textprintf(buffer,font,480,60,makecol(255,0,0), " y: %i", player.y-cam2+835+555);
 
-  
-            
-            
-            
-textprintf(buffer,font,400,60,makecol(255,0,0), " x1: %i", player.x-cam+750+540);
-textprintf(buffer,font,480,60,makecol(255,0,0), " y1: %i", player.y-cam2+835+555);
+textprintf(buffer,font,400,5,makecol(255,0,0), " SaveTimer: %i", savetimer);
+}
 
-textprintf(buffer,font,400,5,makecol(255,0,0), " saveTimer: %i", savetimer);
+if (quit==true)
+{
+               clear_to_color(buffer, makecol(savetimer/6, savetimer/6, savetimer/6));
+               }
+if (quit==true && savetimer <200)
+{
+
+textprintf_ex(buffer,font,400,SH/2, makecol(savetimer/4+150, 0, 0), -1, "Waiting for the game to save...", NULL);
+}
+else if (quit==true && savetimer >= 200)
+{
+     textprintf_ex(buffer,font,510,SH/2, makecol(255, 0, 0), -1, "Done!", NULL);
+     }
 
 blit (buffer, screen, 0, 0, 0, 0, SW, SH);
 clear_bitmap(buffer);

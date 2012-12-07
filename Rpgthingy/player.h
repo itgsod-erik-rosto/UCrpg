@@ -1,8 +1,10 @@
-         
+         #include <fstream>
           #include <declarations.h>
           
              struct PLAYER
                  {
+                          char *name;
+                       int HP;
                        int Rnd;
                        int i5;
                        BITMAP *bitmap;
@@ -35,6 +37,8 @@ bool isTravelroute;
 bool isOnTravelroute;
 bool hasTarget;
 bool isrunning;
+bool iscollided;
+bool isDead;
 
 bool activate;
 bool itemeq;
@@ -62,6 +66,7 @@ int gunfireT;
                         }
                         player, 
                         test1, 
+                        NPC[100],
                         actor[100],
                         travelroute[100];
     
@@ -69,26 +74,82 @@ int gunfireT;
     #include <actors.h>
     void PLAYER::alert()
     {
-         if (player.x<=x+cam && player.x>=x+cam-300 && player.y<=y+cam2+50 && player.y>=y+cam2-50)
-         dir=2;
-         
-         
-         if (player.x<=x+cam+300 && player.x>=x+cam && player.y<=y+cam2+50 && player.y>=y+cam2-50)
-         dir=4;
-         
-         if (player.x<=x+cam+50 && player.x>=x+cam-50 && player.y<=y+cam2 && player.y>=y+cam2-300)
-         dir=1;
-         
-         
-         if (player.x<=x+cam+50 && player.x>=x+cam-50 && player.y<=y+cam2+300 && player.y>=y+cam2)
-         dir=3;
+         if (isNPC==true && iscollided!=true && 1>2)
+         {
+                         if (x<target[0].x1)
+                         {
+                                            isMoving=true;
+                         dir=4;
+                         }
+                         else if (x>target[0].x1)
+                         {
+                                            isMoving=true;
+                         dir=2;
+                         }
+                         else if (y>target[0].y1)
+                         {
+                              isMoving=true;
+                              dir=1;
+                              }
+                              else if (y<target[0].y1)
+                              {
+                                   isMoving=true;
+                                   dir=3;
+                                   }
+                         else if (x==target[0].x1 && y==target[0].y1)
+                         isMoving=false;
+                         
+                         }
          }
          
          
 void PLAYER::controls()
 {
+     if (HP<=0)
+     {
+               isDead=true;
+               }
      
+     if (isNPC==true && name=="NPC1")
+     {
+                
+                                        
+     if (key[KEY_LEFT])
+            {
+                            isMoving=true;
+                
+                              dir=2;
+                             }
+                             
+            else if (key[KEY_UP])
+            {
+                 isMoving=true;
+                
+                             dir=1;
+                             }
+                             
+            else if (key[KEY_RIGHT])
+            {
+                 isMoving=true;
+                
+                              dir=4;
+                             }
+                             
+            else if (key[KEY_DOWN])
+            {
+                 isMoving=true;
+                
+                             dir=3;
+                             }
+                             
+                             
+                             }
          
+ctimer+=7;          
+if (ctimer>=50)
+ctimer=0;  
+
+
 
     
     
@@ -216,6 +277,11 @@ else if (key[KEY_S] && isNPC!=true)
     ofX+=speed;
      
 }
+if (!key[KEY_W] && !key[KEY_D] && !key[KEY_S] && !key[KEY_D])
+{
+                player.isMoving=false;
+                player.isrunning=false;
+                }
 if (dir==4)
 SSX=41;
 else if (dir==2)
@@ -250,12 +316,14 @@ void PLAYER::draw()
 {
     if (isNPC!=true && isTravelroute!=true)
     {
-                  
+                 
+     
      masked_blit(bitmap, buffer, SSX, SSY, x-r, y-r, 40, 40);
-  
+
      }
      if (isNPC==true && isTravelroute!=true)
      {
+                
        masked_blit(bitmap, buffer, SSX, SSY, x-r+cam, y-r+cam2, 40, 40);
        } 
      masked_blit(items, buffer, 30, 18, posx, posy, 40, 40);
@@ -274,13 +342,20 @@ void PLAYER::draw()
  if (dir==1)
                        line(buffer, gshotX, gshotY, gshotX, gshotY+10, makecol(255,255,0));
             
-                       
+                       if (isDead!=true)
+                       {
      animation(buffer);
      controls();
+     
  
  
      if (isNPC==true)
      {
+                     textprintf_ex( buffer, font, x+cam-20, y+cam2-30, makecol (255,0,0), -1, " HP %i", HP);
      alert();
+     }
+     if (isNPC!=true)
+                     textprintf_ex( buffer, font, x-20, y-30, makecol (255,0,0), -1, " HP %i", HP);
+     
      }
  }
