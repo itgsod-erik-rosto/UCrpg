@@ -1,22 +1,23 @@
 #include <fstream>
 using namespace std;
-
+ ofstream FOBJECTS;
+ 
 int Deagle=0;
 
 void loadobj(BITMAP *buffer)
             {
-                    pHouse=load_bitmap("./Images/pHouse.bmp", NULL);
-                    house_1=load_bitmap("./Images/house_1.bmp", NULL);
-                    house_2=load_bitmap("./Images/house_2.bmp", NULL);
-                    Store1=load_bitmap("./Images/House1.bmp", NULL);
-                    grass1=load_bitmap("./Images/grass1.bmp", NULL);
-                    road1=load_bitmap("./Images/road1.bmp", NULL);
-                    fence1=load_bitmap("./Images/fence1.bmp", NULL);
-                    hSS1=load_bitmap("./Images/hSS1.bmp", NULL);
-                    hfurniture=load_bitmap("./Images/Hfurniture.bmp", NULL);
-                    SSanim=load_bitmap("./Images/SSanim.bmp", NULL);
-                    items=load_bitmap("./Images/items.bmp", NULL);
-                    HUD=load_bitmap("./Images/hud.bmp", NULL);
+                    pHouse=load_bitmap("Data/Images/pHouse.bmp", NULL);
+                    house_1=load_bitmap("Data/Images/house_1.bmp", NULL);
+                    house_2=load_bitmap("Data/Images/house_2.bmp", NULL);
+                    Store1=load_bitmap("Data/Images/House1.bmp", NULL);
+                    grass1=load_bitmap("Data/Images/grass1.bmp", NULL);
+                    road1=load_bitmap("Data/Images/road1.bmp", NULL);
+                    fence1=load_bitmap("Data/Images/fence1.bmp", NULL);
+                    hSS1=load_bitmap("Data/Images/hSS1.bmp", NULL);
+                    hfurniture=load_bitmap("Data/Images/Hfurniture.bmp", NULL);
+                    SSanim=load_bitmap("Data/Images/SSanim.bmp", NULL);
+                    items=load_bitmap("Data/Images/items.bmp", NULL);
+                    HUD=load_bitmap("Data/Images/hud.bmp", NULL);
                     
                  wall[0].x1=200;
                  wall[0].x2=200;
@@ -413,6 +414,7 @@ void loadobj(BITMAP *buffer)
                  mat[0].SSY=100;
                  mat[0].SSX1=82;
                  
+                 deagle[0].ID="Deagle 1";
                  deagle[0].isitem=true;
                  deagle[0].mbmap=true;
                  deagle[0].bitmap=items;
@@ -423,7 +425,7 @@ void loadobj(BITMAP *buffer)
                  deagle[0].SSX1=0;
                  deagle[0].item=Deagle;
             
-            
+                 deagle[1].ID="Deagle 2";
                  deagle[1].isitem=true;
                  deagle[1].mbmap=true;
                  deagle[1].bitmap=items;
@@ -443,11 +445,11 @@ void loadobj(BITMAP *buffer)
                  hud[0].ispersistent=true;
                  hud[0].mbmap=true;
                  hud[0].bitmap=HUD;
-                 hud[0].y1=30;
-                 hud[0].SSX=162;
-                 hud[0].SSY=26;
+                 hud[0].y1=0;
+                 hud[0].SSX=1080;
+                 hud[0].SSY=29;
                  hud[0].SSX1=0;
-                 hud[0].x1=SW/2-hud[0].SSX;
+                 hud[0].x1=0;
                  hud[0].slotfill[0]=false;
                  hud[0].slotfill[1]=false;
                  hud[0].slotfill[2]=false;
@@ -873,9 +875,12 @@ i2=0;
                         
                         target[0].draw();
                         
+                            bloodstain[b].draw();
+                        
                         hud[0].draw();
                         deagle[0].draw();
                         gunFIRE[0].draw();
                         //deagle[1].draw();
                         
+                       
                         }

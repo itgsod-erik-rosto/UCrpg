@@ -1,0 +1,44 @@
+Player //Name
+100 //HP
+540 //x
+335 //y
+20 //r
+0// tempX
+0 //tempY
+0 //isNPC
+0 //isMoving
+0 //isDead
+
+NPC1 //Name
+100 //HP
+1360 //x
+460 //y
+20 //r
+0// tempX
+0 //tempY
+1 //isNPC
+0 //isMoving
+0 //isDead
+
+NPC2 //Name
+100 //HP
+1360 //x
+-140 //y
+20 //r
+0// tempX
+0 //tempY
+1 //isNPC
+0 //isMoving
+0 //isDead
+
+NPC3 //Name
+100 //HP
+1320 //x
+1020 //y
+20 //r
+0// tempX
+0 //tempY
+1 //isNPC
+0 //isMoving
+0 //isDead
+

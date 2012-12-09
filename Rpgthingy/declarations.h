@@ -4,6 +4,9 @@
 #define cam int (ofX)*-1-640
 #define cam2 int (ofY)*-1-700
 
+  using namespace std;
+              ofstream FNPCS;
+              
 BITMAP *HUD;
 BITMAP *background;
 BITMAP *buffer;

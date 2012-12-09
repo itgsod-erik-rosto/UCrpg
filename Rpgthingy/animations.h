@@ -48,7 +48,10 @@ if ((key[KEY_W] || key[KEY_A] || key[KEY_S] || key[KEY_D]) && isNPC!=true)
                {
                
                 if (dir==4)
+                {
+                  
                 gshotX+=40;
+            }
                 if (dir==2)
                 gshotX-=40;
                 if (dir==3)
@@ -62,9 +65,14 @@ if ((key[KEY_W] || key[KEY_A] || key[KEY_S] || key[KEY_D]) && isNPC!=true)
                                                  
                                  if (dir==2)
                                  {
+                                        if (gunfireT<12)
+                                        masked_blit(items, buffer, 43, 30, x-r-23, y-(r/2)+6, 13, 43-30);
                                            
                                            if (gunfireT<7) 
+                                           {
+                                                
                                             ofX++;
+                                        }
                                             
                                            if (gunfireT>=7)
                                             ofX--;
@@ -72,9 +80,14 @@ if ((key[KEY_W] || key[KEY_A] || key[KEY_S] || key[KEY_D]) && isNPC!=true)
                                             
                                  if (dir==4)
                                  {
+                                        if (gunfireT<12)
+                                        masked_blit(items, buffer, 15, 30, x+r+9, y-(r/2)+3, 13, 43-30);
                                             
                                            if (gunfireT<7) 
+                                           {
+                                                  
                                             ofX--;
+                                        }
                                             
                                            if (gunfireT>=7)
                                             ofX++;
@@ -82,6 +95,9 @@ if ((key[KEY_W] || key[KEY_A] || key[KEY_S] || key[KEY_D]) && isNPC!=true)
                                  
                                  if (dir==1)
                                  {
+                                        if (gunfireT<12)
+                                        masked_blit(items, buffer, 1, 30, x-r/2+2, y-r*2-3, 13, 43-30);
+                                           
                                            if (gunfireT<7) 
                                             ofY++;
                                             
@@ -91,6 +107,9 @@ if ((key[KEY_W] || key[KEY_A] || key[KEY_S] || key[KEY_D]) && isNPC!=true)
                                             
                                  if (dir==3)
                                  {
+                                          if (gunfireT<12)
+                                        masked_blit(items, buffer, 29, 30, x-r/2+5, y+r+9, 13, 43-30);
+                                           
                                            if (gunfireT<7) 
                                             ofY--;
                                             

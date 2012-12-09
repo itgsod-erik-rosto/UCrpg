@@ -2,10 +2,17 @@
 #include <allegro.h>
 #include <iostream>
 #include <string>
+ int b=0;
+ bool startdone=false;
+ int starttimer=0;
+ 
+
+
  
 struct OBJECTS
 {
 
+     char *ID;
      
        int x1;
        int y1;
@@ -14,6 +21,8 @@ struct OBJECTS
       
        bool bmap;
        bool mbmap;
+       
+       int status[];
        
        bool equipped;
        int x2;
@@ -29,6 +38,7 @@ bool isobject;
 bool isopen;
  bool isitem;
  bool ispersistent;
+ bool isblood;
  
        int w;
        int h;
@@ -53,9 +63,9 @@ bool isopen;
        int hY;
        
        int color;
-       char ID;
        char path;
 
+  void STATUS();
 void collision();
        void draw();
        
@@ -84,12 +94,105 @@ void collision();
        fridge[1000],
        stove[1000],
        kitchensink[1000],
+       bloodstain[1000],
        door[1000];
        
        #include <player.h>
        
       #include <objects.h>
        
+       void OBJECTS::STATUS()
+       {
+          
+
+
+       if (ID!=NULL)
+       {
+       FOBJECTS << ID;
+       FOBJECTS << " //ID";
+       FOBJECTS << endl;
+    }
+    
+      else
+       {
+       FOBJECTS << "NO ID";
+       FOBJECTS << " //ID";
+       FOBJECTS << endl;
+    }
+       
+       FOBJECTS << x1;
+       FOBJECTS << " //x1";
+       FOBJECTS << endl;
+       
+       FOBJECTS << y1;
+       FOBJECTS << " //y1";
+       FOBJECTS << endl;
+       
+       FOBJECTS << x2;
+       FOBJECTS << "// x2";
+       FOBJECTS << endl;
+       
+       FOBJECTS << y2;
+       FOBJECTS << " //y2";
+       FOBJECTS << endl;
+       
+        FOBJECTS << bmap;
+       FOBJECTS << "// bmap";
+       FOBJECTS << endl;
+       
+       FOBJECTS << mbmap;
+       FOBJECTS << " //mbmap";
+       FOBJECTS << endl;
+       
+       FOBJECTS << isdoor;
+       FOBJECTS << " //isdoor";
+       FOBJECTS << endl;
+       
+       FOBJECTS << ishouse;
+       FOBJECTS << " //ishouse";
+       FOBJECTS << endl;
+       
+       FOBJECTS << ispersistent;
+       FOBJECTS << " //ispersistent";
+       FOBJECTS << endl;
+       
+       FOBJECTS << isactivated;
+       FOBJECTS << " //isactivated";
+       FOBJECTS << endl;
+       
+       FOBJECTS << SSX;
+       FOBJECTS << " //SSX";
+       FOBJECTS << endl;
+       
+       FOBJECTS << SSY;
+       FOBJECTS << " //SSY";
+       FOBJECTS << endl;
+       
+       FOBJECTS << SSX1;
+       FOBJECTS << " //SSX1";
+       FOBJECTS << endl;
+       
+       FOBJECTS << SSY1;
+       FOBJECTS << " //SSY1";
+       FOBJECTS << endl;
+       
+       FOBJECTS << isitem;
+       FOBJECTS << " //isitem";
+       FOBJECTS << endl;
+       
+       FOBJECTS << isopen;
+       FOBJECTS << " //isopen";
+       FOBJECTS << endl;
+       
+       FOBJECTS << collide;
+       FOBJECTS << " //collide";
+       FOBJECTS << endl;
+       
+       FOBJECTS << isobject;
+       FOBJECTS << " //isobject";
+       FOBJECTS << endl;
+       FOBJECTS << endl;
+        }
 void OBJECTS::collision()
 {
      
@@ -281,6 +384,9 @@ if (isopen==true && SSX1==0)
      
 void OBJECTS::draw()
 {
+    
+
+
   
   if (collide==true)
   {
@@ -290,6 +396,7 @@ void OBJECTS::draw()
 else 
 {
      }
+     
   
      if (bmap==true)
      {
@@ -346,7 +453,7 @@ else
      {
                       
                       
-      masked_blit(bitmap, buffer, 0, 0, hud[0].x1+15, hud[0].y1+10, 18, 10);
+      masked_blit(bitmap, buffer, 0, 0, hud[0].x1+15+459, hud[0].y1+10, 18, 10);
       
       }
       
@@ -360,12 +467,18 @@ else
      blit(bitmap, buffer, SSX1, SSY1, hX+cam, hY+cam2, SSX, SSY);
       
       
+      if (isblood==true)
+     {
+         circlefill(buffer, x1, y1, 3, makecol(255, 0, 0));   
+        }
+        
     collision();
      
  
    if ((collide!=true && mbmap!=true && SSX==0 || SSY==0 ))
        line(buffer, x1+cam, y1+cam2, x2+cam, y2+cam2, makecol(255, 0, 0));
 
+STATUS();
      }
 
 
@@ -384,14 +497,17 @@ else
 
 
      drawobjects(buffer);
+   
      
-          
-       
+
+      FNPCS.open("Data/NPCS/NPCS.dat");
+      
           player.draw();                 
           test1.draw();
           NPC[0].draw();
           NPC[1].draw();
-        
+         
+           FNPCS.close();
           
                            if (mouse_x!=SW/2 && mouse_y!=SH/2)
      circlefill(buffer, mouse_x, mouse_y, 2, makecol(255,0,0));
@@ -404,9 +520,10 @@ using namespace std;
 int main(){
     
     
-
- 
-
+if (startdone!=true)
+{
+starttimer++;
+}
  
     allegro_init();
     install_keyboard();
@@ -426,7 +543,7 @@ int main(){
     
    
    
-background=load_bitmap("./Images/worldmap.bmp", NULL);
+background=load_bitmap("Data/Images/worldmap.bmp", NULL);
 
 
 clear_to_color(screen, makecol(255, 255, 255));
@@ -435,7 +552,7 @@ clear_to_color(screen, makecol(255, 255, 255));
     loadch(buffer);
 
 ifstream load;
-            load.open("save.dat");
+            load.open("Data/Save/save.dat");
   
             load >> ofX;
             load >> ofY;
@@ -443,10 +560,12 @@ ifstream load;
             load >> player.dir;
             
             load.close();
+startdone=true;
 
 
 while (quit!=true || savetimer!=0)
 {
+    
       savetimer++;
       if (savetimer>=211)
       {
@@ -454,12 +573,17 @@ while (quit!=true || savetimer!=0)
                       }
       
       timer1++;
-      
+
       rest(5);
 
 if (quit!=true)
+{
+       FOBJECTS.open("Data/Objects/FObjects.dat");
 drawworld();
-  
+
+}
+
+
    
 if (timer1>=40)
 {
@@ -471,9 +595,11 @@ if (timer1>=40)
 
             if (savetimer>=210)
 {
-               
+    
+
+                  
             ofstream Fpos;
-            Fpos.open("save.dat");
+            Fpos.open("Data/Save/save.dat");
             Fpos << ofX;
             Fpos << endl;
             Fpos << ofY;
@@ -500,13 +626,10 @@ if (timer1>=40)
             Fpos << endl;
              
             
-            
-            Fpos.close();
-         
-         
-     
+        
+      
  ofstream cache;
-     cache.open("objects.dat");
+     cache.open("Data/Objects/objects.dat");
      
      cache.close();
      
@@ -520,10 +643,13 @@ if (timer1>=40)
             
           if (quit!=true)  
           {
-textprintf(buffer,font,400,60,makecol(255,0,0), " x: %i", player.x-cam+750+540);
-textprintf(buffer,font,480,60,makecol(255,0,0), " y: %i", player.y-cam2+835+555);
+textprintf_ex(buffer,font,400,60,makecol(255,0,0), 0, " x: %i", player.x-cam+750+540);
+textprintf_ex(buffer,font,480,60,makecol(255,0,0), 0," y: %i", player.y-cam2+835+555);
 
-textprintf(buffer,font,400,5,makecol(255,0,0), " SaveTimer: %i", savetimer);
+textprintf_ex(buffer,font,200,0,makecol(255,0,0), 0," S-Time %i", starttimer);
+
+textprintf_ex(buffer,font,400,33,makecol(255,0,0), 0," SaveTimer: %i", savetimer);
+textprintf_ex(buffer,font,400,43,makecol(255,0,0), 0," B: %i", b);
 }
 
 if (quit==true)
@@ -543,6 +669,9 @@ else if (quit==true && savetimer >= 200)
 blit (buffer, screen, 0, 0, 0, 0, SW, SH);
 clear_bitmap(buffer);
 }
+if (quit==true)
+FOBJECTS.close();
+
 
 
     

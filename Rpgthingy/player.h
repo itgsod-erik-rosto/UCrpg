@@ -1,10 +1,15 @@
          #include <fstream>
           #include <declarations.h>
+      
+        
           
              struct PLAYER
                  {
+                        
+                       
+                        
                           char *name;
-                       int HP;
+                       
                        int Rnd;
                        int i5;
                        BITMAP *bitmap;
@@ -12,6 +17,15 @@
                    int gshotX;
                    int gshotY;
                     
+                    
+                     int fnpcsi;
+                     
+                    int HP;
+                    
+                        int x;
+                        int y;
+                        int r;
+                        
                     int tempX;
                     int tempY;
                        
@@ -20,9 +34,7 @@
                        int targetX;
                        int targetY;
                        
-                        int x;
-                        int y;
-                        int r;
+                    int status[];
                         
                         int x_1;
                         int y_1;
@@ -58,6 +70,7 @@ int gunfireT;
                         int posx;
                         int posy;
                         
+                        void STATUS(BITMAP *buffer);
                         void alert();
                         void animation(BITMAP *buffer);
                         void controls();
@@ -72,6 +85,60 @@ int gunfireT;
     
     
     #include <actors.h>
+    
+    void PLAYER::STATUS(BITMAP *buffer)
+    {
+        
+       
+        
+
+      
+       
+        FNPCS << name;
+        FNPCS << " //Name";
+       FNPCS << endl;
+    
+       FNPCS << HP;
+       FNPCS << " //HP";
+       FNPCS << endl;
+       
+       FNPCS << x;
+       FNPCS << " //x";
+       FNPCS << endl;
+       
+       FNPCS << y;
+       FNPCS << " //y";
+       FNPCS << endl;
+       
+       FNPCS << r;
+       FNPCS << " //r";
+       FNPCS << endl;
+       
+       FNPCS << tempX;
+       FNPCS << "// tempX";
+       FNPCS << endl;
+       
+       FNPCS << tempY;
+       FNPCS << " //tempY";
+       FNPCS << endl;
+       
+       FNPCS << isNPC;
+       FNPCS << " //isNPC";
+       FNPCS << endl;
+       
+       FNPCS << isMoving;
+       FNPCS << " //isMoving";
+       FNPCS << endl;
+       
+       FNPCS << isDead;
+       FNPCS << " //isDead";
+       FNPCS << endl;
+       FNPCS << endl;
+
+  
+     
+    
+    }
     void PLAYER::alert()
     {
          if (isNPC==true && iscollided!=true && 1>2)
@@ -313,7 +380,12 @@ if (key[KEY_LSHIFT] && isNPC!=true)
                
 }
 void PLAYER::draw()
-{
+{ 
+    
+    
+       
+    STATUS(buffer);
+
     if (isNPC!=true && isTravelroute!=true)
     {
                  
@@ -326,11 +398,18 @@ void PLAYER::draw()
                 
        masked_blit(bitmap, buffer, SSX, SSY, x-r+cam, y-r+cam2, 40, 40);
        } 
+       if (posx!=0 && posy!=0)
+       {
      masked_blit(items, buffer, 30, 18, posx, posy, 40, 40);
-     
+   
+    }
+     if (gshotX!=0 && gshotY!=0)
+     {
  if (dir==4)
+ {
+         
                        line(buffer, gshotX-10, gshotY, gshotX, gshotY, makecol(255,255,0));
-            
+}          
  if (dir==2)
                        line(buffer, gshotX, gshotY, gshotX+10, gshotY, makecol(255,255,0));
                        
@@ -341,11 +420,17 @@ void PLAYER::draw()
             
  if (dir==1)
                        line(buffer, gshotX, gshotY, gshotX, gshotY+10, makecol(255,255,0));
-            
+        }
+         
+        
+      
+
+
                        if (isDead!=true)
                        {
      animation(buffer);
      controls();
+     
      
  
  
@@ -355,7 +440,10 @@ void PLAYER::draw()
      alert();
      }
      if (isNPC!=true)
-                     textprintf_ex( buffer, font, x-20, y-30, makecol (255,0,0), -1, " HP %i", HP);
+                     textprintf_ex( buffer, font, 700, 10, makecol (255,0,0), 0, " HP %i", HP);
      
      }
+     
+    
+     
  }
