@@ -1,7 +1,7 @@
 [Project]
 FileName=AllegroBase.dev
 Name=AllegroBase
-UnitCount=6
+UnitCount=7
 Type=0
 Ver=1
 ObjFiles=
@@ -12,7 +12,7 @@ ResourceIncludes=
 MakeIncludes=
 Compiler=
 CppCompiler=
-Linker=../../../../Desktop/UtterCore/Dev-Cpp/lib/liballeg.a_@@_
+Linker=../../../../../Dev-Cpp/lib/liballeg.a_@@_
 IsCpp=1
 Icon=
 ExeOutput=
@@ -98,7 +98,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit7]
-FileName=declarations.h
+FileName=config.h
 CompileCpp=1
 Folder=
 Compile=1

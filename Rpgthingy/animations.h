@@ -128,26 +128,47 @@ if ((key[KEY_W] || key[KEY_A] || key[KEY_S] || key[KEY_D]) && isNPC!=true)
                                  if (isNPC==true)
                                  {
                                                  if (player.gunfire==true)
-                                 if (player.gshotX>=x+cam-r && player.gshotX<=x+cam+r && player.gshotY>=y+cam2-r && player.gshotY<=y+cam2+r)
+                                 if (player.gshotX>=x+cam-r 
+                                 && player.gshotX<=x+cam+r 
+                                 && player.gshotY>=y+cam2-r 
+                                 && player.gshotY<=y+cam2+r
+                                 || (player.gshotX>=x-3+cam-r 
+                                 && player.gshotX<=x-3+cam+r 
+                                 && player.gshotY>=y-3+cam2-r 
+                                 && player.gshotY<=y-3+cam2+r
+                                 || (player.gshotX>=x+3+cam-r 
+                                 && player.gshotX<=x+3+cam+r 
+                                 && player.gshotY>=y+3+cam2-r 
+                                 && player.gshotY<=y+3+cam2+r)))
+                                 
+                                 isShot=true;
+                                 
+                                 if (isShot==true)
+                                 {
                                  if (player.dir==4)
                                  {
-                                                   HP-=10;
-                                 x+=10;
+                                      
+                                                   dir=2;
                                  }
                                  else if (player.dir==3)
                                  {
-                                      HP-=10;
-                                 y+=10;
+                                      
+                                      dir=1;
+                                     
                                  }
                                  else if (player.dir==2)
                                  {
-                                      HP-=10;
-                                 x-=10;
+                                      
+                                      dir=4;
+                                     
                                  }
                                  else if (player.dir==1)
                                  {
-                                      HP-=10;
-                                 y-=10;
+                                      
+                                      dir=3;
+                                     
+                                 }
+                                 
                                  }
 }
 }

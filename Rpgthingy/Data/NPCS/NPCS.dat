@@ -1,14 +1,3 @@
-Player //Name
-100 //HP
-540 //x
-335 //y
-20 //r
-0// tempX
-0 //tempY
-0 //isNPC
-0 //isMoving
-0 //isDead
-
 NPC1 //Name
 100 //HP
 1360 //x
@@ -19,6 +8,11 @@ NPC1 //Name
 1 //isNPC
 0 //isMoving
 0 //isDead
+0 //isCollided
+0 //Activate
+0 //itemequipped
+0 //isShot
+0 //itemout
 
 NPC2 //Name
 100 //HP
@@ -30,6 +24,11 @@ NPC2 //Name
 1 //isNPC
 0 //isMoving
 0 //isDead
+0 //isCollided
+0 //Activate
+0 //itemequipped
+0 //isShot
+0 //itemout
 
 NPC3 //Name
 100 //HP
@@ -41,4 +40,25 @@ NPC3 //Name
 1 //isNPC
 0 //isMoving
 0 //isDead
+0 //isCollided
+0 //Activate
+0 //itemequipped
+0 //isShot
+0 //itemout
+
+Player //Name
+100 //HP
+540 //x
+335 //y
+20 //r
+0// tempX
+0 //tempY
+0 //isNPC
+0 //isMoving
+0 //isDead
+0 //isCollided
+0 //Activate
+0 //itemequipped
+0 //isShot
+0 //itemout
 

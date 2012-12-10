@@ -1,11 +1,7 @@
-
 #include <allegro.h>
 #include <iostream>
 #include <string>
- int b=0;
- bool startdone=false;
- int starttimer=0;
- 
+
 
 
  
@@ -64,7 +60,7 @@ bool isopen;
        
        int color;
        char path;
-
+void saveobjects(BITMAP *buffer);
   void STATUS();
 void collision();
        void draw();
@@ -259,45 +255,39 @@ if (isactivated==true && isitem==true && key[KEY_Q] && player.itemeq==true && pl
                          
 if (istarget!=true)
 {
-if (test1.x>=x1-20 && test1.x<=x2+20
-&& test1.y>=y1-20 && test1.y<=y2+20 && collide!=true
-|| (test1.x>=x1-10 
-&& test1.x<=x1+SSX+10
-&& test1.y>=y1-10 
-&& test1.y<=y1+SSY+10
+               n1++;
+               
+               if (n1>=3)
+               n1=0;    
+                   
+if (NPC[n1].x>=x1-20 && NPC[n1].x<=x2+20
+&& NPC[n1].y>=y1-20 && NPC[n1].y<=y2+20 && collide!=true
+|| (NPC[n1].x>=x1-10 
+&& NPC[n1].x<=x1+SSX+10
+&& NPC[n1].y>=y1-10 
+&& NPC[n1].y<=y1+SSY+10
 && collide==true)
 
  || (SSY1==87 
- && test1.x>=x1-15
- && test1.x<=x1+15
- && test1.y>=y1
- && test1.y<=y1+SSY
+ && NPC[n1].x>=x1-15
+ && NPC[n1].x<=x1+15
+ && NPC[n1].y>=y1
+ && NPC[n1].y<=y1+SSY
  && isopen!=true 
  && isdoor==true)
  
  ||(SSY1==0 
- && test1.x>=x1
- && test1.x<=x1+SSX
- && test1.y>=y1-15
- && test1.y<=y1+15
+ && NPC[n1].x>=x1
+ && NPC[n1].x<=x1+SSX
+ && NPC[n1].y>=y1-15
+ && NPC[n1].y<=y1+15
  && isopen!=true 
  && isdoor==true))
 {
-    test1.iscollided=true;
-    test1.isMoving=false;
+    NPC[n1].iscollided=true;
+}
+}
     
-                  if (test1.dir==1)
-                  test1.y+=test1.speed;
-                  else if (test1.dir==3)
-                  test1.y-=test1.speed;
-                  else if (test1.dir==2)
-                  test1.x+=test1.speed;
-                  else if (test1.dir==4)
-                  test1.x-=test1.speed;
-                  
-                  }
-                  else test1.iscollided=false;
-                  }
                   
                   if (istarget!=true)
 {
@@ -344,14 +334,8 @@ if (!key[KEY_LCONTROL])
 
     if (actor[0].isNPC!=true)
     {                 
-    if (player.dir==1)
-    ofY+=player.speed;
-    else if (player.dir==3)
-    ofY-=player.speed;
-    else if (player.dir==2)
-    ofX+=player.speed;
-    else if (player.dir==4)
-    ofX-=player.speed;
+                      player.iscollided=true;
+    
 }
 }
 
@@ -384,7 +368,7 @@ if (isopen==true && SSX1==0)
      
 void OBJECTS::draw()
 {
-    
+    saveobjects(buffer);
 
 
   
@@ -478,7 +462,6 @@ else
    if ((collide!=true && mbmap!=true && SSX==0 || SSY==0 ))
        line(buffer, x1+cam, y1+cam2, x2+cam, y2+cam2, makecol(255, 0, 0));
 
-STATUS();
      }
 
 
@@ -487,43 +470,54 @@ STATUS();
             
                  
 
-
+     
+void drawplayers()
+{
+                         
+          NPC[2].draw();
+          NPC[0].draw();
+          NPC[1].draw();
+           player.draw();  
+           }
+           
     #include <animations.h>
      
       void drawworld (void)
       {
            i++;
-
-
-
-     drawobjects(buffer);
-   
-     
+          
 
       FNPCS.open("Data/NPCS/NPCS.dat");
-      
-          player.draw();                 
-          test1.draw();
-          NPC[0].draw();
-          NPC[1].draw();
-         
-           FNPCS.close();
-          
+    
+     drawobjects(buffer);
+     
+            drawplayers(); 
+           
+    FNPCS.close();                  
+            
+            
+
+
+       
                            if (mouse_x!=SW/2 && mouse_y!=SH/2)
      circlefill(buffer, mouse_x, mouse_y, 2, makecol(255,0,0));
 }
 
 
 
-
+ 
 using namespace std;
 int main(){
-    
+ configF(buffer);   
     
 if (startdone!=true)
 {
+                    
 starttimer++;
+                    FOBJECTS.open("Data/Objects/FObjects.dat");
+startdone=true;
 }
+
  
     allegro_init();
     install_keyboard();
@@ -535,7 +529,7 @@ starttimer++;
  mouse_b;
  set_mouse_speed(1, 3);
  
-    set_color_depth (32);
+    set_color_depth (colordepth);
     set_gfx_mode( GFX_AUTODETECT_WINDOWED, SW, SH, 0, 0);
     set_window_title("Tjocka katter.");
     buffer = create_bitmap (SW, SH);
@@ -550,7 +544,8 @@ clear_to_color(screen, makecol(255, 255, 255));
   textprintf_ex(screen,font,510,SH/2, makecol(255, 0, 0), -1, "Loading game...", NULL);
  loadobj(buffer);
     loadch(buffer);
-
+       
+       
 ifstream load;
             load.open("Data/Save/save.dat");
   
@@ -560,14 +555,20 @@ ifstream load;
             load >> player.dir;
             
             load.close();
-startdone=true;
 
 
-while (quit!=true || savetimer!=0)
+
+
+
+      
+while (savetimer!=1)
 {
-    
-      savetimer++;
-      if (savetimer>=211)
+     
+      
+      drawworld();
+      
+      //savetimer++;
+      if (savetimer>=1)
       {
                       savetimer=0;
                       }
@@ -576,12 +577,6 @@ while (quit!=true || savetimer!=0)
 
       rest(5);
 
-if (quit!=true)
-{
-       FOBJECTS.open("Data/Objects/FObjects.dat");
-drawworld();
-
-}
 
 
    
@@ -593,7 +588,7 @@ if (timer1>=40)
 
 
 
-            if (savetimer>=210)
+            if (quit==true)
 {
     
 
@@ -635,10 +630,16 @@ if (timer1>=40)
      
             }
           
-  if (key[KEY_ESC])
+  if (key[KEY_ESC] && savetimer==0)
             {
-                   savetimer=1;
+                    clear_to_color(screen, makecol(50, 50, 50));
+                    textprintf_ex(screen,font,400,SH/2, makecol(255, 0, 0), -1, "Waiting for the game to save...", NULL);
+                    
+                   if (quit!=true)
                    quit=true;
+                   
+                   savetimer=1;
+                   rest(1000);
                    }
             
           if (quit!=true)  
@@ -654,6 +655,9 @@ textprintf_ex(buffer,font,400,43,makecol(255,0,0), 0," B: %i", b);
 
 if (quit==true)
 {
+
+ 
+               savetimer++;
                clear_to_color(buffer, makecol(savetimer/6, savetimer/6, savetimer/6));
                }
 if (quit==true && savetimer <200)
@@ -669,10 +673,11 @@ else if (quit==true && savetimer >= 200)
 blit (buffer, screen, 0, 0, 0, 0, SW, SH);
 clear_bitmap(buffer);
 }
-if (quit==true)
+if (quit==true && savetimer!=1)
+{
 FOBJECTS.close();
-
-
+quit=false;
+}
 
     
     

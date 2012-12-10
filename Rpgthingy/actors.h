@@ -1,5 +1,5 @@
 
- BITMAP *shadow;
+
 void loadch(BITMAP *buffer)
 {
      player.itemout=false;
@@ -18,21 +18,21 @@ void loadch(BITMAP *buffer)
              shadow=load_bitmap("Data/Images/shadow.bmp", NULL);
                 player.fnpcsi=0;
                 
-                test1.HP=100;
-              test1.itemout=false;
-     test1.activate=false;
-     test1.isrunning=false;
-      test1.speed=2;
-      test1.isMoving=false;
-                 test1.x=1360;
-                 test1.y=460;
-            test1.r=20;     
-            test1.dir=3;
-           test1.isNPC=true;
-            test1.SSY=0;
-            test1.SSX=0;
-            test1.bitmap=load_bitmap("Data/Images/player.bmp", NULL);
-           test1.name="NPC1";
+                NPC[2].HP=100;
+              NPC[2].itemout=false;
+     NPC[2].activate=false;
+     NPC[2].isrunning=false;
+      NPC[2].speed=2;
+      NPC[2].isMoving=false;
+                 NPC[2].x=1360;
+                 NPC[2].y=460;
+            NPC[2].r=20;     
+            NPC[2].dir=3;
+           NPC[2].isNPC=true;
+            NPC[2].SSY=0;
+            NPC[2].SSX=0;
+            NPC[2].bitmap=load_bitmap("Data/Images/player.bmp", NULL);
+           NPC[2].name="NPC1";
            
            NPC[0].HP=100;
               NPC[0].itemout=false;
@@ -99,5 +99,4 @@ void loadch(BITMAP *buffer)
             
             
         actor[0]=player;
-        actor[1]=test1;
      }

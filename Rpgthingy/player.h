@@ -1,5 +1,5 @@
          #include <fstream>
-          #include <declarations.h>
+          #include <config.h>
       
         
           
@@ -51,6 +51,7 @@ bool hasTarget;
 bool isrunning;
 bool iscollided;
 bool isDead;
+bool isShot;
 
 bool activate;
 bool itemeq;
@@ -78,7 +79,7 @@ int gunfireT;
                         
                         }
                         player, 
-                        test1, 
+                        
                         NPC[100],
                         actor[100],
                         travelroute[100];
@@ -89,11 +90,6 @@ int gunfireT;
     void PLAYER::STATUS(BITMAP *buffer)
     {
         
-       
-        
-
-      
-       
         FNPCS << name;
         FNPCS << " //Name";
        FNPCS << endl;
@@ -133,6 +129,26 @@ int gunfireT;
        FNPCS << isDead;
        FNPCS << " //isDead";
        FNPCS << endl;
+       
+       FNPCS << iscollided;
+       FNPCS << " //isCollided";
+       FNPCS << endl;
+       
+       FNPCS << activate;
+       FNPCS << " //Activate";
+       FNPCS << endl;
+       
+       FNPCS << itemeq;
+       FNPCS << " //itemequipped";
+       FNPCS << endl;
+       
+       FNPCS << isShot;
+       FNPCS << " //isShot";
+       FNPCS << endl;
+       
+       FNPCS << itemout;
+       FNPCS << " //itemout";
+       FNPCS << endl;
        FNPCS << endl;
 
   
@@ -141,7 +157,7 @@ int gunfireT;
     }
     void PLAYER::alert()
     {
-         if (isNPC==true && iscollided!=true && 1>2)
+         if (isNPC==true && iscollided!=true && hasTarget==true)
          {
                          if (x<target[0].x1)
                          {
@@ -172,6 +188,65 @@ int gunfireT;
          
 void PLAYER::controls()
 {
+     if (isShot==true)
+     {
+                      player.gshotX=-1000;
+                      player.gshotY=-1000;
+                      }
+     if (isNPC!=true)
+     {
+     if (iscollided==true)
+     {
+     if (dir==1)
+    ofY+=speed;
+    else if (dir==3)
+    ofY-=speed;
+    else if (dir==2)
+    ofX+=speed;
+    else if (dir==4)
+    ofX-=speed;
+    
+    iscollided=false;
+}
+}
+
+else if (isNPC==true)
+{
+     
+     
+     if (isShot==true)
+     {
+                      if (iscollided!=true)
+                      {
+                       if (dir==1)
+                  y+=speed+5;
+                  else if (dir==3)
+                  y-=speed+5;
+                  else if (dir==2)
+                  x+=speed+5;
+                  else if (dir==4)
+                  x-=speed+5;
+                  }
+                  else if (iscollided==true)
+                  {
+                       if (dir==1)
+                  y-=speed+20;
+                  else if (dir==3)
+                  y+=speed+20;
+                  else if (dir==2)
+                  x-=speed+20;
+                  else if (dir==4)
+                  x+=speed+20;
+                  
+                  
+                      iscollided=false;
+                       }
+                      HP-=10;
+                      isShot=false;
+                      }
+}
+
+    
      if (HP<=0)
      {
                isDead=true;

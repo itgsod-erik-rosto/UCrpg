@@ -1,0 +1,3 @@
+1080 //Screen width
+670 //Screen height
+32 //Color depth

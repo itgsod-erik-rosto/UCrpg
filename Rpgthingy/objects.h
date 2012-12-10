@@ -2,7 +2,7 @@
 using namespace std;
  ofstream FOBJECTS;
  
-int Deagle=0;
+
 
 void loadobj(BITMAP *buffer)
             {
@@ -130,6 +130,7 @@ void loadobj(BITMAP *buffer)
                  road[2].SSX=350;
                  road[2].SSY=841;
                  
+                 house[0].ID="House 1";
                  house[0].mbmap=true;
                  house[0].bitmap=pHouse;
                  house[0].x1=60;
@@ -139,6 +140,7 @@ void loadobj(BITMAP *buffer)
                  house[0].isobject=false;
                  house[0].ishouse=true;
                  
+                 house[2].ID="House 3";
                  house[2].mbmap=true;
                  house[2].bitmap=Store1;
                  house[2].x1=1150;
@@ -148,6 +150,7 @@ void loadobj(BITMAP *buffer)
                  house[2].isobject=false;
                  house[2].ishouse=true;
                  
+                 house[3].ID="House 4";
                  house[3].mbmap=true;
                  house[3].bitmap=house_1;
                  house[3].x1=1200;
@@ -157,7 +160,7 @@ void loadobj(BITMAP *buffer)
                  house[3].isobject=false;
                  house[3].ishouse=true;
                  
-                 
+                 house[4].ID="House 5";
                  house[4].mbmap=true;
                  house[4].bitmap=house_2;
                  house[4].x1=1200;
@@ -380,6 +383,7 @@ void loadobj(BITMAP *buffer)
                  bathtub[0].SSY1=0;
                  bathtub[0].collide=true;
                  
+                 door[0].ID="Door 1";
                  door[0].mbmap=true;
                  door[0].bitmap=SSanim;
                  door[0].x1=252;
@@ -388,6 +392,7 @@ void loadobj(BITMAP *buffer)
                  door[0].SSY=87;
                  door[0].SSX1=0;
 
+                 door[1].ID="Door 2";
                  door[1].mbmap=true;
                  door[1].bitmap=SSanim;
                  door[1].x1=518;
@@ -397,6 +402,7 @@ void loadobj(BITMAP *buffer)
                  door[1].SSX1=0;
                  door[1].SSY1=87;
             
+                 door[2].ID="Door 3";
                  door[2].mbmap=true;
                  door[2].bitmap=SSanim;
                  door[2].x1=198;
@@ -436,12 +442,13 @@ void loadobj(BITMAP *buffer)
                  deagle[1].SSX1=0;
                  deagle[1].item=Deagle;
                  
-                 target[0].x1=test1.x;
-                 target[0].x2=test1.x;
-                 target[0].y1=test1.y;
-                 target[0].y2=test1.y;
+                 target[0].x1=0;
+                 target[0].x2=0;
+                 target[0].y1=0;
+                 target[0].y2=0;
                  target[0].istarget=true;
                  
+                 hud[0].ID="HUD";
                  hud[0].ispersistent=true;
                  hud[0].mbmap=true;
                  hud[0].bitmap=HUD;
@@ -821,7 +828,7 @@ i2=0;
                            set_trans_blender(128, 128, 128, 128);
                           
      draw_trans_sprite(buffer, shadow, player.x-player.r, player.y-player.r);
-     draw_trans_sprite(buffer, shadow, test1.x-test1.r+cam, test1.y-test1.r+cam2);
+     draw_trans_sprite(buffer, shadow, NPC[2].x-NPC[2].r+cam, NPC[2].y-NPC[2].r+cam2);
      draw_trans_sprite(buffer, shadow, NPC[0].x-NPC[0].r+cam, NPC[0].y-NPC[0].r+cam2);
      draw_trans_sprite(buffer, shadow, NPC[1].x-NPC[1].r+cam, NPC[1].y-NPC[1].r+cam2);
      
@@ -882,5 +889,15 @@ i2=0;
                         gunFIRE[0].draw();
                         //deagle[1].draw();
                         
+                        
                        
                         }
+                        
+                        void OBJECTS::saveobjects(BITMAP *buffer)
+{
+     
+if (quit==true)
+{
+STATUS();
+}
+}
