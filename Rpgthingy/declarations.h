@@ -7,7 +7,7 @@ int n1;
 
   using namespace std;
 
-              ofstream FNPCS;
+              int objMAX=1000;
               
 BITMAP *shadow;
 BITMAP *HUD;
@@ -35,6 +35,7 @@ int my2;
 int savetimer;
 
 bool issaved=false;
+
 
 int Fobjects;
 int i10=0;

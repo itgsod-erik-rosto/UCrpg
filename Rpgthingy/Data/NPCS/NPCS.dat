@@ -1,7 +1,7 @@
 NPC1 //Name
 100 //HP
-1360 //x
-460 //y
+1310 //x
+464 //y
 20 //r
 0// tempX
 0 //tempY
@@ -32,8 +32,8 @@ NPC2 //Name
 
 NPC3 //Name
 100 //HP
-1320 //x
-1020 //y
+1123 //x
+916 //y
 20 //r
 0// tempX
 0 //tempY

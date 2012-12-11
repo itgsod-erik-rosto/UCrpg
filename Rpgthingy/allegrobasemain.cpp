@@ -1,7 +1,7 @@
 #include <allegro.h>
 #include <iostream>
 #include <string>
-
+#include <declarations.h>
 
 
  
@@ -39,7 +39,8 @@ bool isopen;
        int w;
        int h;
        
-      
+      int *xpos;
+      int *ypos;
        
        BITMAP *bitmap;
        

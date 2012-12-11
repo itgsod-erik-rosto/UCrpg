@@ -2,6 +2,11 @@
 
 void PLAYER::animation(BITMAP *buffer)
 {
+     if (HP<=0)
+     {
+               isDead=true;
+               }
+               
 if ((key[KEY_W] || key[KEY_A] || key[KEY_S] || key[KEY_D]) && isNPC!=true)
 {
                timer2+=speed/2;
@@ -148,24 +153,24 @@ if ((key[KEY_W] || key[KEY_A] || key[KEY_S] || key[KEY_D]) && isNPC!=true)
                                  if (player.dir==4)
                                  {
                                       
-                                                   dir=2;
+                                                   dir=4;
                                  }
                                  else if (player.dir==3)
                                  {
                                       
-                                      dir=1;
+                                      dir=3;
                                      
                                  }
                                  else if (player.dir==2)
                                  {
                                       
-                                      dir=4;
+                                      dir=2;
                                      
                                  }
                                  else if (player.dir==1)
                                  {
                                       
-                                      dir=3;
+                                      dir=1;
                                      
                                  }
                                  

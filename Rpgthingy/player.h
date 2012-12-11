@@ -1,13 +1,17 @@
          #include <fstream>
           #include <config.h>
-      
+      ofstream FNPCS;
         
+        
+                    
           
              struct PLAYER
                  {
+                    int* POS;
+                    int* POS2;
                         
                        
-                        
+                    
                           char *name;
                        
                        int Rnd;
@@ -47,11 +51,14 @@ bool isNPC;
 bool isMoving;
 bool isTravelroute;
 bool isOnTravelroute;
-bool hasTarget;
 bool isrunning;
 bool iscollided;
 bool isDead;
 bool isShot;
+bool isSelected;
+
+bool hasTarget;
+bool hascontrols;
 
 bool activate;
 bool itemeq;
@@ -62,6 +69,8 @@ int gunfireT;
                         
                         int item[20];
                         
+                        int Tselect;
+                        
                         int SSX;
                         int SSY;
                         
@@ -71,6 +80,8 @@ int gunfireT;
                         int posx;
                         int posy;
                         
+                        void mouseselect();
+                        void enablecontrols();
                         void STATUS(BITMAP *buffer);
                         void alert();
                         void animation(BITMAP *buffer);
@@ -86,6 +97,44 @@ int gunfireT;
     
     
     #include <actors.h>
+    void PLAYER::mouseselect()
+    {
+         if (mouse_x >= x-r+cam && mouse_x <= x+r+cam && mouse_y >= y-r+cam2 && mouse_y <= y+r+cam2 && mouse_b & 1 || mouse_b & 2 && Tselect==0)
+         {
+                     if (mouse_b & 1)
+                     isSelected=true;
+                     else if (mouse_b & 2)
+                     isSelected=false;
+                     
+                     Tselect++;
+                     
+                     
+                     }
+                     if (Tselect>=40)
+                     Tselect=0;
+                     
+                     if (isSelected==true && key[KEY_DEL])
+                     {
+                                          isSelected=false;
+                                          hascontrols=false;
+                                          }
+                                          
+                     
+                                          
+                                          if (isSelected==true)
+                                          {
+                                                               hascontrols=true;
+                                                               }
+         if (mouse_x <= x-r+cam && mouse_x >= x+r+cam && mouse_y <= y-r+cam2 && mouse_y >= y+r+cam2 && mouse_b & 1 || mouse_b & 2)
+         {
+                     isSelected=false;
+                     hascontrols=false;
+                     }
+         }
+    void PLAYER::enablecontrols()
+    {
+         hascontrols=true;
+         }
     
     void PLAYER::STATUS(BITMAP *buffer)
     {
@@ -216,18 +265,8 @@ else if (isNPC==true)
      
      if (isShot==true)
      {
-                      if (iscollided!=true)
-                      {
-                       if (dir==1)
-                  y+=speed+5;
-                  else if (dir==3)
-                  y-=speed+5;
-                  else if (dir==2)
-                  x+=speed+5;
-                  else if (dir==4)
-                  x-=speed+5;
-                  }
-                  else if (iscollided==true)
+                      
+                  if (iscollided==true)
                   {
                        if (dir==1)
                   y-=speed+20;
@@ -241,18 +280,39 @@ else if (isNPC==true)
                   
                       iscollided=false;
                        }
+                       else if (iscollided==false)
+                       {
+                              if (dir==1)
+                  y-=10;
+                  else if (dir==3)
+                  y+=+10;
+                  else if (dir==2)
+                  x-=+10;
+                  else if (dir==4)
+                  x+=+10;
+                            }
                       HP-=10;
                       isShot=false;
                       }
 }
-
+if (iscollided==true && isShot==false)
+{
+                     if (dir==1)
+                  y+=10;
+                  else if (dir==3)
+                  y-=10;
+                  else if (dir==2)
+                  x+=10;
+                  else if (dir==4)
+                  x-=10; 
+                  
+                  isMoving=false;
+                  iscollided=false;
+                     }
     
-     if (HP<=0)
-     {
-               isDead=true;
-               }
      
-     if (isNPC==true && name=="NPC1")
+     
+     if (isNPC==true && hascontrols==true)
      {
                 
                                         
@@ -266,7 +326,6 @@ else if (isNPC==true)
             else if (key[KEY_UP])
             {
                  isMoving=true;
-                
                              dir=1;
                              }
                              
@@ -283,9 +342,12 @@ else if (isNPC==true)
                 
                              dir=3;
                              }
-                             
-                             
+                             if (!key[KEY_UP] && !key[KEY_RIGHT] && !key[KEY_DOWN] && !key[KEY_LEFT])
+                             {
+                             isMoving=false;
                              }
+                             }
+                             
          
 ctimer+=7;          
 if (ctimer>=50)
@@ -456,11 +518,16 @@ if (key[KEY_LSHIFT] && isNPC!=true)
 }
 void PLAYER::draw()
 { 
-    
-    
+    if (isSelected==true && key[KEY_N])
+                     {
+                                          POS=new int(x);
+                                          POS2=new int(y);
+                                          }
        
     STATUS(buffer);
 
+if (POS!=0)
+circlefill(buffer, *POS+cam, *POS2+2+cam2, 10, makecol(255, 0, 0));
     if (isNPC!=true && isTravelroute!=true)
     {
                  
@@ -470,7 +537,8 @@ void PLAYER::draw()
      }
      if (isNPC==true && isTravelroute!=true)
      {
-                
+                     if (isSelected==true)
+                circlefill(buffer, x+cam, y+cam2, 15, makecol(255, 0, 0));
        masked_blit(bitmap, buffer, SSX, SSY, x-r+cam, y-r+cam2, 40, 40);
        } 
        if (posx!=0 && posy!=0)
@@ -518,6 +586,7 @@ void PLAYER::draw()
                      textprintf_ex( buffer, font, 700, 10, makecol (255,0,0), 0, " HP %i", HP);
      
      }
+     mouseselect();
      
     
      

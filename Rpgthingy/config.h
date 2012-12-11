@@ -1,4 +1,4 @@
-#include <declarations.h>
+
 #include <fstream>
 
 int FSW;
