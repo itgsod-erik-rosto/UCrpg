@@ -67,6 +67,28 @@ void loadch(BITMAP *buffer)
             NPC[1].bitmap=load_bitmap("Data/Images/NPC_2.bmp", NULL);
            NPC[1].name="NPC3";
            
+           NPC[1].targetX[-1]=1320;
+           NPC[1].targetY[-1]=460+560;
+           
+           NPC[1].targetX[0]=1320;
+           NPC[1].targetY[0]=460+560-250;
+           
+           NPC[1].targetX[1]=1250;
+           NPC[1].targetY[1]=460+560-30;
+           
+           NPC[1].targetX[2]=1180;
+           NPC[1].targetY[2]=460+560-250;
+           
+           NPC[1].targetX[3]=1320;
+           NPC[1].targetY[3]=460+560-250;
+           
+           NPC[1].targetX[4]=1320;
+           NPC[1].targetY[4]=460+560;
+           
+           
+           
+           NPC[1].hasTarget=true;
+           
             travelroute[0].x_1=600;
             travelroute[0].x_2=600;
             travelroute[0].y_1=-100;

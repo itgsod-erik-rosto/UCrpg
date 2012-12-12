@@ -10,8 +10,9 @@
                     int* POS;
                     int* POS2;
                         
+                        int routewalked[100];
                        
-                    
+                    int Ti;
                           char *name;
                        
                        int Rnd;
@@ -35,8 +36,8 @@
                        
                        bool gunfire1;
                        
-                       int targetX;
-                       int targetY;
+                       int targetX[100];
+                       int targetY[100];
                        
                     int status[];
                         
@@ -56,6 +57,8 @@ bool iscollided;
 bool isDead;
 bool isShot;
 bool isSelected;
+bool isPatrolling;
+bool isFleeing;
 
 bool hasTarget;
 bool hascontrols;
@@ -80,6 +83,7 @@ int gunfireT;
                         int posx;
                         int posy;
                         
+                        void target();
                         void mouseselect();
                         void enablecontrols();
                         void STATUS(BITMAP *buffer);
@@ -95,11 +99,61 @@ int gunfireT;
                         actor[100],
                         travelroute[100];
     
+  
     
     #include <actors.h>
+    void PLAYER::target()
+    {
+        
+       
+                                                                    
+                                                                    if (hasTarget==true)
+                                                                    {
+                    isPatrolling=true;                                                                   
+                                                                                        isMoving=true;
+                                                                              }
+                                                             
+         if (targetX[Ti]!=0 && targetY[Ti]!=0)
+         {
+                        if (targetX[Ti]>x)
+                        {
+                                      dir=4;
+                        isMoving=true;
+                        }
+                        else if (targetX[Ti]<x)
+                        {
+                                      dir=2;
+                        isMoving=true;
+                        }
+                        else if (targetY[Ti]>y)
+                        {
+                                      dir=3;
+                        isMoving=true;
+                        }
+                        else if (targetY[Ti]<y)
+                        {
+                                      dir=1;
+                        isMoving=true;
+                        }
+                        
+                        if (targetX[Ti]==x && targetY[Ti]==y && hasTarget==true && Ti<4)
+                        {
+                                       Ti++;
+                        
+                        
+                        }
+                        if (Ti==4 && y==targetY[Ti] && x==targetX[Ti])
+                        {
+                                  hasTarget=false;
+                                           isMoving=false;
+                                           dir=2;
+                                           }
+                        }
+         }
     void PLAYER::mouseselect()
     {
-         if (mouse_x >= x-r+cam && mouse_x <= x+r+cam && mouse_y >= y-r+cam2 && mouse_y <= y+r+cam2 && mouse_b & 1 || mouse_b & 2 && Tselect==0)
+         if ((mouse_x >= x-r+cam && mouse_x <= x+r+cam && mouse_y >= y-r+cam2 && mouse_y <= y+r+cam2 && mouse_b & 1 || mouse_b & 2 && Tselect==0 && isNPC==true)
+         || (mouse_x >= x-r && mouse_x <= x+r && mouse_y >= y-r && mouse_y <= y+r && mouse_b & 1 || mouse_b & 2 && Tselect==0 && isNPC!=true))
          {
                      if (mouse_b & 1)
                      isSelected=true;
@@ -124,6 +178,7 @@ int gunfireT;
                                           if (isSelected==true)
                                           {
                                                                hascontrols=true;
+                                                               
                                                                }
          if (mouse_x <= x-r+cam && mouse_x >= x+r+cam && mouse_y <= y-r+cam2 && mouse_y >= y+r+cam2 && mouse_b & 1 || mouse_b & 2)
          {
@@ -206,37 +261,14 @@ int gunfireT;
     }
     void PLAYER::alert()
     {
-         if (isNPC==true && iscollided!=true && hasTarget==true)
-         {
-                         if (x<target[0].x1)
-                         {
-                                            isMoving=true;
-                         dir=4;
-                         }
-                         else if (x>target[0].x1)
-                         {
-                                            isMoving=true;
-                         dir=2;
-                         }
-                         else if (y>target[0].y1)
-                         {
-                              isMoving=true;
-                              dir=1;
-                              }
-                              else if (y<target[0].y1)
-                              {
-                                   isMoving=true;
-                                   dir=3;
-                                   }
-                         else if (x==target[0].x1 && y==target[0].y1)
-                         isMoving=false;
-                         
-                         }
-         }
+     }
          
          
 void PLAYER::controls()
 {
+     if (isPatrolling==true)
+     speed=1;
+     
      if (isShot==true)
      {
                       player.gshotX=-1000;
@@ -295,24 +327,25 @@ else if (isNPC==true)
                       isShot=false;
                       }
 }
-if (iscollided==true && isShot==false)
+if (iscollided==true && isShot!=true)
 {
                      if (dir==1)
-                  y+=10;
+                  y+=speed*max_npc;
                   else if (dir==3)
-                  y-=10;
+                  y-=speed*max_npc;
                   else if (dir==2)
-                  x+=10;
+                  x+=speed*max_npc;
                   else if (dir==4)
-                  x-=10; 
+                  x-=speed*max_npc; 
                   
+                  if (hasTarget!=true)
                   isMoving=false;
                   iscollided=false;
                      }
     
      
      
-     if (isNPC==true && hascontrols==true)
+     if (isNPC==true && hascontrols==true && hasTarget!=true)
      {
                 
                                         
@@ -395,16 +428,16 @@ ctimer=0;
      {
          if (dir==1)
          
-         y--;   
+         y-=speed;   
          
          if (dir==2)
-         x--;   
+         x-=speed;   
          
          if (dir==3)
-         y++;   
+         y+=speed;   
          
          if (dir==4)
-         x++;   
+         x+=speed;   
       
     }
      dTimer++;
@@ -531,7 +564,9 @@ circlefill(buffer, *POS+cam, *POS2+2+cam2, 10, makecol(255, 0, 0));
     if (isNPC!=true && isTravelroute!=true)
     {
                  
-     
+         if (isSelected==true)
+                circlefill(buffer, x, y, 15, makecol(255, 0, 0));
+                
      masked_blit(bitmap, buffer, SSX, SSY, x-r, y-r, 40, 40);
 
      }
@@ -571,6 +606,7 @@ circlefill(buffer, *POS+cam, *POS2+2+cam2, 10, makecol(255, 0, 0));
 
                        if (isDead!=true)
                        {
+                                        target();
      animation(buffer);
      controls();
      

@@ -8,7 +8,7 @@ NO ID //ID
 0 //isdoor
 0 //ishouse
 0 //ispersistent
-0 //isactivated
+1 //isactivated
 821 //SSX
 841 //SSY
 0 //SSX1
@@ -1288,7 +1288,7 @@ House 1 //ID
 0 //isdoor
 1 //ishouse
 0 //ispersistent
-0 //isactivated
+1 //isactivated
 541 //SSX
 521 //SSY
 0 //SSX1
@@ -1951,10 +1951,10 @@ Door 1 //ID
 0 //isactivated
 86 //SSX
 87 //SSY
-0 //SSX1
+82 //SSX1
 0 //SSY1
 0 //isitem
-0 //isopen
+1 //isopen
 0 //collide
 0 //isobject
 
@@ -1971,10 +1971,10 @@ Door 2 //ID
 0 //isactivated
 86 //SSX
 87 //SSY
-0 //SSX1
+82 //SSX1
 87 //SSY1
 0 //isitem
-0 //isopen
+1 //isopen
 0 //collide
 0 //isobject
 

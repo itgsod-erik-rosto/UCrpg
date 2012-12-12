@@ -95,7 +95,7 @@ void collision();
        door[1000];
        
        #include <player.h>
-       
+       #include <weapons.h>
       #include <objects.h>
        
        void OBJECTS::STATUS()
@@ -258,7 +258,7 @@ if (istarget!=true)
 {
                n1++;
                
-               if (n1>=3)
+               if (n1>=max_npc)
                n1=0;    
                    
 if (NPC[n1].x>=x1-20 && NPC[n1].x<=x2+20

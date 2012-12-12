@@ -8,6 +8,7 @@ int n1;
   using namespace std;
 
               int objMAX=1000;
+              int max_npc=3;
               
 BITMAP *shadow;
 BITMAP *HUD;
