@@ -1,9 +1,59 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<CodeBlocks_layout_file>
-	<ActiveTarget name="default" />
-	<File name="allegrobasemain.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="398" topLine="3" />
-		</Cursor>
-	</File>
-</CodeBlocks_layout_file>
+[Editor_4]
+CursorCol=26
+CursorRow=146
+TopLine=128
+LeftChar=1
+Open=1
+Top=0
+[Editors]
+Focused=0
+Order=0,3,2,1,4,5,6,7
+[Editor_0]
+Open=1
+Top=1
+CursorCol=1
+CursorRow=5
+TopLine=1
+LeftChar=1
+[Editor_1]
+Open=1
+Top=0
+CursorCol=32
+CursorRow=448
+TopLine=432
+LeftChar=1
+[Editor_2]
+Open=1
+Top=0
+CursorCol=32
+CursorRow=12
+TopLine=1
+LeftChar=1
+[Editor_3]
+Open=1
+Top=0
+CursorCol=37
+CursorRow=86
+TopLine=60
+LeftChar=1
+[Editor_5]
+Open=1
+Top=0
+CursorCol=29
+CursorRow=11
+TopLine=1
+LeftChar=1
+[Editor_6]
+Open=1
+Top=0
+CursorCol=1
+CursorRow=1
+TopLine=1
+LeftChar=1
+[Editor_7]
+Open=1
+Top=0
+CursorCol=1
+CursorRow=4
+TopLine=1
+LeftChar=1

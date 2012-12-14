@@ -3,7 +3,6 @@
 #include <string>
 #include <declarations.h>
 
-
  
 struct OBJECTS
 {
