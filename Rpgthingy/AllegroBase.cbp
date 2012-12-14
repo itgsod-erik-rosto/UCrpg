@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="AllegroBase" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="default">
+				<Option output="AllegroBase" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+			</Target>
+		</Build>
+		<Compiler>
+			<Add directory="C:/Users/erik.rosto/Desktop/UCrpg/Rpgthingy" />
+			<Add directory="C:/Users/Utter/Desktop/Rpgthingy" />
+			<Add directory="C:/Users/Utter/Documents/GitHub/UCrpg/Rpgthingy" />
+		</Compiler>
+		<Linker>
+			<Add option="../../../../../Dev-Cpp/lib/liballeg.a" />
+		</Linker>
+		<Unit filename="actors.h" />
+		<Unit filename="allegrobasemain.cpp" />
+		<Unit filename="animations.h" />
+		<Unit filename="config.h" />
+		<Unit filename="declarations.h" />
+		<Unit filename="objects.h" />
+		<Unit filename="player.h" />
+		<Unit filename="weapons.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
