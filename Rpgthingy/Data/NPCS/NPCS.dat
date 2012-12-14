@@ -32,13 +32,13 @@ NPC2 //Name
 
 NPC3 //Name
 100 //HP
-1320 //x
-977 //y
+1070 //x
+-580 //y
 20 //r
 0// tempX
 0 //tempY
 1 //isNPC
-1 //isMoving
+0 //isMoving
 0 //isDead
 0 //isCollided
 0 //Activate

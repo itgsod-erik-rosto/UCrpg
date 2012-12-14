@@ -1,5 +1,5 @@
 
-
+ 
 void PLAYER::animation(BITMAP *buffer)
 {
      if (HP<=0)

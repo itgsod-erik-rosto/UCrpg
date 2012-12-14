@@ -10,6 +10,9 @@ int n1;
               int objMAX=1000;
               int max_npc=3;
               
+              long int tclockM=0;
+               long int tclockH=12;
+              
 BITMAP *shadow;
 BITMAP *HUD;
 BITMAP *background;

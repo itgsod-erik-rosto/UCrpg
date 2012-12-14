@@ -10,6 +10,12 @@
                     int* POS;
                     int* POS2;
                         
+                        int Stime[100];
+                        int Etime[100];
+                        int StimeM[100];
+                        int EtimeM[100];
+                        int Wtarget;
+                        
                         int routewalked[100];
                        
                     int Ti;
@@ -104,16 +110,20 @@ int gunfireT;
     #include <actors.h>
     void PLAYER::target()
     {
-        
+        if (tclockH>=Stime[Wtarget] && tclockH<=Etime[Wtarget] && tclockM>=StimeM[Wtarget] && tclockM<=EtimeM[Wtarget])
+        {
+                              hasTarget=true;
+                              }
        
                                                                     
                                                                     if (hasTarget==true)
                                                                     {
-                    isPatrolling=true;                                                                   
+                                                                                        if (Wtarget==0)
+                                                                    isPatrolling=true;                                                                   
                                                                                         isMoving=true;
                                                                               }
                                                              
-         if (targetX[Ti]!=0 && targetY[Ti]!=0)
+         if (hasTarget==true && targetX[Ti]!=0 && targetY[Ti]!=0 && tclockH>=Stime[Wtarget] && tclockH<=Etime[Wtarget])
          {
                         if (targetX[Ti]>x)
                         {
@@ -142,10 +152,16 @@ int gunfireT;
                         
                         
                         }
-                        if (Ti==4 && y==targetY[Ti] && x==targetX[Ti])
+                        if (Ti==4 && y==targetY[Ti] && x==targetX[Ti] && tclockH<Etime[Wtarget] && tclockM>=StimeM[Wtarget] && tclockM<=EtimeM[Wtarget])
                         {
-                                  hasTarget=false;
+                                  Ti=0;
+                                           dir=2;
+                                           }
+                                           else if (Ti==4 ||(targetY[Ti]==0) && y==targetY[Ti] && x==targetX[Ti] && tclockH>=Etime[Wtarget] && tclockM>=EtimeM[Wtarget])
+                        {
                                            isMoving=false;
+                                           hasTarget=false;
+                                           isPatrolling=false;
                                            dir=2;
                                            }
                         }

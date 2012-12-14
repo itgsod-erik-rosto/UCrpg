@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include <declarations.h>
-
+#include <worldfuncs.h>
  
 struct OBJECTS
 {
@@ -504,10 +504,26 @@ void drawplayers()
 }
 
 
-
+   void timerfunc(void)
+                                              {
+                                                   tclockM+=1;
+                                                   if (tclockM>=60)
+                                                   {
+                                                                   tclockH+=1;
+                                                   tclockM=0;
+                                                   }
+                                                   if (tclockH>=24)
+                                                   tclockH=0;
+                                                   
+                                                   }
+                                                   
  
 using namespace std;
 int main(){
+
+ 
+ 
+
  configF(buffer);   
     
 if (startdone!=true)
@@ -522,7 +538,16 @@ startdone=true;
     allegro_init();
     install_keyboard();
     install_mouse();
-    
+    install_timer();
+
+
+
+	LOCK_VARIABLE(tclockH);
+	LOCK_VARIABLE(tclockM);
+	LOCK_FUNCTION(timerfunc);
+	install_int_ex(timerfunc, BPS_TO_TIMER(1));//The timer in "timerfunc" (tclock) is in full seconds. This is the game time.
+
+
      
   mouse_x=20;
  mouse_y=20;
@@ -553,6 +578,8 @@ ifstream load;
             load >> ofY;
             load >> player.HP;
             load >> player.dir;
+            load >> tclockH;
+            load >> tclockM;
             
             load.close();
 
@@ -563,7 +590,6 @@ ifstream load;
       
 while (savetimer!=1)
 {
-     
       
       drawworld();
       
@@ -602,6 +628,10 @@ if (timer1>=40)
             Fpos << player.HP;
             Fpos << endl;
             Fpos << player.dir;
+            Fpos << endl;
+            Fpos << tclockH;
+            Fpos << endl;
+            Fpos << tclockM;
             Fpos << endl;
             Fpos << player.x-cam+750+540;
             Fpos << endl;
@@ -648,11 +678,11 @@ textprintf_ex(buffer,font,400,60,makecol(255,0,0), 0, " x: %i", player.x-cam+750
 textprintf_ex(buffer,font,480,60,makecol(255,0,0), 0," y: %i", player.y-cam2+835+555);
 
 textprintf_ex(buffer,font,200,0,makecol(255,0,0), 0," S-Time %i", starttimer);
-
 textprintf_ex(buffer,font,400,33,makecol(255,0,0), 0," SaveTimer: %i", savetimer);
 textprintf_ex(buffer,font,400,43,makecol(255,0,0), 0," B: %i", b);
-}
 
+Wclock(buffer);
+}
 if (quit==true)
 {
 
