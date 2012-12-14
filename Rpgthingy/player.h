@@ -110,6 +110,12 @@ int gunfireT;
     #include <actors.h>
     void PLAYER::target()
     {
+         if (tclockH>=Stime[Wtarget+1] && tclockH<=Etime[Wtarget+1])
+         Wtarget+=1;
+         
+          if (tclockH>=Stime[Wtarget-1] && tclockH<=Etime[Wtarget-1])
+         Wtarget-=1;
+         
         if (tclockH>=Stime[Wtarget] && tclockH<=Etime[Wtarget] && tclockM>=StimeM[Wtarget] && tclockM<=EtimeM[Wtarget])
         {
                               hasTarget=true;
@@ -157,7 +163,7 @@ int gunfireT;
                                   Ti=0;
                                            dir=2;
                                            }
-                                           else if (Ti==4 ||(targetY[Ti]==0) && y==targetY[Ti] && x==targetX[Ti] && tclockH>=Etime[Wtarget] && tclockM>=EtimeM[Wtarget])
+                                           else if (Ti==4 ||(targetY[Ti]==0) && y==targetY[Ti] && x==targetX[Ti])
                         {
                                            isMoving=false;
                                            hasTarget=false;

@@ -590,7 +590,10 @@ ifstream load;
       
 while (savetimer!=1)
 {
-      
+     
+     schedules(buffer);
+            
+             
       drawworld();
       
       //savetimer++;

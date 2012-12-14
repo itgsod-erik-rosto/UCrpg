@@ -68,24 +68,39 @@ void loadch(BITMAP *buffer)
            NPC[1].name="NPC3";
            
       
-           NPC[1].Wtarget=1;
+           NPC[1].Wtarget;
            
            NPC[1].Stime[0]=10;
-           NPC[1].Etime[0]=10;
+           NPC[1].Etime[0]=12;
            
             NPC[1].StimeM[0]=0;
            NPC[1].EtimeM[0]=10;
            
            
-            NPC[1].Stime[1]=0;
-           NPC[1].Etime[1]=24;
+            NPC[1].Stime[1]=20;
+           NPC[1].Etime[1]=23;
            
             NPC[1].StimeM[1]=0;
-           NPC[1].EtimeM[1]=60;
+           NPC[1].EtimeM[1]=59;
+           
+              NPC[1].Stime[2]=7;
+           NPC[1].Etime[2]=9;
+           
+            NPC[1].StimeM[2]=0;
+           NPC[1].EtimeM[2]=59;
            
            NPC[1].hasTarget=false;
            
            
+            
+            
+            
+        actor[0]=player;
+     }
+
+void schedules(BITMAP *buffer)
+{
+     
            if (NPC[1].Wtarget==0)
            {
            NPC[1].targetX[-1]=1320;
@@ -101,7 +116,7 @@ void loadch(BITMAP *buffer)
            NPC[1].targetY[2]=460+560-250;
            
            NPC[1].targetX[3]=1320;
-           NPC[1].targetY[3]=460+560-250;
+           NPC[1].targetY[3]=460+560;
            
            NPC[1].targetX[4]=1320;
            NPC[1].targetY[4]=460+560;
@@ -126,9 +141,35 @@ void loadch(BITMAP *buffer)
            
            NPC[1].targetX[4]=1150;
            NPC[1].targetY[4]=460+560-1600;
-            }
-            
-            
-            
-        actor[0]=player;
+           }
+           
+           
+           if (NPC[1].Wtarget==2)
+           {
+           NPC[1].targetX[0]=1150;
+           NPC[1].targetY[0]=460+560-1600;
+           
+           NPC[1].targetX[-1]=1070;
+           NPC[1].targetY[-1]=460+560-1600;
+           
+             
+           NPC[1].targetX[1]=1070;
+           NPC[1].targetY[1]=460+560-1600;
+             
+           NPC[1].targetX[2]=1070;
+           NPC[1].targetY[2]=460+560-80;
+           
+           NPC[1].targetX[3]=1200;
+           NPC[1].targetY[3]=460+560-1600;
+           
+           NPC[1].targetX[4]=1320;
+           NPC[1].targetY[4]=460+560-80;
+           
+         
+         
+           
+           
+           
+          
+           }
      }
