@@ -1,7 +1,9 @@
-void load(BITMAP *buffer)
+
+
+void loadF(BITMAP *buffer)
 {
      
-ifstream load;
+
             load.open("Data/Save/save.dat");
   
             load >> ofX;
@@ -15,10 +17,10 @@ ifstream load;
 
      }
      
-     void save(BITMAP *buffer)
+     void saveF(BITMAP *buffer)
      {
           
-            ofstream Fpos;
+            
             Fpos.open("Data/Save/save.dat");
             Fpos << ofX;
             Fpos << endl;
@@ -50,5 +52,6 @@ ifstream load;
             Fpos << endl;
             Fpos << player.item[20];
             Fpos << endl;
+            Fpos.close();
              
           }

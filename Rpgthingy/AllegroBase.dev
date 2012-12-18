@@ -1,7 +1,7 @@
 [Project]
 FileName=AllegroBase.dev
 Name=AllegroBase
-UnitCount=10
+UnitCount=12
 Type=0
 Ver=1
 ObjFiles=
@@ -12,7 +12,7 @@ ResourceIncludes=
 MakeIncludes=
 Compiler=
 CppCompiler=
-Linker=../../../../../Dev-Cpp/lib/liballeg.a_@@_
+Linker=../../../../Desktop/UtterCore/Dev-Cpp/lib/liballeg.a_@@_
 IsCpp=1
 Icon=
 ExeOutput=
@@ -27,7 +27,7 @@ CustomMakefile=
 IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
-CompilerSettings=0000000000000000000000
+CompilerSettings=0000000000000001000000
 
 [Unit1]
 FileName=allegrobasemain.cpp
@@ -139,6 +139,26 @@ BuildCmd=
 
 [Unit10]
 FileName=loadsave.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit11]
+FileName=SETUP.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit12]
+FileName=objectstruct.h
 CompileCpp=1
 Folder=
 Compile=1

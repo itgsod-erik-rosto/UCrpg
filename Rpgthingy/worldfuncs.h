@@ -65,3 +65,55 @@ textprintf_ex(buffer,font,36,12, makecol(0, 0, 0), -1, ":", NULL);
 textprintf_ex(buffer,font,34,12, makecol(0, 0, 0), -1, " %i", tclockM);
 }
 }
+
+void timer1F(BITMAP *buffer)
+{
+ 
+
+timer1++;
+if (timer1>=40)
+{
+              
+    timer1=0;
+               }
+   
+}
+
+void GAME_EXIT(BITMAP *buffer)
+{
+ 
+ 
+if (quit==true)
+{
+
+               fpscounter(buffer);
+               }
+
+
+     
+      if (key[KEY_ESC] && savetimer<=2)
+            {
+                if (quit!=true)
+                {
+                   quit=true;
+            }
+                }
+                
+                if (quit==true)
+                {
+                   
+                    
+                    savetimer++;
+                    clear_to_color(buffer, makecol(50, 50, 50));
+                       textprintf_ex(buffer,font,510-40,20, makecol(255, 0, 0), -1, "%i", savetimer);
+                       textprintf_ex(buffer,font,510-40,20, makecol(255, 0, 0), -1, "  %c Finished", 37);
+                    textprintf_ex(buffer,font,400,SH/2, makecol(255, 0, 0), -1, "Waiting for the game to save...", NULL);
+                    
+                   
+                   }   
+                   
+                   if (savetimer>=2)
+                   GAME_RUNNING=false;
+                   
+
+}

@@ -1,10 +1,4 @@
-         #include <fstream>
-          #include <config.h>
-      ofstream FNPCS;
-        
-        
-                    
-          
+
              struct PLAYER
                  {
                     int* POS;
@@ -654,3 +648,7 @@ circlefill(buffer, *POS+cam, *POS2+2+cam2, 10, makecol(255, 0, 0));
     
      
  }
+ 
+ 
+
+           

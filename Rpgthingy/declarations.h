@@ -4,19 +4,11 @@
 #define cam int (ofX)*-1-640
 #define cam2 int (ofY)*-1-700
 
-int n1;
+
 
   using namespace std;
 
-              int objMAX=1000;
-              int max_npc=3;
-         
-         long int fpsclock;     
-              long int tclockM=0;
-               long int tclockH=12;
- int sh[4];
- int fps;
- int fps1;
+
 BITMAP *nightF;              
 BITMAP *shadow;
 BITMAP *HUD;
@@ -36,48 +28,61 @@ BITMAP *SSanim;
 BITMAP *Store1;
 BITMAP *items;
 
-char* currentday[7]={"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"} ;
-int cday_i;
-
-int timessaved;
-int mx1;
-int mx2;
-int my1;
-int my2;
-int savetimer;
-
-bool issaved=false;
-
-
-int Fobjects;
-int i10=0;
- int ctimer=0;
- int stimer=0;
- bool quit;
- int cAct=0;
+ofstream Fpos;
+ofstream FNPCS;
+ofstream FOBJECTS;
+ofstream cache;
  
-int wallmax=100;
-int itemtimer=0;
-int Tobjects=2;
+ifstream CONFIGS;
+ifstream load;
 
-int objectsdrawn=0;
+            char* currentday[7]={"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"} ;
 
-int timer1=0;
+        float load_time;
+ 
+    long int fpsclock;     
+    long int tclockM=0;
+    long int tclockH=12;
+               
+        int n1;
+        int FSW;
+        int FSH;
+        int sh[4];
+        int fps;
+        int fps1;
+        int objMAX=1000;
+        int max_npc=3;
+        int cday_i;
+        int cAct=0;
+        int wallmax=100;
+        int itemtimer=0;
+        int Tobjects=2;
+        int objectsdrawn=0;
+        int timer1=0;
+        int ofX=-650;
+        int ofY=-470;
+        int i;
+        int colordepth=32;
+        int SW=1080;
+        int SH=670;
+        int timessaved;
+        int mx1;
+        int mx2;
+        int my1;
+        int my2;
+        int savetimer;   
+        int Fobjects;
+        int i10=0;
+        int ctimer=0;
+        int stimer=0;
+        int b=0;               
+        int Deagle=0;
+        int starttimer=0;
+        int objectamount=0;
+            
+        bool LOAD=false;
+        bool issaved=false;
+        bool quit;
+        bool startdone=false;
+        bool GAME_RUNNING;
 
-int ofX=-650;
-int ofY=-470;
-
-int i;
-
-int colordepth=32;
-
-int SW=1080;
-int SH=670;
-
-
- int b=0;
- bool startdone=false;
- int starttimer=0;
- int objectamount=0;
-    
-int Deagle=0;

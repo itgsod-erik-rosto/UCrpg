@@ -251,4 +251,11 @@ void schedules(BITMAP *buffer)
            }
 
      }
-
+void drawplayers()
+{
+                         
+          NPC[2].draw();
+          NPC[0].draw();
+          NPC[1].draw();
+           player.draw();  
+           }

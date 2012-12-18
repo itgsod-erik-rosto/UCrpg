@@ -1,7 +1,3 @@
-#include <fstream>
-using namespace std;
- ofstream FOBJECTS;
- 
 
 void load_bitmaps(BITMAP *buffer)
             {
@@ -734,6 +730,7 @@ void load_bitmaps(BITMAP *buffer)
             
             void load_hud(BITMAP *buffer)
             {     
+                
                  hud[0].ID="HUD";
                  hud[0].isHud=true;
                  hud[0].ispersistent=true;
@@ -758,35 +755,15 @@ void load_bitmaps(BITMAP *buffer)
                   
                  
                                   int i2=0;
-                 void drawobjects(BITMAP *buffer)
-                 {
-grass[i2].bitmap=grass1;
-grass[i2].bmap=true;     
-grass[i2].SSX=821;
-grass[i2].SSY=841;
-grass[i2].collide=false;
-grass[i2].x2=-910;
-grass[i2].y2=-882;
-wall[i2].collide=false;
-
-fence[i2].x2=-910;
-fence[i2].y2=-882;
-
-
-door[i2].isdoor=true;
-
-
-            
-            
-i2++;
-if (i2>100)
-{
-i2=0;
-}
+                 
 
   
-                       
-                      grass[0].draw();
+                          
+
+    
+    void draw_flora(BITMAP *buffer)
+    {
+         grass[0].draw();
                       grass[1].draw();
                       grass[2].draw();
                       grass[3].draw();
@@ -798,8 +775,52 @@ i2=0;
                       grass[9].draw();
                       grass[10].draw();
                       grass[11].draw();
+    
+    
+     bush[0].draw();
+                        bush[1].draw();                        
+                        bush[2].draw();
+                        
+    }
+    
+    void draw_architectureINT(BITMAP *buffer)
+    {
+           house[0].draw();
+                           house[2].draw();
+                           house[3].draw();
+                           house[4].draw();
+                           
+                            door[0].draw();
+                        door[1].draw();
+                        door[2].draw();
+                        
+    }
+    void draw_architectureEXT(BITMAP *buffer)
+    {
+       trail[0].draw();
+                        trail[1].draw();
+                        trail[2].draw();
+                        trail[3].draw();
+                           
+                           road[0].draw();
+                           road[1].draw();
+                           road[2].draw();   
+                           
+                             fence[0].draw();
+                      fence[1].draw();
+                      fence[2].draw();
+                      fence[3].draw();
+                      fence[4].draw();
                       
-                           wall[0].draw(); 
+                           fence[5].draw();
+                           fence[6].draw();
+                           fence[7].draw();
+                           fence[8].draw();
+                           
+    }
+    void draw_walls(BITMAP *buffer)
+    {
+          wall[0].draw(); 
                            wall[1].draw(); 
                            wall[2].draw(); 
                            wall[3].draw(); 
@@ -844,40 +865,15 @@ i2=0;
                            wall[42].draw(); 
                            wall[43].draw(); 
                            wall[44].draw(); 
-                           
-                         trail[0].draw();
-                        trail[1].draw();
-                        trail[2].draw();
-                        trail[3].draw();
-                           
-                           road[0].draw();
-                           road[1].draw();
-                           road[2].draw();
-                      
-                           house[0].draw();
-                           house[2].draw();
-                           house[3].draw();
-                           house[4].draw();
-                           
-                           set_trans_blender(128, 128, 128, 128);
-                          
-     draw_trans_sprite(buffer, shadow, player.x-player.r, player.y-player.r);
-     draw_trans_sprite(buffer, shadow, NPC[2].x-NPC[2].r+cam, NPC[2].y-NPC[2].r+cam2);
-     draw_trans_sprite(buffer, shadow, NPC[0].x-NPC[0].r+cam, NPC[0].y-NPC[0].r+cam2);
-     draw_trans_sprite(buffer, shadow, NPC[1].x-NPC[1].r+cam, NPC[1].y-NPC[1].r+cam2);
-     
-                      fence[0].draw();
-                      fence[1].draw();
-                      fence[2].draw();
-                      fence[3].draw();
-                      fence[4].draw();
-                      
-                           fence[5].draw();
-                           fence[6].draw();
-                           fence[7].draw();
-                           fence[8].draw();
-                           
-                           toilet[0].draw();
+    }
+    void draw_weapons(BITMAP *buffer)
+    {
+        deagle[0].draw();
+                        gunFIRE[0].draw();
+    }
+    void draw_furniture(BITMAP *buffer)
+    {
+         toilet[0].draw();
                            
                            sink[0].draw();
                            
@@ -906,32 +902,97 @@ i2=0;
                         shoppay[0].draw();
                         shoppay[1].draw();
                         
-                        bush[0].draw();
-                        bush[1].draw();                        
-                        bush[2].draw();
+                        
+    }
+    void draw_hud(BITMAP *buffer)
+    {
 
-                        door[0].draw();
-                        door[1].draw();
-                        door[2].draw();
+    }
+                     
+                    void draw_brightness(BITMAP *buffer)
+                    {
                         
-                        target[0].draw();
+                        if (tclockH<=15 && tclockH>=7)
+                        {
+                          set_trans_blender(128, 128, 128, 128);
+                          
+     draw_trans_sprite(buffer, shadow, player.x-player.r, player.y-player.r);
+     draw_trans_sprite(buffer, shadow, NPC[2].x-NPC[2].r+cam, NPC[2].y-NPC[2].r+cam2);
+     draw_trans_sprite(buffer, shadow, NPC[0].x-NPC[0].r+cam, NPC[0].y-NPC[0].r+cam2);
+     draw_trans_sprite(buffer, shadow, NPC[1].x-NPC[1].r+cam, NPC[1].y-NPC[1].r+cam2);
+    }
+                    
+                    
+                    else
+                    {
                         
-                            bloodstain[b].draw();
+                 set_trans_blender(sh[0], sh[1], sh[2], sh[3]);
+                          draw_trans_sprite(buffer, nightF, 0, 0);
+                          
+                    }
+                          }
+                          
+                        
+                           void drawobjects(BITMAP *buffer)
+                 {
+                        
+grass[i2].bitmap=grass1;
+grass[i2].bmap=true;     
+grass[i2].SSX=821;
+grass[i2].SSY=841;
+grass[i2].collide=false;
+grass[i2].x2=-910;
+grass[i2].y2=-882;
+wall[i2].collide=false;
+
+fence[i2].x2=-910;
+fence[i2].y2=-882;
+
+
+door[i2].isdoor=true;
+
+
+            
+            
+i2++;
+if (i2>100)
+{
+i2=0;
+}
+
+
+
+
+draw_flora(buffer);
+draw_architectureEXT(buffer);
+
+draw_brightness(buffer);
+
+draw_architectureINT(buffer);
+draw_furniture(buffer);
+draw_weapons(buffer);
+draw_walls(buffer);
+
+draw_hud(buffer);
+
+}
+                         
+                           
+                          
                         
                         
-                        deagle[0].draw();
-                        gunFIRE[0].draw();
+
+                       
+                        
+                       
+                        
+                        
+                        
+                        
                         //deagle[1].draw();
                         
                         
                        
-                        }
                         
-                        void OBJECTS::saveobjects(BITMAP *buffer)
-{
-     
-if (quit==true)
-{
-STATUS();
-}
-}
+                        
+                     

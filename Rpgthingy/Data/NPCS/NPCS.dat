@@ -16,13 +16,13 @@ NPC1 //Name
 
 NPC2 //Name
 100 //HP
-1360 //x
--140 //y
+1322 //x
+-68 //y
 20 //r
 0// tempX
 0 //tempY
 1 //isNPC
-0 //isMoving
+1 //isMoving
 0 //isDead
 0 //isCollided
 0 //Activate
@@ -32,8 +32,8 @@ NPC2 //Name
 
 NPC3 //Name
 100 //HP
-1250 //x
-540 //y
+1320 //x
+1020 //y
 20 //r
 0// tempX
 0 //tempY
