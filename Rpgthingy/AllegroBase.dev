@@ -1,7 +1,7 @@
 [Project]
 FileName=AllegroBase.dev
 Name=AllegroBase
-UnitCount=9
+UnitCount=10
 Type=0
 Ver=1
 ObjFiles=
@@ -129,6 +129,16 @@ BuildCmd=
 
 [Unit9]
 FileName=worldfuncs.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit10]
+FileName=loadsave.h
 CompileCpp=1
 Folder=
 Compile=1

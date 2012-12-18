@@ -3,16 +3,21 @@
 #define red makecol(255, 0, 0)
 #define cam int (ofX)*-1-640
 #define cam2 int (ofY)*-1-700
+
 int n1;
 
   using namespace std;
 
               int objMAX=1000;
               int max_npc=3;
-              
+         
+         long int fpsclock;     
               long int tclockM=0;
                long int tclockH=12;
-              
+ int sh[4];
+ int fps;
+ int fps1;
+BITMAP *nightF;              
 BITMAP *shadow;
 BITMAP *HUD;
 BITMAP *background;
@@ -30,6 +35,9 @@ BITMAP *hfurniture;
 BITMAP *SSanim;
 BITMAP *Store1;
 BITMAP *items;
+
+char* currentday[7]={"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"} ;
+int cday_i;
 
 int timessaved;
 int mx1;
@@ -56,8 +64,8 @@ int objectsdrawn=0;
 
 int timer1=0;
 
-float ofX=-650;
-float ofY=-470;
+int ofX=-650;
+int ofY=-470;
 
 int i;
 

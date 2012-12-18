@@ -3,9 +3,10 @@ using namespace std;
  ofstream FOBJECTS;
  
 
-
-void loadobj(BITMAP *buffer)
+void load_bitmaps(BITMAP *buffer)
             {
+                         nightF=load_bitmap("Data/Images/night.bmp", NULL);
+                    background=load_bitmap("Data/Images/worldmap.bmp", NULL);
                     pHouse=load_bitmap("Data/Images/pHouse.bmp", NULL);
                     house_1=load_bitmap("Data/Images/house_1.bmp", NULL);
                     house_2=load_bitmap("Data/Images/house_2.bmp", NULL);
@@ -18,7 +19,10 @@ void loadobj(BITMAP *buffer)
                     SSanim=load_bitmap("Data/Images/SSanim.bmp", NULL);
                     items=load_bitmap("Data/Images/items.bmp", NULL);
                     HUD=load_bitmap("Data/Images/hud.bmp", NULL);
+                    }
                     
+                   void load_walls(BITMAP *buffer)
+                    {    
                  wall[0].x1=200;
                  wall[0].x2=200;
                  wall[0].y1=300;
@@ -104,71 +108,6 @@ void loadobj(BITMAP *buffer)
                  wall[16].y1=-40;
                  wall[16].y2=150;
                  
-                 wall[17].x1=730;
-                 wall[17].x2=730;
-                 wall[17].y1=280;
-                 wall[17].y2=800;
-                 
-                 road[0].bmap=true;
-                 road[0].bitmap=road1;
-                 road[0].x1=730;
-                 road[0].y1=-880;
-                 road[0].SSX=350;
-                 road[0].SSY=840;
-                 
-                 road[1].bmap=true;
-                 road[1].bitmap=road1;
-                 road[1].x1=730;
-                 road[1].y1=-40;
-                 road[1].SSX=350;
-                 road[1].SSY=840;
-                 
-                 road[2].bmap=true;
-                 road[2].bitmap=road1;
-                 road[2].x1=730;
-                 road[2].y1=800;
-                 road[2].SSX=350;
-                 road[2].SSY=841;
-                 
-                 house[0].ID="House 1";
-                 house[0].mbmap=true;
-                 house[0].bitmap=pHouse;
-                 house[0].x1=60;
-                 house[0].y1=80;
-                 house[0].SSX=541;
-                 house[0].SSY=521;
-                 house[0].isobject=false;
-                 house[0].ishouse=true;
-                 
-                 house[2].ID="House 3";
-                 house[2].mbmap=true;
-                 house[2].bitmap=Store1;
-                 house[2].x1=1150;
-                 house[2].y1=700;
-                 house[2].SSX=204;
-                 house[2].SSY=362;
-                 house[2].isobject=false;
-                 house[2].ishouse=true;
-                 
-                 house[3].ID="House 4";
-                 house[3].mbmap=true;
-                 house[3].bitmap=house_1;
-                 house[3].x1=1200;
-                 house[3].y1=230;
-                 house[3].SSX=416;
-                 house[3].SSY=343;
-                 house[3].isobject=false;
-                 house[3].ishouse=true;
-                 
-                 house[4].ID="House 5";
-                 house[4].mbmap=true;
-                 house[4].bitmap=house_2;
-                 house[4].x1=1200;
-                 house[4].y1=house[3].y1-600;
-                 house[4].SSX=416;
-                 house[4].SSY=343;
-                 house[4].isobject=false;
-                 house[4].ishouse=true;
                  
                  wall[30].x1=1152;
                  wall[30].x2=1152;
@@ -195,418 +134,11 @@ void loadobj(BITMAP *buffer)
                  wall[34].y1=700+house[2].SSY;
                  wall[34].y2=700+house[2].SSY;
                  
-                 //house2
-                
-                
-                 fence[0].mbmap=true;
-                 fence[0].bitmap=fence1;
-                 fence[0].x1=-90;
-                 fence[0].x2=-90+500;
-                 fence[0].y1=-40;
-                 fence[0].y2=-40;
-                 fence[0].SSX=500;
-                 fence[0].SSY=6;
                  
-                 fence[1].mbmap=true;
-                 fence[1].bitmap=fence1;
-                 fence[1].x1=-90+250+110;
-                 fence[1].x2=-90+250+110;
-                 fence[1].y1=-40;
-                 fence[1].y2=6;
-                 fence[1].SSX=500;
-                 fence[1].SSY=6;
-                 
-                 fence[2].mbmap=true;
-                 fence[2].bitmap=fence1;
-                 fence[2].x1=-90+250+250+310;
-                 fence[2].x2=450;
-                 fence[2].y1=-40;
-                 fence[2].y2=-40;
-                 fence[2].SSX=450;
-                 fence[2].SSY=215;
-                 fence[2].SSX1=1;
-                 fence[2].SSY1=7;
-                 
-                 fence[3].mbmap=true;
-                 fence[3].bitmap=fence1;
-                 fence[3].x1=-90+250+250+310;
-                 fence[3].y1=-40+215+105;
-                 fence[3].SSX=450;
-                 fence[3].SSY=500;
-                 fence[3].SSX1=1;
-                 fence[3].SSY1=7;
-                 
-                 fence[4].mbmap=true;
-                 fence[4].bitmap=fence1;
-                 fence[4].x1=-90+250+250+310;
-                 fence[4].y1=-40+215+50+450;
-                 fence[4].SSX=450;
-                 fence[4].SSY=120;
-                 fence[4].SSX1=1;
-                 fence[4].SSY1=7;
-                 
-                 fence[5].mbmap=true;
-                 fence[5].bitmap=fence1;
-                 fence[5].x1=-90+250+110;
-                 fence[5].y1=-40+215+50+450+120;
-                 fence[5].SSX=500;
-                 fence[5].SSY=6;
-                 
-                 fence[6].mbmap=true;
-                 fence[6].bitmap=fence1;
-                 fence[6].x1=-90+250+110-360;
-                 fence[6].y1=-40+215+50+450+120;
-                 fence[6].SSX=500;
-                 fence[6].SSY=6;
-                 
-                 fence[7].mbmap=true;
-                 fence[7].bitmap=fence1;
-                 fence[7].x1=-90;
-                 fence[7].y1=-40;
-                 fence[7].SSX=450;
-                 fence[7].SSY=450;
-                 fence[7].SSX1=1;
-                 fence[7].SSY1=7;
-                 
-                 fence[8].mbmap=true;
-                 fence[8].bitmap=fence1;
-                 fence[8].x1=-90;
-                 fence[8].y1=-40+450;
-                 fence[8].SSX=450;
-                 fence[8].SSY=390;
-                 fence[8].SSX1=1;
-                 fence[8].SSY1=7;
-                 
-                 grass[0].x1=-90;
-                 grass[0].y1=-40;
-  
-                 grass[1].x1=-90;
-                 grass[1].y1=-881;
-                 
-                 grass[2].x1=-90;
-                 grass[2].y1=801;
-                 
-                 grass[3].x1=-90-821;
-                 grass[3].y1=801;
-                    
-                 grass[4].x1=-90-821;
-                 grass[4].y1=-40;
-                 
-                 grass[5].x1=-90-821;
-                 grass[5].y1=-881;
-                 
-                 grass[6].x1=630;
-                 grass[6].y1=-40;
-                 
-                 grass[7].x1=630;
-                 grass[7].y1=-881;
-                 
-                 grass[8].x1=630;
-                 grass[8].y1=800;
-                 
-                 grass[9].x1=630+821;
-                 grass[9].y1=-881;
-                 
-                 grass[10].x1=630+821;
-                 grass[10].y1=-40;
-                 
-                 
-                 grass[11].x1=630+821;
-                 grass[11].y1=800;
-               
-                 bed[0].bmap=true;
-                 bed[0].bitmap=hfurniture;
-                 bed[0].x1=550;
-                 bed[0].y1=490;
-                 bed[0].SSX=40;
-                 bed[0].SSY=100;
-                 bed[0].SSX1=41;
-                 bed[0].collide=true;
-                 
-                 toilet[0].mbmap=true;
-                 toilet[0].bitmap=hfurniture;
-                 toilet[0].x1=100;
-                 toilet[0].y1=405;
-                 toilet[0].SSX=22;
-                 toilet[0].SSY=32;
-                 toilet[0].SSX1=386;
-                 toilet[0].SSY1=0;
-                 toilet[0].collide=false;
-                 
-                 sink[0].mbmap=true;
-                 sink[0].bitmap=hfurniture;
-                 sink[0].x1=69;
-                 sink[0].y1=460;
-                 sink[0].SSX=19;
-                 sink[0].SSY=29;
-                 sink[0].SSX1=409;
-                 sink[0].SSY1=0;
-                 sink[0].collide=true;
-                 
-                 kitchensink[0].bmap=true;
-                 kitchensink[0].bitmap=hfurniture;
-                 kitchensink[0].x1=165+36+36;
-                 kitchensink[0].y1=87;
-                 kitchensink[0].SSX=36;
-                 kitchensink[0].SSY=33;
-                 kitchensink[0].SSX1=605;
-                 kitchensink[0].SSY1=0;
-                 kitchensink[0].collide=true;
-                 
-                 stove[0].bmap=true;
-                 stove[0].bitmap=hfurniture;
-                 stove[0].x1=165+36;
-                 stove[0].y1=87;
-                 stove[0].SSX=36;
-                 stove[0].SSY=33;
-                 stove[0].SSX1=568;
-                 stove[0].SSY1=0;
-                 stove[0].collide=true;
-                 
-                 fridge[0].bmap=true;
-                 fridge[0].bitmap=hfurniture;
-                 fridge[0].x1=165;
-                 fridge[0].y1=83;
-                 fridge[0].SSX=36;
-                 fridge[0].SSY=37;
-                 fridge[0].SSX1=642;
-                 fridge[0].SSY1=0;
-                 fridge[0].collide=true;
-                 
-                 bathtub[0].mbmap=true;
-                 bathtub[0].bitmap=hfurniture;
-                 bathtub[0].x1=96;
-                 bathtub[0].y1=564;
-                 bathtub[0].SSX=70+31;
-                 bathtub[0].SSY=31;
-                 bathtub[0].SSX1=430;
-                 bathtub[0].SSY1=0;
-                 bathtub[0].collide=true;
-                 
-                 door[0].ID="Door 1";
-                 door[0].mbmap=true;
-                 door[0].bitmap=SSanim;
-                 door[0].x1=252;
-                 door[0].y1=300;
-                 door[0].SSX=86;
-                 door[0].SSY=87;
-                 door[0].SSX1=0;
-
-                 door[1].ID="Door 2";
-                 door[1].mbmap=true;
-                 door[1].bitmap=SSanim;
-                 door[1].x1=518;
-                 door[1].y1=182;
-                 door[1].SSX=86;
-                 door[1].SSY=87;
-                 door[1].SSX1=0;
-                 door[1].SSY1=87;
-            
-                 door[2].ID="Door 3";
-                 door[2].mbmap=true;
-                 door[2].bitmap=SSanim;
-                 door[2].x1=198;
-                 door[2].y1=403;
-                 door[2].SSX=86;
-                 door[2].SSY=87;
-                 door[2].SSX1=0;
-                 door[2].SSY1=87;
-                 
-                 mat[0].bmap=true;
-                 mat[0].bitmap=hfurniture;
-                 mat[0].x1=280;
-                 mat[0].y1=410;
-                 mat[0].SSX=62;
-                 mat[0].SSY=100;
-                 mat[0].SSX1=82;
-                 
-                 deagle[0].ID="Deagle 1";
-                 deagle[0].isitem=true;
-                 deagle[0].mbmap=true;
-                 deagle[0].bitmap=items;
-                 deagle[0].x1=424;
-                 deagle[0].y1=470;
-                 deagle[0].SSX=16;
-                 deagle[0].SSY=10;
-                 deagle[0].SSX1=0;
-                 deagle[0].item=Deagle;
-            
-                 deagle[1].ID="Deagle 2";
-                 deagle[1].isitem=true;
-                 deagle[1].mbmap=true;
-                 deagle[1].bitmap=items;
-                 deagle[1].x1=260;
-                 deagle[1].y1=470;
-                 deagle[1].SSX=16;
-                 deagle[1].SSY=10;
-                 deagle[1].SSX1=0;
-                 deagle[1].item=Deagle;
-                 
-                 target[0].x1=0;
-                 target[0].x2=0;
-                 target[0].y1=0;
-                 target[0].y2=0;
-                 target[0].istarget=true;
-                 
-                 hud[0].ID="HUD";
-                 hud[0].ispersistent=true;
-                 hud[0].mbmap=true;
-                 hud[0].bitmap=HUD;
-                 hud[0].y1=0;
-                 hud[0].SSX=1080;
-                 hud[0].SSY=29;
-                 hud[0].SSX1=0;
-                 hud[0].x1=0;
-                 hud[0].slotfill[0]=false;
-                 hud[0].slotfill[1]=false;
-                 hud[0].slotfill[2]=false;
-                 hud[0].slotfill[3]=false;
-                 
-                 cupboard[0].bmap=true;
-                 cupboard[0].bitmap=hfurniture;
-                 cupboard[0].x1=418;
-                 cupboard[0].y1=460;
-                 cupboard[0].SSX=31;
-                 cupboard[0].SSY=75;
-                 cupboard[0].SSX1=355;
-                 cupboard[0].collide=true;
-                 
-                 shopcounterGR[0].bmap=true;
-                 shopcounterGR[0].bitmap=hfurniture;
-                 shopcounterGR[0].x1=1200;
-                 shopcounterGR[0].y1=800;
-                 shopcounterGR[0].SSX=30;
-                 shopcounterGR[0].SSY=83;
-                 shopcounterGR[0].SSX1=0;
-                 shopcounterGR[0].SSY1=101;
-                 shopcounterGR[0].collide=true;
-                 
-                 shopcounterGR[1].bmap=true;
-                 shopcounterGR[1].bitmap=hfurniture;
-                 shopcounterGR[1].x1=1270;
-                 shopcounterGR[1].y1=800;
-                 shopcounterGR[1].SSX=30;
-                 shopcounterGR[1].SSY=83;
-                 shopcounterGR[1].SSX1=0;
-                 shopcounterGR[1].SSY1=101;
-                 shopcounterGR[1].collide=true;
-                 
-                 shopcounterGR[2].mbmap=true;
-                 shopcounterGR[2].bitmap=hfurniture;
-                 shopcounterGR[2].x1=1190;
-                 shopcounterGR[2].y1=710;
-                 shopcounterGR[2].SSX=78;
-                 shopcounterGR[2].SSY=38;
-                 shopcounterGR[2].SSX1=97;
-                 shopcounterGR[2].SSY1=101;
-                 shopcounterGR[2].collide=true;
-                 
-                 shoppay[0].bmap=true;
-                 shoppay[0].bitmap=hfurniture;
-                 shoppay[0].x1=1270;
-                 shoppay[0].y1=990;
-                 shoppay[0].SSX=28;
-                 shoppay[0].SSY=62;
-                 shoppay[0].SSX1=31;
-                 shoppay[0].SSY1=101;
-                 shoppay[0].collide=true;
-                 
-                 shoppay[1].mbmap=true;
-                 shoppay[1].bitmap=hfurniture;
-                 shoppay[1].x1=1270;
-                 shoppay[1].y1=990-27;
-                 shoppay[1].SSX=28;
-                 shoppay[1].SSY=27;
-                 shoppay[1].SSX1=125;
-                 shoppay[1].SSY1=162;
-                 shoppay[1].collide=true;
-                 
-                 
-                 simonsbreda[0].mbmap=true;
-                 simonsbreda[0].bitmap=hfurniture;
-                 simonsbreda[0].x1=273;
-                 simonsbreda[0].y1=87;
-                 simonsbreda[0].SSX=43;
-                 simonsbreda[0].SSY=33;
-                 simonsbreda[0].SSX1=681;
-                 simonsbreda[0].collide=true;
-                 
-                 simonsbreda[1].mbmap=true;
-                 simonsbreda[1].bitmap=hfurniture;
-                 simonsbreda[1].x1=314;
-                 simonsbreda[1].y1=87;
-                 simonsbreda[1].SSX=43;
-                 simonsbreda[1].SSY=33;
-                 simonsbreda[1].SSX1=681;
-                 simonsbreda[1].collide=true;
-                 
-                 mat[1].mbmap=true;
-                 mat[1].bitmap=hfurniture;
-                 mat[1].x1=110;
-                 mat[1].y1=470;
-                 mat[1].SSX=72;
-                 mat[1].SSY=100;
-                 mat[1].SSX1=145;
-            
-                 bush[0].bmap=true;
-                 bush[0].bitmap=hfurniture;
-                 bush[0].x1=605;
-                 bush[0].y1=395;
-                 bush[0].SSX=35;
-                 bush[0].SSY=91;
-                 bush[0].SSX1=283;
-                 bush[0].collide=true;
-                 
-                 bush[1].bmap=true;
-                 bush[1].bitmap=hfurniture;
-                 bush[1].x1=605;
-                 bush[1].y1=395-91;
-                 bush[1].SSX=35;
-                 bush[1].SSY=91;
-                 bush[1].SSX1=283+36;
-                 bush[1].collide=true;
-                 
-                 bush[2].bmap=true;
-                 bush[2].bitmap=hfurniture;
-                 bush[2].x1=605;
-                 bush[2].y1=395+91;
-                 bush[2].SSX=35;
-                 bush[2].SSY=91;
-                 bush[2].SSX1=532;
-                 bush[2].collide=true;
-                 
-                 
-                 trail[0].mbmap=true;
-                 trail[0].bitmap=hfurniture;
-                 trail[0].x1=523;
-                 trail[0].y1=178;
-                 trail[0].SSX=62;
-                 trail[0].SSY=102;
-                 trail[0].SSX1=220;
-                 
-                 trail[1].mbmap=true;
-                 trail[1].bitmap=hfurniture;
-                 trail[1].x1=523+58;
-                 trail[1].y1=178;
-                 trail[1].SSX=62;
-                 trail[1].SSY=102;
-                 trail[1].SSX1=220;
-                 
-                 trail[2].mbmap=true;
-                 trail[2].bitmap=hfurniture;
-                 trail[2].x1=523+58+58;
-                 trail[2].y1=178;
-                 trail[2].SSX=62;
-                 trail[2].SSY=102;
-                 trail[2].SSX1=220;
-                 
-                 trail[3].mbmap=true;
-                 trail[3].bitmap=hfurniture;
-                 trail[3].x1=523+58+58+58;
-                 trail[3].y1=178;
-                 trail[3].SSX=62;
-                 trail[3].SSY=102;
-                 trail[3].SSX1=220;
+                 wall[17].x1=730;
+                 wall[17].x2=730;
+                 wall[17].y1=280;
+                 wall[17].y2=800;
                  
                  wall[18].x1=415;
                  wall[18].x2=415;
@@ -721,7 +253,509 @@ void loadobj(BITMAP *buffer)
                  wall[44].y1=house[3].y1+205-600;
                  wall[44].y2=house[3].y1+205-600;
                
-                  }
+               
+                 }
+                 
+                void load_architecture(BITMAP *buffer)
+                 {
+                 road[0].bmap=true;
+                 road[0].bitmap=road1;
+                 road[0].x1=730;
+                 road[0].y1=-880;
+                 road[0].SSX=350;
+                 road[0].SSY=840;
+                 
+                 road[1].bmap=true;
+                 road[1].bitmap=road1;
+                 road[1].x1=730;
+                 road[1].y1=-40;
+                 road[1].SSX=350;
+                 road[1].SSY=840;
+                 
+                 road[2].bmap=true;
+                 road[2].bitmap=road1;
+                 road[2].x1=730;
+                 road[2].y1=800;
+                 road[2].SSX=350;
+                 road[2].SSY=841;
+                 
+                 house[0].ID="House 1";
+                 house[0].mbmap=true;
+                 house[0].bitmap=pHouse;
+                 house[0].x1=60;
+                 house[0].y1=80;
+                 house[0].SSX=541;
+                 house[0].SSY=521;
+                 house[0].isobject=false;
+                 house[0].ishouse=true;
+                 
+                 house[2].ID="House 3";
+                 house[2].mbmap=true;
+                 house[2].bitmap=Store1;
+                 house[2].x1=1150;
+                 house[2].y1=700;
+                 house[2].SSX=204;
+                 house[2].SSY=362;
+                 house[2].isobject=false;
+                 house[2].ishouse=true;
+                 
+                 house[3].ID="House 4";
+                 house[3].mbmap=true;
+                 house[3].bitmap=house_1;
+                 house[3].x1=1200;
+                 house[3].y1=230;
+                 house[3].SSX=416;
+                 house[3].SSY=343;
+                 house[3].isobject=false;
+                 house[3].ishouse=true;
+                 
+                 house[4].ID="House 5";
+                 house[4].mbmap=true;
+                 house[4].bitmap=house_2;
+                 house[4].x1=1200;
+                 house[4].y1=house[3].y1-600;
+                 house[4].SSX=416;
+                 house[4].SSY=343;
+                 house[4].isobject=false;
+                 house[4].ishouse=true;
+                 
+                 
+                 //house2
+                
+                
+                 fence[0].mbmap=true;
+                 fence[0].bitmap=fence1;
+                 fence[0].x1=-90;
+                 fence[0].x2=-90+500;
+                 fence[0].y1=-40;
+                 fence[0].y2=-40;
+                 fence[0].SSX=500;
+                 fence[0].SSY=6;
+                 
+                 fence[1].mbmap=true;
+                 fence[1].bitmap=fence1;
+                 fence[1].x1=-90+250+110;
+                 fence[1].x2=-90+250+110;
+                 fence[1].y1=-40;
+                 fence[1].y2=6;
+                 fence[1].SSX=500;
+                 fence[1].SSY=6;
+                 
+                 fence[2].mbmap=true;
+                 fence[2].bitmap=fence1;
+                 fence[2].x1=-90+250+250+310;
+                 fence[2].x2=450;
+                 fence[2].y1=-40;
+                 fence[2].y2=-40;
+                 fence[2].SSX=450;
+                 fence[2].SSY=215;
+                 fence[2].SSX1=1;
+                 fence[2].SSY1=7;
+                 
+                 fence[3].mbmap=true;
+                 fence[3].bitmap=fence1;
+                 fence[3].x1=-90+250+250+310;
+                 fence[3].y1=-40+215+105;
+                 fence[3].SSX=450;
+                 fence[3].SSY=500;
+                 fence[3].SSX1=1;
+                 fence[3].SSY1=7;
+                 
+                 fence[4].mbmap=true;
+                 fence[4].bitmap=fence1;
+                 fence[4].x1=-90+250+250+310;
+                 fence[4].y1=-40+215+50+450;
+                 fence[4].SSX=450;
+                 fence[4].SSY=120;
+                 fence[4].SSX1=1;
+                 fence[4].SSY1=7;
+                 
+                 fence[5].mbmap=true;
+                 fence[5].bitmap=fence1;
+                 fence[5].x1=-90+250+110;
+                 fence[5].y1=-40+215+50+450+120;
+                 fence[5].SSX=500;
+                 fence[5].SSY=6;
+                 
+                 fence[6].mbmap=true;
+                 fence[6].bitmap=fence1;
+                 fence[6].x1=-90+250+110-360;
+                 fence[6].y1=-40+215+50+450+120;
+                 fence[6].SSX=500;
+                 fence[6].SSY=6;
+                 
+                 fence[7].mbmap=true;
+                 fence[7].bitmap=fence1;
+                 fence[7].x1=-90;
+                 fence[7].y1=-40;
+                 fence[7].SSX=450;
+                 fence[7].SSY=450;
+                 fence[7].SSX1=1;
+                 fence[7].SSY1=7;
+                 
+                 fence[8].mbmap=true;
+                 fence[8].bitmap=fence1;
+                 fence[8].x1=-90;
+                 fence[8].y1=-40+450;
+                 fence[8].SSX=450;
+                 fence[8].SSY=390;
+                 fence[8].SSX1=1;
+                 fence[8].SSY1=7;
+                 
+                 trail[0].mbmap=true;
+                 trail[0].bitmap=hfurniture;
+                 trail[0].x1=523;
+                 trail[0].y1=178;
+                 trail[0].SSX=62;
+                 trail[0].SSY=102;
+                 trail[0].SSX1=220;
+                 
+                 trail[1].mbmap=true;
+                 trail[1].bitmap=hfurniture;
+                 trail[1].x1=523+58;
+                 trail[1].y1=178;
+                 trail[1].SSX=62;
+                 trail[1].SSY=102;
+                 trail[1].SSX1=220;
+                 
+                 trail[2].mbmap=true;
+                 trail[2].bitmap=hfurniture;
+                 trail[2].x1=523+58+58;
+                 trail[2].y1=178;
+                 trail[2].SSX=62;
+                 trail[2].SSY=102;
+                 trail[2].SSX1=220;
+                 
+                 trail[3].mbmap=true;
+                 trail[3].bitmap=hfurniture;
+                 trail[3].x1=523+58+58+58;
+                 trail[3].y1=178;
+                 trail[3].SSX=62;
+                 trail[3].SSY=102;
+                 trail[3].SSX1=220;
+                 
+                 }
+                 
+                 void load_flora(BITMAP *buffer)
+                 {
+                                   
+                 grass[0].x1=-90;
+                 grass[0].y1=-40;
+  
+                 grass[1].x1=-90;
+                 grass[1].y1=-881;
+                 
+                 grass[2].x1=-90;
+                 grass[2].y1=801;
+                 
+                 grass[3].x1=-90-821;
+                 grass[3].y1=801;
+                    
+                 grass[4].x1=-90-821;
+                 grass[4].y1=-40;
+                 
+                 grass[5].x1=-90-821;
+                 grass[5].y1=-881;
+                 
+                 grass[6].x1=630;
+                 grass[6].y1=-40;
+                 
+                 grass[7].x1=630;
+                 grass[7].y1=-881;
+                 
+                 grass[8].x1=630;
+                 grass[8].y1=800;
+                 
+                 grass[9].x1=630+821;
+                 grass[9].y1=-881;
+                 
+                 grass[10].x1=630+821;
+                 grass[10].y1=-40;
+                 
+                 
+                 grass[11].x1=630+821;
+                 grass[11].y1=800;
+               
+               
+                 bush[0].bmap=true;
+                 bush[0].bitmap=hfurniture;
+                 bush[0].x1=605;
+                 bush[0].y1=395;
+                 bush[0].SSX=35;
+                 bush[0].SSY=91;
+                 bush[0].SSX1=283;
+                 bush[0].collide=true;
+                 
+                 bush[1].bmap=true;
+                 bush[1].bitmap=hfurniture;
+                 bush[1].x1=605;
+                 bush[1].y1=395-91;
+                 bush[1].SSX=35;
+                 bush[1].SSY=91;
+                 bush[1].SSX1=283+36;
+                 bush[1].collide=true;
+                 
+                 bush[2].bmap=true;
+                 bush[2].bitmap=hfurniture;
+                 bush[2].x1=605;
+                 bush[2].y1=395+91;
+                 bush[2].SSX=35;
+                 bush[2].SSY=91;
+                 bush[2].SSX1=532;
+                 bush[2].collide=true;
+                 
+                 
+               }
+               
+               void load_furniture(BITMAP *buffer)
+               {
+                 bed[0].bmap=true;
+                 bed[0].bitmap=hfurniture;
+                 bed[0].x1=550;
+                 bed[0].y1=490;
+                 bed[0].SSX=40;
+                 bed[0].SSY=100;
+                 bed[0].SSX1=41;
+                 bed[0].collide=true;
+                 
+                 toilet[0].mbmap=true;
+                 toilet[0].bitmap=hfurniture;
+                 toilet[0].x1=100;
+                 toilet[0].y1=405;
+                 toilet[0].SSX=22;
+                 toilet[0].SSY=32;
+                 toilet[0].SSX1=386;
+                 toilet[0].SSY1=0;
+                 toilet[0].collide=false;
+                 
+                 sink[0].mbmap=true;
+                 sink[0].bitmap=hfurniture;
+                 sink[0].x1=69;
+                 sink[0].y1=460;
+                 sink[0].SSX=19;
+                 sink[0].SSY=29;
+                 sink[0].SSX1=409;
+                 sink[0].SSY1=0;
+                 sink[0].collide=true;
+                 
+                 kitchensink[0].bmap=true;
+                 kitchensink[0].bitmap=hfurniture;
+                 kitchensink[0].x1=165+36+36;
+                 kitchensink[0].y1=87;
+                 kitchensink[0].SSX=36;
+                 kitchensink[0].SSY=33;
+                 kitchensink[0].SSX1=605;
+                 kitchensink[0].SSY1=0;
+                 kitchensink[0].collide=true;
+                 
+                 stove[0].bmap=true;
+                 stove[0].bitmap=hfurniture;
+                 stove[0].x1=165+36;
+                 stove[0].y1=87;
+                 stove[0].SSX=36;
+                 stove[0].SSY=33;
+                 stove[0].SSX1=568;
+                 stove[0].SSY1=0;
+                 stove[0].collide=true;
+                 
+                 fridge[0].bmap=true;
+                 fridge[0].bitmap=hfurniture;
+                 fridge[0].x1=165;
+                 fridge[0].y1=83;
+                 fridge[0].SSX=36;
+                 fridge[0].SSY=37;
+                 fridge[0].SSX1=642;
+                 fridge[0].SSY1=0;
+                 fridge[0].collide=true;
+                 
+                 bathtub[0].mbmap=true;
+                 bathtub[0].bitmap=hfurniture;
+                 bathtub[0].x1=96;
+                 bathtub[0].y1=564;
+                 bathtub[0].SSX=70+31;
+                 bathtub[0].SSY=31;
+                 bathtub[0].SSX1=430;
+                 bathtub[0].SSY1=0;
+                 bathtub[0].collide=true;
+                 
+                 door[0].ID="Door 1";
+                 door[0].mbmap=true;
+                 door[0].bitmap=SSanim;
+                 door[0].x1=252;
+                 door[0].y1=300;
+                 door[0].SSX=86;
+                 door[0].SSY=87;
+                 door[0].SSX1=0;
+
+                 door[1].ID="Door 2";
+                 door[1].mbmap=true;
+                 door[1].bitmap=SSanim;
+                 door[1].x1=518;
+                 door[1].y1=182;
+                 door[1].SSX=86;
+                 door[1].SSY=87;
+                 door[1].SSX1=0;
+                 door[1].SSY1=87;
+            
+                 door[2].ID="Door 3";
+                 door[2].mbmap=true;
+                 door[2].bitmap=SSanim;
+                 door[2].x1=198;
+                 door[2].y1=403;
+                 door[2].SSX=86;
+                 door[2].SSY=87;
+                 door[2].SSX1=0;
+                 door[2].SSY1=87;
+                 
+                 mat[0].bmap=true;
+                 mat[0].bitmap=hfurniture;
+                 mat[0].x1=280;
+                 mat[0].y1=410;
+                 mat[0].SSX=62;
+                 mat[0].SSY=100;
+                 mat[0].SSX1=82;
+                 
+                 cupboard[0].bmap=true;
+                 cupboard[0].bitmap=hfurniture;
+                 cupboard[0].x1=418;
+                 cupboard[0].y1=460;
+                 cupboard[0].SSX=31;
+                 cupboard[0].SSY=75;
+                 cupboard[0].SSX1=355;
+                 cupboard[0].collide=true;
+                 
+                 shopcounterGR[0].bmap=true;
+                 shopcounterGR[0].bitmap=hfurniture;
+                 shopcounterGR[0].x1=1200;
+                 shopcounterGR[0].y1=800;
+                 shopcounterGR[0].SSX=30;
+                 shopcounterGR[0].SSY=83;
+                 shopcounterGR[0].SSX1=0;
+                 shopcounterGR[0].SSY1=101;
+                 shopcounterGR[0].collide=true;
+                 
+                 shopcounterGR[1].bmap=true;
+                 shopcounterGR[1].bitmap=hfurniture;
+                 shopcounterGR[1].x1=1270;
+                 shopcounterGR[1].y1=800;
+                 shopcounterGR[1].SSX=30;
+                 shopcounterGR[1].SSY=83;
+                 shopcounterGR[1].SSX1=0;
+                 shopcounterGR[1].SSY1=101;
+                 shopcounterGR[1].collide=true;
+                 
+                 shopcounterGR[2].mbmap=true;
+                 shopcounterGR[2].bitmap=hfurniture;
+                 shopcounterGR[2].x1=1190;
+                 shopcounterGR[2].y1=710;
+                 shopcounterGR[2].SSX=78;
+                 shopcounterGR[2].SSY=38;
+                 shopcounterGR[2].SSX1=97;
+                 shopcounterGR[2].SSY1=101;
+                 shopcounterGR[2].collide=true;
+                 
+                 shoppay[0].bmap=true;
+                 shoppay[0].bitmap=hfurniture;
+                 shoppay[0].x1=1270;
+                 shoppay[0].y1=990;
+                 shoppay[0].SSX=28;
+                 shoppay[0].SSY=62;
+                 shoppay[0].SSX1=31;
+                 shoppay[0].SSY1=101;
+                 shoppay[0].collide=true;
+                 
+                 shoppay[1].mbmap=true;
+                 shoppay[1].bitmap=hfurniture;
+                 shoppay[1].x1=1270;
+                 shoppay[1].y1=990-27;
+                 shoppay[1].SSX=28;
+                 shoppay[1].SSY=27;
+                 shoppay[1].SSX1=125;
+                 shoppay[1].SSY1=162;
+                 shoppay[1].collide=true;
+                 
+                 
+                 simonsbreda[0].mbmap=true;
+                 simonsbreda[0].bitmap=hfurniture;
+                 simonsbreda[0].x1=273;
+                 simonsbreda[0].y1=87;
+                 simonsbreda[0].SSX=43;
+                 simonsbreda[0].SSY=33;
+                 simonsbreda[0].SSX1=681;
+                 simonsbreda[0].collide=true;
+                 
+                 simonsbreda[1].mbmap=true;
+                 simonsbreda[1].bitmap=hfurniture;
+                 simonsbreda[1].x1=314;
+                 simonsbreda[1].y1=87;
+                 simonsbreda[1].SSX=43;
+                 simonsbreda[1].SSY=33;
+                 simonsbreda[1].SSX1=681;
+                 simonsbreda[1].collide=true;
+                 
+                 mat[1].mbmap=true;
+                 mat[1].bitmap=hfurniture;
+                 mat[1].x1=110;
+                 mat[1].y1=470;
+                 mat[1].SSX=72;
+                 mat[1].SSY=100;
+                 mat[1].SSX1=145;
+            
+                 }
+                 
+                 void load_weapons(BITMAP *buffer)
+                 { 
+                 deagle[0].ID="Deagle 1";
+                 deagle[0].isitem=true;
+                 deagle[0].mbmap=true;
+                 deagle[0].bitmap=items;
+                 deagle[0].x1=424;
+                 deagle[0].y1=470;
+                 deagle[0].SSX=16;
+                 deagle[0].SSY=10;
+                 deagle[0].SSX1=0;
+                 deagle[0].item=Deagle;
+                 deagle[0].ammo_max=9;
+                 deagle[0].ammo=9;
+                 
+                 deagle[1].ID="Deagle 2";
+                 deagle[1].isitem=true;
+                 deagle[1].mbmap=true;
+                 deagle[1].bitmap=items;
+                 deagle[1].x1=260;
+                 deagle[1].y1=470;
+                 deagle[1].SSX=16;
+                 deagle[1].SSY=10;
+                 deagle[1].SSX1=0;
+                 deagle[1].item=Deagle;
+                 
+                 }
+                 
+            
+            void load_hud(BITMAP *buffer)
+            {     
+                 hud[0].ID="HUD";
+                 hud[0].isHud=true;
+                 hud[0].ispersistent=true;
+                 hud[0].mbmap=true;
+                 hud[0].bitmap=HUD;
+                 hud[0].y1=0;
+                 hud[0].SSX=1080;
+                 hud[0].SSY=29;
+                 hud[0].SSX1=0;
+                 hud[0].x1=0;
+                 hud[0].slotfill[0]=false;
+                 hud[0].slotfill[1]=false;
+                 hud[0].slotfill[2]=false;
+                 hud[0].slotfill[3]=false;
+                 
+                 
+                 }
+                 
+                 
+                 
+                 
+                  
                  
                                   int i2=0;
                  void drawobjects(BITMAP *buffer)
@@ -884,7 +918,7 @@ i2=0;
                         
                             bloodstain[b].draw();
                         
-                        hud[0].draw();
+                        
                         deagle[0].draw();
                         gunFIRE[0].draw();
                         //deagle[1].draw();

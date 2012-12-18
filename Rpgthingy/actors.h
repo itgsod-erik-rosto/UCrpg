@@ -4,13 +4,13 @@ void loadch(BITMAP *buffer)
 {
      player.itemout=false;
      player.activate=false;
-     
+     player.Wtarget=-2;
       player.speed=2;
                  player.x=SW/2;
                  player.y=SH/2;
             player.r=20;     
            player.dTimer=0;     
-           
+           player.isPatrolling=false;
            player.HP=100;
             player.SSY=0;
             player.bitmap=load_bitmap("Data/Images/sofia.bmp", NULL);
@@ -19,6 +19,7 @@ void loadch(BITMAP *buffer)
                 player.fnpcsi=0;
                 
                 NPC[2].HP=100;
+                NPC[2].Wtarget=-2;
               NPC[2].itemout=false;
      NPC[2].activate=false;
      NPC[2].isrunning=false;
@@ -35,6 +36,7 @@ void loadch(BITMAP *buffer)
            NPC[2].name="NPC1";
            
            NPC[0].HP=100;
+            NPC[0].Wtarget=-2;
               NPC[0].itemout=false;
      NPC[0].activate=false;
      NPC[0].isrunning=false;
@@ -83,6 +85,7 @@ void loadch(BITMAP *buffer)
             NPC[1].StimeM[1]=0;
            NPC[1].EtimeM[1]=59;
            
+           
               NPC[1].Stime[2]=7;
            NPC[1].Etime[2]=9;
            
@@ -91,8 +94,20 @@ void loadch(BITMAP *buffer)
            
            NPC[1].hasTarget=false;
            
+           NPC[0].Wtarget=0;
            
+           NPC[0].Stime[0]=7;
+           NPC[0].Etime[0]=12;
+           
+           NPC[0].StimeM[0]=0;
+           NPC[0].EtimeM[0]=59;
             
+            NPC[0].Stime[1]=14;
+           NPC[0].Etime[1]=16;
+           
+           NPC[0].StimeM[1]=0;
+           NPC[0].EtimeM[1]=59;
+           
             
             
         actor[0]=player;
@@ -100,9 +115,66 @@ void loadch(BITMAP *buffer)
 
 void schedules(BITMAP *buffer)
 {
-     
+     if (NPC[0].Wtarget==0)
+     {
+                           
+                              NPC[0].Ti_max=6;
+           NPC[0].targetX[-1]=1360;
+           NPC[0].targetY[-1]=-140;
+           
+           NPC[0].targetX[0]=1320;
+           NPC[0].targetY[0]=-70;
+           
+           NPC[0].targetX[1]=1470;
+           NPC[0].targetY[1]=-200;
+           
+           NPC[0].targetX[2]=1580;
+           NPC[0].targetY[2]=-200;
+           
+           NPC[0].targetX[3]=1580;
+           NPC[0].targetY[3]=-280;
+           
+           NPC[0].targetX[4]=1580;
+           NPC[0].targetY[4]=-330;
+           
+           NPC[0].targetX[5]=1240;
+           NPC[0].targetY[5]=-330;
+           
+           NPC[0].targetX[6]=1240;
+           NPC[0].targetY[6]=-310;
+                           }
+                           if (NPC[0].Wtarget==1)
+     {
+                           NPC[0].isPatrolling=true;
+                           
+                              NPC[0].Ti_max=5;
+           NPC[0].targetX[-1]=1360;
+           NPC[0].targetY[-1]=-140;
+           
+           NPC[0].targetX[0]=1320;
+           NPC[0].targetY[0]=-70;
+           
+           NPC[0].targetX[1]=1470;
+           NPC[0].targetY[1]=-200;
+           
+           NPC[0].targetX[2]=1080;
+           NPC[0].targetY[2]=-200;
+           
+           NPC[0].targetX[3]=1080;
+           NPC[0].targetY[3]=960;
+           
+           NPC[0].targetX[4]=1250;
+           NPC[0].targetY[4]=960;
+           
+           NPC[0].targetX[5]=1260;
+           NPC[0].targetY[5]=960;
+           
+                           }
            if (NPC[1].Wtarget==0)
            {
+                                 NPC[1].Ti_max=4;
+                                 
+                                 NPC[1].isPatrolling=true;
            NPC[1].targetX[-1]=1320;
            NPC[1].targetY[-1]=460+560;
            
@@ -124,6 +196,8 @@ void schedules(BITMAP *buffer)
             
            if (NPC[1].Wtarget==1)
            {
+                                 NPC[1].Ti_max=6;
+                                 
            NPC[1].targetX[-1]=1200;
            NPC[1].targetY[-1]=460+560-1600;
            
@@ -134,18 +208,27 @@ void schedules(BITMAP *buffer)
            NPC[1].targetY[1]=460+560-80;
            
            NPC[1].targetX[2]=1070;
-           NPC[1].targetY[2]=460+560-1600;
+           NPC[1].targetY[2]=460+560-630;
            
-           NPC[1].targetX[3]=1070;
-           NPC[1].targetY[3]=460+560-1600;
+           NPC[1].targetX[3]=1400;
+           NPC[1].targetY[3]=460+560-630;
            
-           NPC[1].targetX[4]=1150;
-           NPC[1].targetY[4]=460+560-1600;
+           NPC[1].targetX[4]=1450;
+           NPC[1].targetY[4]=460+560-480;
+           
+           
+           NPC[1].targetX[5]=1250;
+           NPC[1].targetY[5]=460+560-480;
+           
+           
+           NPC[1].targetX[6]=1240;
+           NPC[1].targetY[6]=460+560-480;
            }
            
            
            if (NPC[1].Wtarget==2)
            {
+                                 NPC[1].Ti_max=4;
            NPC[1].targetX[0]=1150;
            NPC[1].targetY[0]=460+560-1600;
            
@@ -164,12 +247,8 @@ void schedules(BITMAP *buffer)
            
            NPC[1].targetX[4]=1320;
            NPC[1].targetY[4]=460+560-80;
-           
-         
-         
-           
-           
-           
-          
+
            }
+
      }
+

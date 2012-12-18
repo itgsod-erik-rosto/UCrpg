@@ -4,15 +4,24 @@
 #include <declarations.h>
 #include <worldfuncs.h>
  
+ 
+
+ 
 struct OBJECTS
 {
 
      char *ID;
      
+     int ammo;
+     int ammo_max;
+     
        int x1;
        int y1;
        
+       bool isHud;
         bool slotfill[3];
+      
+      bool hastext;
       
        bool bmap;
        bool mbmap;
@@ -22,6 +31,8 @@ struct OBJECTS
        bool equipped;
        int x2;
        int y2;
+       
+       
        
        char item;
       
@@ -62,7 +73,9 @@ bool isopen;
        char path;
 void saveobjects(BITMAP *buffer);
   void STATUS();
+    void reload(BITMAP *buffer);
 void collision();
+
        void draw();
        
        }
@@ -230,25 +243,25 @@ if (isactivated==true && isitem==true && key[KEY_Q] && player.itemeq==true && pl
                              
                              if (player.dir==2)
                              {
-                             x1=ofX+SW+87-player.r;
-                             y1=ofY+SH*1.5f+47-player.r;
+                             x1=ofX+SW+85-player.r;
+                             y1=ofY+SH+380-player.r;
                              }
                              
                              else if (player.dir==4)
                              {
                              x1=ofX+SW+140-player.r;
-                             y1=ofY+SH*1.5f+47-player.r;
+                             y1=ofY+SH+380-player.r;
                              }
                              else if (player.dir==1)
                              {
                              x1=ofX+SW+115-player.r;
-                             y1=ofY+SH*1.5f+25-player.r;
+                             y1=ofY+SH+355-player.r;
                              }
                              
                              else if (player.dir==3)
                              {
                              x1=ofX+SW+115-player.r;
-                             y1=ofY+SH*1.5f+65-player.r;
+                             y1=ofY+SH+405-player.r;
                              }
                              }
                              
@@ -366,8 +379,34 @@ if (isopen==true && SSX1==0)
                  
      }
      
+     void OBJECTS::reload(BITMAP *buffer)
+     {
+          ammo=ammo_max;
+          }
 void OBJECTS::draw()
 {
+     if (equipped==true)
+     {
+                        
+     if (key[KEY_R] && player.itemout==true)
+     {
+                    reload(buffer);
+                    }
+                    
+     if (player.gunfireT==2 && equipped==true && player.gunfire==true)
+     {
+                               ammo-=1;
+                               }
+                               
+                               if (player.gunfire==true && ammo<=0 && equipped==true)
+                               {
+                               player.gunfire1=false;
+                               player.gunfire=false;
+                               player.gshotX=-1000;
+                               player.gshotY=-1000;
+                               }
+                        }
+                    
     saveobjects(buffer);
 
 
@@ -382,12 +421,12 @@ else
      }
      
   
-     if (bmap==true)
+     if (bmap==true && isHud!=true)
      {
      blit(bitmap, buffer, SSX1, SSY1, x1+cam, y1+cam2, SSX, SSY);
      }
      
-     if (mbmap==true)
+     if (mbmap==true && isHud!=true)
      if(!key[KEY_LCONTROL] || collide!=false || isitem==true || isdoor==true || ishouse!=true)  
      {
                      if (ispersistent!=true)
@@ -433,13 +472,6 @@ else
                                          
      masked_blit(bitmap, buffer, SSX1, SSY1, x1+cam, y1+cam2, SSX, SSY);
      
-     if (isitem==true && isactivated==true && hud[0].slotfill[0]==false)
-     {
-                      
-                      
-      masked_blit(bitmap, buffer, 0, 0, hud[0].x1+15+459, hud[0].y1+10, 18, 10);
-      
-      }
       
       }
       
@@ -457,11 +489,28 @@ else
         }
         
     collision();
-     
+    
  
    if ((collide!=true && mbmap!=true && SSX==0 || SSY==0 ))
        line(buffer, x1+cam, y1+cam2, x2+cam, y2+cam2, makecol(255, 0, 0));
 
+if (isHud==true)
+{
+                 masked_blit(bitmap, buffer, SSX1, SSY1, 0, 0, SSX, SSY);
+                 
+                
+                }
+                if (equipped==true)
+                {
+                textprintf_ex(buffer, font, SW-100 , SH-50, makecol(0, 0, 0), -1, "%i", ammo);
+                }
+     if (isitem==true && isactivated==true && hud[0].slotfill[0]==false)
+     {
+                      
+                      
+      masked_blit(bitmap, buffer, 0, 0, hud[0].x1+15+459, hud[0].y1+10, 18, 10);
+      
+      }
      }
 
 
@@ -493,10 +542,16 @@ void drawplayers()
      
             drawplayers(); 
            
-    FNPCS.close();                  
-            
-            
-
+    FNPCS.close();      
+                if (tclockH>=15 || tclockH<=7)
+                {
+                 set_trans_blender(sh[0], sh[1], sh[2], sh[3]);
+                          draw_trans_sprite(buffer, nightF, 0, 0);
+                          }
+                                   
+           hud[0].draw(); 
+            hud[1].draw(); 
+hud[2].draw(); 
 
        
                            if (mouse_x!=SW/2 && mouse_y!=SH/2)
@@ -506,6 +561,13 @@ void drawplayers()
 
    void timerfunc(void)
                                               {
+                                                               fpsclock+=1;
+                                                               if (fpsclock==2)
+                                                               {
+                                                                              
+                                                                              fps1=0; 
+                                                               fpsclock=0;
+                                                               }
                                                    tclockM+=1;
                                                    if (tclockM>=60)
                                                    {
@@ -513,11 +575,14 @@ void drawplayers()
                                                    tclockM=0;
                                                    }
                                                    if (tclockH>=24)
-                                                   tclockH=0;
+                                                   {
+                                                                   cday_i+=1;
+                                                   tclockH-=24;
+                                                   }
                                                    
                                                    }
                                                    
- 
+ #include <loadsave.h>
 using namespace std;
 int main(){
 
@@ -541,9 +606,10 @@ startdone=true;
     install_timer();
 
 
-
+LOCK_VARIABLE(fpsclock);
 	LOCK_VARIABLE(tclockH);
 	LOCK_VARIABLE(tclockM);
+	LOCK_VARIABLE(cday_i);
 	LOCK_FUNCTION(timerfunc);
 	install_int_ex(timerfunc, BPS_TO_TIMER(1));//The timer in "timerfunc" (tclock) is in full seconds. This is the game time.
 
@@ -567,22 +633,20 @@ background=load_bitmap("Data/Images/worldmap.bmp", NULL);
 
 clear_to_color(screen, makecol(255, 255, 255));
   textprintf_ex(screen,font,510,SH/2, makecol(255, 0, 0), -1, "Loading game...", NULL);
- loadobj(buffer);
+ 
+ 
+load_bitmaps(buffer);
+load_flora(buffer);
+load_architecture(buffer);
+
+load_walls(buffer);
+load_furniture(buffer);
+load_weapons(buffer);
+load_hud(buffer);
     loadch(buffer);
        
        
-ifstream load;
-            load.open("Data/Save/save.dat");
-  
-            load >> ofX;
-            load >> ofY;
-            load >> player.HP;
-            load >> player.dir;
-            load >> tclockH;
-            load >> tclockM;
-            
-            load.close();
-
+ load(buffer);
 
 
 
@@ -590,11 +654,13 @@ ifstream load;
       
 while (savetimer!=1)
 {
+       
      
      schedules(buffer);
             
              
       drawworld();
+      
       
       //savetimer++;
       if (savetimer>=1)
@@ -621,38 +687,7 @@ if (timer1>=40)
 {
     
 
-                  
-            ofstream Fpos;
-            Fpos.open("Data/Save/save.dat");
-            Fpos << ofX;
-            Fpos << endl;
-            Fpos << ofY;
-            Fpos << endl;
-            Fpos << player.HP;
-            Fpos << endl;
-            Fpos << player.dir;
-            Fpos << endl;
-            Fpos << tclockH;
-            Fpos << endl;
-            Fpos << tclockM;
-            Fpos << endl;
-            Fpos << player.x-cam+750+540;
-            Fpos << endl;
-            Fpos << player.y-cam2+835+555;
-            Fpos << endl;
-            Fpos << player.isNPC;
-            Fpos << endl;
-            Fpos << player.itemout;
-            Fpos << endl;
-            Fpos << player.isMoving;
-            Fpos << endl;
-            Fpos << player.isrunning;
-            Fpos << endl;
-            Fpos << player.itemeq;
-            Fpos << endl;
-            Fpos << player.item[20];
-            Fpos << endl;
-             
+                  save(buffer);
             
         
       
@@ -681,10 +716,12 @@ textprintf_ex(buffer,font,400,60,makecol(255,0,0), 0, " x: %i", player.x-cam+750
 textprintf_ex(buffer,font,480,60,makecol(255,0,0), 0," y: %i", player.y-cam2+835+555);
 
 textprintf_ex(buffer,font,200,0,makecol(255,0,0), 0," S-Time %i", starttimer);
+
 textprintf_ex(buffer,font,400,33,makecol(255,0,0), 0," SaveTimer: %i", savetimer);
 textprintf_ex(buffer,font,400,43,makecol(255,0,0), 0," B: %i", b);
 
 Wclock(buffer);
+fpscounter(buffer);
 }
 if (quit==true)
 {
@@ -692,9 +729,11 @@ if (quit==true)
  
                savetimer++;
                clear_to_color(buffer, makecol(savetimer/6, savetimer/6, savetimer/6));
+               fpscounter(buffer);
                }
 if (quit==true && savetimer <200)
 {
+
 
 textprintf_ex(buffer,font,400,SH/2, makecol(savetimer/4+150, 0, 0), -1, "Waiting for the game to save...", NULL);
 }

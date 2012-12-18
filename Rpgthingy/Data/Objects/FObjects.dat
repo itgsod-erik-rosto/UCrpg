@@ -2038,6 +2038,46 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+Deagle 1 //ID
+424 //x1
+470 //y1
+0// x2
+0 //y2
+0// bmap
+1 //mbmap
+0 //isdoor
+0 //ishouse
+0 //ispersistent
+0 //isactivated
+16 //SSX
+10 //SSY
+0 //SSX1
+0 //SSY1
+1 //isitem
+0 //isopen
+0 //collide
+0 //isobject
+
+NO ID //ID
+0 //x1
+0 //y1
+0// x2
+0 //y2
+0// bmap
+0 //mbmap
+0 //isdoor
+0 //ishouse
+0 //ispersistent
+0 //isactivated
+0 //SSX
+0 //SSY
+0 //SSX1
+0 //SSY1
+0 //isitem
+0 //isopen
+0 //collide
+0 //isobject
+
 HUD //ID
 0 //x1
 0 //y1
@@ -2058,22 +2098,22 @@ HUD //ID
 0 //collide
 0 //isobject
 
-Deagle 1 //ID
-424 //x1
-470 //y1
+NO ID //ID
+0 //x1
+0 //y1
 0// x2
 0 //y2
 0// bmap
-1 //mbmap
+0 //mbmap
 0 //isdoor
 0 //ishouse
 0 //ispersistent
 0 //isactivated
-16 //SSX
-10 //SSY
+0 //SSX
+0 //SSY
 0 //SSX1
 0 //SSY1
-1 //isitem
+0 //isitem
 0 //isopen
 0 //collide
 0 //isobject

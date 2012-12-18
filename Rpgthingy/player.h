@@ -19,6 +19,8 @@
                         int routewalked[100];
                        
                     int Ti;
+                    int Ti_max;
+                    
                           char *name;
                        
                        int Rnd;
@@ -118,14 +120,19 @@ int gunfireT;
          
         if (tclockH>=Stime[Wtarget] && tclockH<=Etime[Wtarget] && tclockM>=StimeM[Wtarget] && tclockM<=EtimeM[Wtarget])
         {
+                                    
                               hasTarget=true;
                               }
        
                                                                     
-                                                                    if (hasTarget==true)
+                                                                    if (hasTarget==true && isNPC==true)
                                                                     {
-                                                                                        if (Wtarget==0)
-                                                                    isPatrolling=true;                                                                   
+                                                                                        if (iscollided==true)
+                                                                                        {
+                                                                                                             Ti++;
+                                                                                                             }
+                                                                                      
+                                                                                                                                       
                                                                                         isMoving=true;
                                                                               }
                                                              
@@ -152,23 +159,21 @@ int gunfireT;
                         isMoving=true;
                         }
                         
-                        if (targetX[Ti]==x && targetY[Ti]==y && hasTarget==true && Ti<4)
+                        if (targetX[Ti]==x && targetY[Ti]==y && hasTarget==true && Ti<Ti_max)
                         {
                                        Ti++;
                         
                         
                         }
-                        if (Ti==4 && y==targetY[Ti] && x==targetX[Ti] && tclockH<Etime[Wtarget] && tclockM>=StimeM[Wtarget] && tclockM<=EtimeM[Wtarget])
+                        if (Ti==Ti_max && y==targetY[Ti] && x==targetX[Ti] && tclockH<Etime[Wtarget] && tclockM>=StimeM[Wtarget] && tclockM<=EtimeM[Wtarget])
                         {
                                   Ti=0;
-                                           dir=2;
                                            }
-                                           else if (Ti==4 ||(targetY[Ti]==0) && y==targetY[Ti] && x==targetX[Ti])
+                                           else if (Ti==Ti_max ||(targetY[Ti]==0) && y==targetY[Ti] && x==targetX[Ti])
                         {
                                            isMoving=false;
                                            hasTarget=false;
                                            isPatrolling=false;
-                                           dir=2;
                                            }
                         }
          }
