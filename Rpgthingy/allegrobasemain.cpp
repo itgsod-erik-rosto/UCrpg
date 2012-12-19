@@ -51,18 +51,21 @@ LOCK_VARIABLE(fpsclock);
  
 
 SETUP(buffer);
+
+
 GAME_RUNNING=true;
 
  
       
        loadF(buffer);   
-       
+      //NPC[2].LOADSTATUS(buffer);
+    
+     
      
 while (GAME_RUNNING==true)
 {
+      
     
-    
-       
      schedules(buffer);
        drawworld();  
       

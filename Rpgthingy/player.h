@@ -88,6 +88,7 @@ int gunfireT;
                         void target();
                         void mouseselect();
                         void enablecontrols();
+                        void LOADSTATUS(BITMAP *buffer);
                         void STATUS(BITMAP *buffer);
                         void alert();
                         void animation(BITMAP *buffer);
@@ -208,10 +209,42 @@ int gunfireT;
                      }
          }
     void PLAYER::enablecontrols()
-    {
+  {
          hascontrols=true;
-         }
+  }
+   void PLAYER::LOADSTATUS(BITMAP *buffer)
+   {
     
+       LOADNPCS >> HP;
+       
+       LOADNPCS >> x;
+       
+       LOADNPCS >> y;
+       
+       LOADNPCS >> r;
+       
+       LOADNPCS >> tempX;
+       
+       LOADNPCS >> tempY;
+       
+       LOADNPCS >> isNPC;
+       
+       LOADNPCS >> isMoving;
+       
+       LOADNPCS >> isDead;
+       
+       LOADNPCS >> iscollided;
+       
+       LOADNPCS >> activate;
+       
+       LOADNPCS >> itemeq;
+       
+       LOADNPCS >> isShot;
+       
+       LOADNPCS >> itemout;
+    
+   
+        } 
     void PLAYER::STATUS(BITMAP *buffer)
     {
         
@@ -572,14 +605,18 @@ if (key[KEY_LSHIFT] && isNPC!=true)
 }
 void PLAYER::draw()
 { 
+     
     if (isSelected==true && key[KEY_N])
                      {
                                           POS=new int(x);
                                           POS2=new int(y);
                                           }
-       
+     
+    if (quit==true)
+    {
+                   
     STATUS(buffer);
-
+}
 if (POS!=0)
 circlefill(buffer, *POS+cam, *POS2+2+cam2, 10, makecol(255, 0, 0));
     if (isNPC!=true && isTravelroute!=true)

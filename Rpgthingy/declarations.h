@@ -34,6 +34,7 @@ ofstream FOBJECTS;
 ofstream cache;
  
 ifstream CONFIGS;
+ifstream LOADNPCS;
 ifstream load;
 
             char* currentday[7]={"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"} ;
@@ -44,6 +45,7 @@ ifstream load;
     long int tclockM=0;
     long int tclockH=12;
                
+        int max_npc=3;
         int n1;
         int FSW;
         int FSH;
@@ -51,7 +53,6 @@ ifstream load;
         int fps;
         int fps1;
         int objMAX=1000;
-        int max_npc=3;
         int cday_i;
         int cAct=0;
         int wallmax=100;

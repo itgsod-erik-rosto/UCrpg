@@ -267,7 +267,7 @@ if (istarget!=true)
 {
                n1++;
                
-               if (n1>=max_npc)
+               if (n1>2)
                n1=0;    
                    
 if (NPC[n1].x>=x1-20 && NPC[n1].x<=x2+20
@@ -461,7 +461,6 @@ else
                                                                
      
      }
-     
                                      if (isitem!=true)     
                                      {
                                      
@@ -491,6 +490,9 @@ else
     
  
 
+     if (mbmap!=true && bmap!=true)
+     line(buffer, x1+cam, y1+cam2, x2+cam, y2+cam2, makecol(255, 0, 0));
+     
 
 if (isHud==true)
 {

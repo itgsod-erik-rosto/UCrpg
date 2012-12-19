@@ -9,11 +9,16 @@
 
 using namespace std;
 #include <worldfuncs.h>
-#include <player.h>
+
+
 #include <weapons.h>
-#include <objectstruct.h>
-#include <objects.h>       
+
+#include <player.h>
+
 #include <animations.h>
+#include <objectstruct.h>
+
+#include <objects.h>       
 #include <loadsave.h>
  
   void SETUP(BITMAP *buffer)
@@ -29,17 +34,20 @@ clear_to_color(screen, makecol(255, 255, 255));
 
   textprintf_ex(screen,font,510,SH/2, makecol(255, 0, 0), -1, "Loading models...", NULL);
 
+
 load_flora(buffer);
 load_architecture(buffer);
-load_walls(buffer);
 load_furniture(buffer);
 load_weapons(buffer);
+load_walls(buffer);
 load_hud(buffer);
 
 clear_to_color(screen, makecol(255, 255, 255));
 
   textprintf_ex(screen,font,510,SH/2, makecol(255, 0, 0), -1, "Loading characters...", NULL);
     loadch(buffer);
+    
+    
 
 clear_to_color(screen, makecol(255, 255, 255));
        
@@ -53,15 +61,20 @@ void drawworld (void)
           
 clear_bitmap(buffer);
 
-      FNPCS.open("Data/NPCS/NPCS.dat");
-    
+
+          
      FOBJECTS.open("Data/Objects/FObjects.dat");
+     
+     if (quit==true)
+     FNPCS.open("Data/NPCS/NPCS.dat");
      
      drawobjects(buffer);
             drawplayers(); 
-           
+            
+     if (quit==true)       
+           FNPCS.close();   
           
-    FNPCS.close();      
+       
               
                                    
            hud[0].draw(); 
