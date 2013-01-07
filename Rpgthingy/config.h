@@ -10,5 +10,3 @@ CONFIGS >> colordepth;
 CONFIGS.close();
 
 }
-
-

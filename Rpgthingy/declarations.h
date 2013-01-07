@@ -44,7 +44,11 @@ ifstream load;
     long int fpsclock;     
     long int tclockM=0;
     long int tclockH=12;
-               
+              
+              string str;
+            
+            int P_timer;  
+              int CRi; 
         int max_npc=3;
         int n1;
         int FSW;
@@ -58,7 +62,7 @@ ifstream load;
         int wallmax=100;
         int itemtimer=0;
         int Tobjects=2;
-        int objectsdrawn=0;
+        int objectsdrawn;
         int timer1=0;
         int ofX=-650;
         int ofY=-470;
@@ -81,6 +85,8 @@ ifstream load;
         int starttimer=0;
         int objectamount=0;
             
+        bool GAME_PAUSE=false;
+        bool showobjectframes;
         bool LOAD=false;
         bool issaved=false;
         bool quit;

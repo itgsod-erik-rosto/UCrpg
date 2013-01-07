@@ -8,6 +8,7 @@
 #include <config.h>
 
 using namespace std;
+
 #include <worldfuncs.h>
 
 
@@ -16,14 +17,16 @@ using namespace std;
 #include <player.h>
 
 #include <animations.h>
+
+#include <messagebox.h>   
 #include <objectstruct.h>
 
-#include <objects.h>       
+#include <objects.h>    
+
 #include <loadsave.h>
  
   void SETUP(BITMAP *buffer)
   {
-   
    
  clear_to_color(screen, makecol(255, 255, 255));
  
@@ -41,6 +44,7 @@ load_furniture(buffer);
 load_weapons(buffer);
 load_walls(buffer);
 load_hud(buffer);
+load_messageboxes(buffer);
 
 clear_to_color(screen, makecol(255, 255, 255));
 
@@ -53,6 +57,17 @@ clear_to_color(screen, makecol(255, 255, 255));
        
          textprintf_ex(screen,font,510,SH/2, makecol(255, 0, 0), -1, "Loading saved game...", NULL);
 
+string line;
+
+ifstream FOBJECTS;
+  FOBJECTS.open("Data/Objects/FObjects.dat");
+  
+    getline (FOBJECTS, line);
+  str=line;
+
+
+
+  FOBJECTS.close();
     }
 
 void drawworld (void)
@@ -62,15 +77,21 @@ void drawworld (void)
 clear_bitmap(buffer);
 
 
-          
+          if (quit==true)
      FOBJECTS.open("Data/Objects/FObjects.dat");
      
      if (quit==true)
      FNPCS.open("Data/NPCS/NPCS.dat");
+
      
+    
+
      drawobjects(buffer);
             drawplayers(); 
             
+            draw_messageboxes(buffer);
+             
+
      if (quit==true)       
            FNPCS.close();   
           
@@ -81,7 +102,11 @@ clear_bitmap(buffer);
             hud[1].draw(); 
 hud[2].draw(); 
 
+       if (quit==true)
  FOBJECTS.close();
+ 
+ 
+ 
  
         textprintf_ex(buffer,font,400,60,makecol(255,0,0), 0, " x: %i", player.x-cam+750+540);
 textprintf_ex(buffer,font,480,60,makecol(255,0,0), 0," y: %i", player.y-cam2+835+555);

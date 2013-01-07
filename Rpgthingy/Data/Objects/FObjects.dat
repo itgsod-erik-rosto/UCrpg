@@ -1,3 +1,4 @@
+0 // Total objects drawn
 NO ID //ID
 -90 //x1
 -40 //y1
@@ -8,7 +9,7 @@ NO ID //ID
 0 //isdoor
 0 //ishouse
 0 //ispersistent
-0 //isactivated
+1 //isactivated
 821 //SSX
 841 //SSY
 0 //SSX1
@@ -18,6 +19,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+1 // Total objects drawn
 NO ID //ID
 -90 //x1
 -881 //y1
@@ -38,6 +40,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+2 // Total objects drawn
 NO ID //ID
 -90 //x1
 801 //y1
@@ -58,6 +61,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+3 // Total objects drawn
 NO ID //ID
 -911 //x1
 801 //y1
@@ -78,6 +82,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+4 // Total objects drawn
 NO ID //ID
 -911 //x1
 -40 //y1
@@ -98,6 +103,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+5 // Total objects drawn
 NO ID //ID
 -911 //x1
 -881 //y1
@@ -118,6 +124,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+6 // Total objects drawn
 NO ID //ID
 630 //x1
 -40 //y1
@@ -138,6 +145,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+7 // Total objects drawn
 NO ID //ID
 630 //x1
 -881 //y1
@@ -158,6 +166,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+8 // Total objects drawn
 NO ID //ID
 630 //x1
 800 //y1
@@ -178,6 +187,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+9 // Total objects drawn
 NO ID //ID
 1451 //x1
 -881 //y1
@@ -198,6 +208,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+10 // Total objects drawn
 NO ID //ID
 1451 //x1
 -40 //y1
@@ -218,6 +229,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+11 // Total objects drawn
 NO ID //ID
 1451 //x1
 800 //y1
@@ -238,6 +250,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+12 // Total objects drawn
 NO ID //ID
 605 //x1
 395 //y1
@@ -258,6 +271,7 @@ NO ID //ID
 1 //collide
 0 //isobject
 
+13 // Total objects drawn
 NO ID //ID
 605 //x1
 304 //y1
@@ -278,6 +292,7 @@ NO ID //ID
 1 //collide
 0 //isobject
 
+14 // Total objects drawn
 NO ID //ID
 605 //x1
 486 //y1
@@ -298,6 +313,7 @@ NO ID //ID
 1 //collide
 0 //isobject
 
+15 // Total objects drawn
 NO ID //ID
 523 //x1
 178 //y1
@@ -308,7 +324,7 @@ NO ID //ID
 0 //isdoor
 0 //ishouse
 0 //ispersistent
-0 //isactivated
+1 //isactivated
 62 //SSX
 102 //SSY
 220 //SSX1
@@ -318,6 +334,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+16 // Total objects drawn
 NO ID //ID
 581 //x1
 178 //y1
@@ -328,7 +345,7 @@ NO ID //ID
 0 //isdoor
 0 //ishouse
 0 //ispersistent
-0 //isactivated
+1 //isactivated
 62 //SSX
 102 //SSY
 220 //SSX1
@@ -338,6 +355,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+17 // Total objects drawn
 NO ID //ID
 639 //x1
 178 //y1
@@ -358,6 +376,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+18 // Total objects drawn
 NO ID //ID
 697 //x1
 178 //y1
@@ -378,6 +397,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+19 // Total objects drawn
 NO ID //ID
 730 //x1
 -880 //y1
@@ -398,6 +418,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+20 // Total objects drawn
 NO ID //ID
 730 //x1
 -40 //y1
@@ -418,6 +439,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+21 // Total objects drawn
 NO ID //ID
 730 //x1
 800 //y1
@@ -438,6 +460,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+22 // Total objects drawn
 NO ID //ID
 -90 //x1
 -40 //y1
@@ -458,6 +481,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+23 // Total objects drawn
 NO ID //ID
 270 //x1
 -40 //y1
@@ -478,6 +502,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+24 // Total objects drawn
 NO ID //ID
 720 //x1
 -40 //y1
@@ -498,6 +523,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+25 // Total objects drawn
 NO ID //ID
 720 //x1
 280 //y1
@@ -518,6 +544,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+26 // Total objects drawn
 NO ID //ID
 720 //x1
 675 //y1
@@ -538,6 +565,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+27 // Total objects drawn
 NO ID //ID
 270 //x1
 795 //y1
@@ -558,6 +586,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+28 // Total objects drawn
 NO ID //ID
 -90 //x1
 795 //y1
@@ -578,6 +607,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+29 // Total objects drawn
 NO ID //ID
 -90 //x1
 -40 //y1
@@ -588,7 +618,7 @@ NO ID //ID
 0 //isdoor
 0 //ishouse
 0 //ispersistent
-0 //isactivated
+1 //isactivated
 450 //SSX
 450 //SSY
 1 //SSX1
@@ -598,6 +628,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+30 // Total objects drawn
 NO ID //ID
 -90 //x1
 410 //y1
@@ -608,7 +639,7 @@ NO ID //ID
 0 //isdoor
 0 //ishouse
 0 //ispersistent
-0 //isactivated
+1 //isactivated
 450 //SSX
 390 //SSY
 1 //SSX1
@@ -618,6 +649,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+31 // Total objects drawn
 House 1 //ID
 60 //x1
 80 //y1
@@ -628,7 +660,7 @@ House 1 //ID
 0 //isdoor
 1 //ishouse
 0 //ispersistent
-0 //isactivated
+1 //isactivated
 541 //SSX
 521 //SSY
 0 //SSX1
@@ -638,6 +670,7 @@ House 1 //ID
 0 //collide
 0 //isobject
 
+32 // Total objects drawn
 House 3 //ID
 1150 //x1
 700 //y1
@@ -658,6 +691,7 @@ House 3 //ID
 0 //collide
 0 //isobject
 
+33 // Total objects drawn
 House 4 //ID
 1200 //x1
 230 //y1
@@ -678,6 +712,7 @@ House 4 //ID
 0 //collide
 0 //isobject
 
+34 // Total objects drawn
 House 5 //ID
 1200 //x1
 -370 //y1
@@ -698,6 +733,7 @@ House 5 //ID
 0 //collide
 0 //isobject
 
+35 // Total objects drawn
 Door 1 //ID
 252 //x1
 300 //y1
@@ -708,7 +744,7 @@ Door 1 //ID
 1 //isdoor
 0 //ishouse
 0 //ispersistent
-0 //isactivated
+1 //isactivated
 86 //SSX
 87 //SSY
 0 //SSX1
@@ -718,6 +754,7 @@ Door 1 //ID
 0 //collide
 0 //isobject
 
+36 // Total objects drawn
 Door 2 //ID
 518 //x1
 182 //y1
@@ -728,7 +765,7 @@ Door 2 //ID
 1 //isdoor
 0 //ishouse
 0 //ispersistent
-0 //isactivated
+1 //isactivated
 86 //SSX
 87 //SSY
 0 //SSX1
@@ -738,6 +775,7 @@ Door 2 //ID
 0 //collide
 0 //isobject
 
+37 // Total objects drawn
 Door 3 //ID
 198 //x1
 403 //y1
@@ -758,6 +796,7 @@ Door 3 //ID
 0 //collide
 0 //isobject
 
+38 // Total objects drawn
 NO ID //ID
 100 //x1
 405 //y1
@@ -778,6 +817,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+39 // Total objects drawn
 NO ID //ID
 69 //x1
 460 //y1
@@ -798,6 +838,7 @@ NO ID //ID
 1 //collide
 0 //isobject
 
+40 // Total objects drawn
 NO ID //ID
 237 //x1
 87 //y1
@@ -818,6 +859,7 @@ NO ID //ID
 1 //collide
 0 //isobject
 
+41 // Total objects drawn
 NO ID //ID
 273 //x1
 87 //y1
@@ -838,6 +880,7 @@ NO ID //ID
 1 //collide
 0 //isobject
 
+42 // Total objects drawn
 NO ID //ID
 314 //x1
 87 //y1
@@ -858,6 +901,7 @@ NO ID //ID
 1 //collide
 0 //isobject
 
+43 // Total objects drawn
 NO ID //ID
 201 //x1
 87 //y1
@@ -878,6 +922,7 @@ NO ID //ID
 1 //collide
 0 //isobject
 
+44 // Total objects drawn
 NO ID //ID
 165 //x1
 83 //y1
@@ -898,6 +943,7 @@ NO ID //ID
 1 //collide
 0 //isobject
 
+45 // Total objects drawn
 NO ID //ID
 96 //x1
 564 //y1
@@ -918,6 +964,7 @@ NO ID //ID
 1 //collide
 0 //isobject
 
+46 // Total objects drawn
 NO ID //ID
 550 //x1
 490 //y1
@@ -938,6 +985,7 @@ NO ID //ID
 1 //collide
 0 //isobject
 
+47 // Total objects drawn
 NO ID //ID
 280 //x1
 410 //y1
@@ -958,6 +1006,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+48 // Total objects drawn
 NO ID //ID
 110 //x1
 470 //y1
@@ -978,6 +1027,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+49 // Total objects drawn
 NO ID //ID
 418 //x1
 460 //y1
@@ -988,7 +1038,7 @@ NO ID //ID
 0 //isdoor
 0 //ishouse
 0 //ispersistent
-0 //isactivated
+1 //isactivated
 31 //SSX
 75 //SSY
 355 //SSX1
@@ -998,6 +1048,7 @@ NO ID //ID
 1 //collide
 0 //isobject
 
+50 // Total objects drawn
 NO ID //ID
 1200 //x1
 800 //y1
@@ -1018,6 +1069,7 @@ NO ID //ID
 1 //collide
 0 //isobject
 
+51 // Total objects drawn
 NO ID //ID
 1270 //x1
 800 //y1
@@ -1038,6 +1090,7 @@ NO ID //ID
 1 //collide
 0 //isobject
 
+52 // Total objects drawn
 NO ID //ID
 1190 //x1
 710 //y1
@@ -1058,6 +1111,7 @@ NO ID //ID
 1 //collide
 0 //isobject
 
+53 // Total objects drawn
 NO ID //ID
 1270 //x1
 990 //y1
@@ -1078,6 +1132,7 @@ NO ID //ID
 1 //collide
 0 //isobject
 
+54 // Total objects drawn
 NO ID //ID
 1270 //x1
 963 //y1
@@ -1098,6 +1153,7 @@ NO ID //ID
 1 //collide
 0 //isobject
 
+55 // Total objects drawn
 Deagle 1 //ID
 424 //x1
 470 //y1
@@ -1108,16 +1164,17 @@ Deagle 1 //ID
 0 //isdoor
 0 //ishouse
 0 //ispersistent
-0 //isactivated
+1 //isactivated
 16 //SSX
-10 //SSY
-0 //SSX1
-0 //SSY1
+17 //SSY
+1 //SSX1
+12 //SSY1
 1 //isitem
 0 //isopen
 0 //collide
 0 //isobject
 
+56 // Total objects drawn
 NO ID //ID
 0 //x1
 0 //y1
@@ -1138,6 +1195,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+57 // Total objects drawn
 NO ID //ID
 200 //x1
 300 //y1
@@ -1158,6 +1216,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+58 // Total objects drawn
 NO ID //ID
 340 //x1
 300 //y1
@@ -1178,6 +1237,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+59 // Total objects drawn
 NO ID //ID
 600 //x1
 300 //y1
@@ -1198,6 +1258,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+60 // Total objects drawn
 NO ID //ID
 200 //x1
 600 //y1
@@ -1218,6 +1279,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+61 // Total objects drawn
 NO ID //ID
 160 //x1
 300 //y1
@@ -1238,6 +1300,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+62 // Total objects drawn
 NO ID //ID
 520 //x1
 80 //y1
@@ -1258,6 +1321,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+63 // Total objects drawn
 NO ID //ID
 160 //x1
 80 //y1
@@ -1278,6 +1342,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+64 // Total objects drawn
 NO ID //ID
 160 //x1
 80 //y1
@@ -1298,6 +1363,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+65 // Total objects drawn
 NO ID //ID
 520 //x1
 270 //y1
@@ -1318,6 +1384,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+66 // Total objects drawn
 NO ID //ID
 200 //x1
 490 //y1
@@ -1338,6 +1405,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+67 // Total objects drawn
 NO ID //ID
 60 //x1
 400 //y1
@@ -1358,6 +1426,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+68 // Total objects drawn
 NO ID //ID
 60 //x1
 400 //y1
@@ -1378,6 +1447,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+69 // Total objects drawn
 NO ID //ID
 60 //x1
 600 //y1
@@ -1398,6 +1468,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+70 // Total objects drawn
 NO ID //ID
 -90 //x1
 -40 //y1
@@ -1418,6 +1489,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+71 // Total objects drawn
 NO ID //ID
 -90 //x1
 -40 //y1
@@ -1438,6 +1510,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+72 // Total objects drawn
 NO ID //ID
 -90 //x1
 800 //y1
@@ -1458,6 +1531,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+73 // Total objects drawn
 NO ID //ID
 730 //x1
 -40 //y1
@@ -1478,6 +1552,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+74 // Total objects drawn
 NO ID //ID
 730 //x1
 280 //y1
@@ -1498,6 +1573,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+75 // Total objects drawn
 NO ID //ID
 415 //x1
 415 //y1
@@ -1518,11 +1594,12 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+76 // Total objects drawn
 NO ID //ID
 415 //x1
-100 //y1
+80 //y1
 415// x2
-240 //y2
+245 //y2
 0// bmap
 0 //mbmap
 0 //isdoor
@@ -1538,6 +1615,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+77 // Total objects drawn
 NO ID //ID
 1205 //x1
 228 //y1
@@ -1558,6 +1636,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+78 // Total objects drawn
 NO ID //ID
 1205 //x1
 228 //y1
@@ -1578,6 +1657,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+79 // Total objects drawn
 NO ID //ID
 1615 //x1
 228 //y1
@@ -1598,6 +1678,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+80 // Total objects drawn
 NO ID //ID
 1205 //x1
 565 //y1
@@ -1618,6 +1699,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+81 // Total objects drawn
 NO ID //ID
 1205 //x1
 435 //y1
@@ -1638,6 +1720,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+82 // Total objects drawn
 NO ID //ID
 1205 //x1
 353 //y1
@@ -1658,6 +1741,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+83 // Total objects drawn
 NO ID //ID
 1205 //x1
 435 //y1
@@ -1678,6 +1762,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+84 // Total objects drawn
 NO ID //ID
 1390 //x1
 435 //y1
@@ -1698,6 +1783,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+85 // Total objects drawn
 NO ID //ID
 1515 //x1
 435 //y1
@@ -1718,6 +1804,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+86 // Total objects drawn
 NO ID //ID
 1515 //x1
 435 //y1
@@ -1738,6 +1825,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+87 // Total objects drawn
 NO ID //ID
 1152 //x1
 700 //y1
@@ -1758,6 +1846,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+88 // Total objects drawn
 NO ID //ID
 1152 //x1
 700 //y1
@@ -1778,6 +1867,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+89 // Total objects drawn
 NO ID //ID
 1356 //x1
 700 //y1
@@ -1798,6 +1888,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+90 // Total objects drawn
 NO ID //ID
 1152 //x1
 998 //y1
@@ -1818,6 +1909,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+91 // Total objects drawn
 NO ID //ID
 1152 //x1
 1062 //y1
@@ -1838,6 +1930,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+92 // Total objects drawn
 NO ID //ID
 1205 //x1
 -372 //y1
@@ -1858,6 +1951,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+93 // Total objects drawn
 NO ID //ID
 1205 //x1
 -372 //y1
@@ -1878,6 +1972,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+94 // Total objects drawn
 NO ID //ID
 1615 //x1
 -372 //y1
@@ -1898,6 +1993,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+95 // Total objects drawn
 NO ID //ID
 1205 //x1
 -35 //y1
@@ -1918,6 +2014,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+96 // Total objects drawn
 NO ID //ID
 1205 //x1
 -165 //y1
@@ -1938,6 +2035,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+97 // Total objects drawn
 NO ID //ID
 1205 //x1
 -247 //y1
@@ -1958,6 +2056,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+98 // Total objects drawn
 NO ID //ID
 1205 //x1
 -165 //y1
@@ -1978,6 +2077,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+99 // Total objects drawn
 NO ID //ID
 1390 //x1
 -165 //y1
@@ -1998,6 +2098,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+100 // Total objects drawn
 NO ID //ID
 1515 //x1
 -165 //y1
@@ -2018,6 +2119,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+101 // Total objects drawn
 NO ID //ID
 1515 //x1
 -165 //y1
@@ -2038,6 +2140,28 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+102 // Total objects drawn
+NO ID //ID
+415 //x1
+300 //y1
+415// x2
+325 //y2
+0// bmap
+0 //mbmap
+0 //isdoor
+0 //ishouse
+0 //ispersistent
+0 //isactivated
+0 //SSX
+0 //SSY
+0 //SSX1
+0 //SSY1
+0 //isitem
+0 //isopen
+0 //collide
+0 //isobject
+
+103 // Total objects drawn
 HUD //ID
 0 //x1
 0 //y1
@@ -2058,6 +2182,7 @@ HUD //ID
 0 //collide
 0 //isobject
 
+104 // Total objects drawn
 NO ID //ID
 0 //x1
 0 //y1
@@ -2078,6 +2203,7 @@ NO ID //ID
 0 //collide
 0 //isobject
 
+105 // Total objects drawn
 NO ID //ID
 0 //x1
 0 //y1

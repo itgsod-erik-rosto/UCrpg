@@ -13,9 +13,9 @@ void loadch(BITMAP *buffer)
            player.isPatrolling=false;
            player.HP=100;
             player.SSY=0;
-            player.bitmap=load_bitmap("Data/Images/sofia.bmp", NULL);
+            
             player.name="Player";
-             shadow=load_bitmap("Data/Images/shadow.bmp", NULL);
+             
                 player.fnpcsi=0;
                 
                 NPC[2].HP=100;
@@ -32,7 +32,7 @@ void loadch(BITMAP *buffer)
            NPC[2].isNPC=true;
             NPC[2].SSY=0;
             NPC[2].SSX=0;
-            NPC[2].bitmap=load_bitmap("Data/Images/player.bmp", NULL);
+           
            NPC[2].name="NPC1";
            
            NPC[0].HP=100;
@@ -49,7 +49,7 @@ void loadch(BITMAP *buffer)
            NPC[0].isNPC=true;
             NPC[0].SSY=0;
             NPC[0].SSX=0;
-            NPC[0].bitmap=load_bitmap("Data/Images/NPC_1.bmp", NULL);
+            
            NPC[0].name="NPC2";
             
             
@@ -66,7 +66,7 @@ void loadch(BITMAP *buffer)
            NPC[1].isNPC=true;
             NPC[1].SSY=0;
             NPC[1].SSX=0;
-            NPC[1].bitmap=load_bitmap("Data/Images/NPC_2.bmp", NULL);
+            
            NPC[1].name="NPC3";
            
       
@@ -118,7 +118,7 @@ void schedules(BITMAP *buffer)
      if (NPC[0].Wtarget==0)
      {
                            
-                              NPC[0].Ti_max=6;
+           NPC[0].Ti_max=6;
            NPC[0].targetX[-1]=1360;
            NPC[0].targetY[-1]=-140;
            
@@ -254,8 +254,8 @@ void schedules(BITMAP *buffer)
 void drawplayers()
 {
                          
-          NPC[2].draw();
           NPC[0].draw();
           NPC[1].draw();
+          NPC[2].draw();
            player.draw();  
            }

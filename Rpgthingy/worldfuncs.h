@@ -1,7 +1,37 @@
+void commands(BITMAP *buffer)
+{
+     if (key[KEY_P] && P_timer<=0)
+     {
+                    
+                    GAME_PAUSE=true;
+                    }
+                    if (GAME_PAUSE==true)
+                    {
+                                         P_timer++;
+                                         }
+                    if (key[KEY_P] && GAME_PAUSE==true && P_timer>=10)
+                    {
+                    GAME_PAUSE=false;
+                    
+                    }
+                    if (GAME_PAUSE==false)
+                    {
+                                          P_timer--;
+                                          }
+                                          
+                    
+     
+if (key[KEY_O])
+showobjectframes=true;
 
+
+else if (key[KEY_L])
+showobjectframes=false;
+
+     }
 void fpscounter(BITMAP *buffer)
 {
-     
+      textprintf_ex(buffer,font,700,12, makecol(0, 0, 0), -1, "Drawn objects: %i", objectsdrawn);
      if (fpsclock==0)
      {    
      fps1++;

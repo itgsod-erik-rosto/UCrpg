@@ -666,6 +666,8 @@ circlefill(buffer, *POS+cam, *POS2+2+cam2, 10, makecol(255, 0, 0));
                        {
                                         target();
      animation(buffer);
+     
+   
      controls();
      
      
@@ -681,6 +683,31 @@ circlefill(buffer, *POS+cam, *POS2+2+cam2, 10, makecol(255, 0, 0));
      
      }
      mouseselect();
+     
+     
+if (showobjectframes==true)
+{
+  if (isNPC==true)
+  {
+     rect(buffer, x-r+cam, y-r+cam2, x+r+cam, y+r+cam2, makecol(0, 0, 255));
+     line(buffer, x-r+cam, y-r+cam2, x+r+cam, y+r+cam2, makecol(0, 0, 255));
+     line(buffer, x-r+cam, y+r+cam2, x+r+cam, y-r+cam2, makecol(0, 0, 255));
+}
+else if (isNPC!=true)
+{
+     rect(buffer, x-r, y-r, x+r, y+r, makecol(255, 255, 0));
+     line(buffer, x-r, y-r, x+r, y+r, makecol(255, 255, 0));
+     line(buffer, x-r, y+r, x+r, y-r, makecol(255, 255, 0));
+}
+if (name!=NULL)
+{
+if (isNPC==true)
+textprintf_ex(buffer, font, x-10+cam, y-40+cam2, makecol(0, 0, 0), -1, "%s", name);
+else if (isNPC!=true)
+textprintf_ex(buffer, font, x-10, y-40, makecol(0, 0, 0), -1, "%s", name);
+}
+
+}
      
     
      

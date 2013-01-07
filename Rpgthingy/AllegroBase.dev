@@ -1,7 +1,7 @@
 [Project]
 FileName=AllegroBase.dev
 Name=AllegroBase
-UnitCount=12
+UnitCount=13
 Type=0
 Ver=1
 ObjFiles=
@@ -159,6 +159,16 @@ BuildCmd=
 
 [Unit12]
 FileName=objectstruct.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit13]
+FileName=messagebox.h
 CompileCpp=1
 Folder=
 Compile=1

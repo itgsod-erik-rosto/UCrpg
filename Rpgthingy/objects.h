@@ -1,6 +1,7 @@
 
 void load_bitmaps(BITMAP *buffer)
             {
+                         background=load_bitmap("Data/Images/worldmap.bmp", NULL);
                          nightF=load_bitmap("Data/Images/night.bmp", NULL);
                     background=load_bitmap("Data/Images/worldmap.bmp", NULL);
                     pHouse=load_bitmap("Data/Images/pHouse.bmp", NULL);
@@ -15,6 +16,12 @@ void load_bitmaps(BITMAP *buffer)
                     SSanim=load_bitmap("Data/Images/SSanim.bmp", NULL);
                     items=load_bitmap("Data/Images/items.bmp", NULL);
                     HUD=load_bitmap("Data/Images/hud.bmp", NULL);
+                    
+                    NPC[1].bitmap=load_bitmap("Data/Images/NPC_2.bmp", NULL);
+           NPC[0].bitmap=load_bitmap("Data/Images/NPC_1.bmp", NULL);
+           shadow=load_bitmap("Data/Images/shadow.bmp", NULL);
+              NPC[2].bitmap=load_bitmap("Data/Images/player.bmp", NULL);
+              player.bitmap=load_bitmap("Data/Images/sofia.bmp", NULL);
                     }
                     
                    
@@ -298,8 +305,8 @@ void load_bitmaps(BITMAP *buffer)
                  
                  wall[19].x1=415;
                  wall[19].x2=415;
-                 wall[19].y1=100;
-                 wall[19].y2=240;
+                 wall[19].y1=80;
+                 wall[19].y2=245;
                  
                  wall[20].x1=1205;
                  wall[20].x2=1205;
@@ -429,6 +436,10 @@ void load_bitmaps(BITMAP *buffer)
                  wall[44].y1=house[3].y1+205-600;
                  wall[44].y2=house[3].y1+205-600;
                
+                 wall[45].x1=415;
+                 wall[45].x2=415;
+                 wall[45].y1=300;
+                 wall[45].y2=325;
                
                  }
                  
@@ -505,6 +516,7 @@ void load_bitmaps(BITMAP *buffer)
                
                void load_furniture(BITMAP *buffer)
                {
+                    bed[0].isBed=true;
                  bed[0].bmap=true;
                  bed[0].bitmap=hfurniture;
                  bed[0].x1=550;
@@ -865,6 +877,7 @@ void load_bitmaps(BITMAP *buffer)
                            wall[42].draw(); 
                            wall[43].draw(); 
                            wall[44].draw(); 
+                           wall[45].draw(); 
     }
     void draw_weapons(BITMAP *buffer)
     {
@@ -923,10 +936,13 @@ void load_bitmaps(BITMAP *buffer)
     }
                     
                     
-                    else
+                    else if (tclockH>15 || tclockH<7)
                     {
-                        
+                        if (tclockH>15)
                  set_trans_blender(sh[0], sh[1], sh[2], sh[3]);
+                        else if (tclockH<7)
+                        set_trans_blender(sh[0]+35, sh[1]+35, sh[2]+35, sh[3]+35);
+                 
                           draw_trans_sprite(buffer, nightF, 0, 0);
                           
                     }
@@ -952,8 +968,7 @@ fence[i2].y2=-882;
 door[i2].isdoor=true;
 
 
-            
-            
+               
 i2++;
 if (i2>200)
 {
@@ -971,6 +986,7 @@ draw_furniture(buffer);
 draw_weapons(buffer);
 draw_walls(buffer);
 draw_hud(buffer);
+
 
 }
                          

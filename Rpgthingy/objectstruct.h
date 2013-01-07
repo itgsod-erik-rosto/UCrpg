@@ -6,11 +6,14 @@ struct OBJECTS
      int ammo;
      int ammo_max;
      
+     
+     
        int x1;
        int y1;
        
        bool isHud;
         bool slotfill[3];
+     bool isBed;
       
       bool hastext;
       
@@ -48,6 +51,7 @@ bool isopen;
        int SSX;
        int SSY;
        
+    
        bool isdoor;
        bool isactivated;
        bool istarget;
@@ -63,6 +67,8 @@ bool isopen;
        int color;
        char path;
 
+void activeF(BITMAP *buffer);
+void mousefuncs(BITMAP *buffer);
   void OSTATUS(BITMAP *buffer);
   void saveobjects(BITMAP *buffer);
     void reload(BITMAP *buffer);
@@ -98,10 +104,54 @@ void collision();
        bloodstain[1000],
        door[1000];
        
+       void OBJECTS::activeF(BITMAP *buffer)
+       {
+            
+            if (isBed==true)
+            {
+            if (isactivated==true)
+            {
+                         BED_msg.draw(buffer);
+                         
+                         }
+                         }            
+            }
+       void OBJECTS::mousefuncs(BITMAP *buffer)
+       {
+            if (mbmap==true || bmap==true)
+            if (mouse_x>=x1 && mouse_x<=x1+SSX && mouse_y>=y1 && mouse_y<=y1+SSY)
+            {                    
+                            textprintf_ex(buffer, font, 600 , 30, makecol(255, 0, 0), -1, "x1 %i", x1);
+                            textprintf_ex(buffer, font, 600 , 40, makecol(255, 0, 0), -1, "x2 %i", x2);
+                            textprintf_ex(buffer, font, 660 , 30, makecol(255, 0, 0), -1, "y1 %i", y1);
+                            textprintf_ex(buffer, font, 660 , 40, makecol(255, 0, 0), -1, "y2 %i", y2);
+                            textprintf_ex(buffer, font, 600 , 50, makecol(255, 0, 0), -1, "SSX %i", SSX);
+                            textprintf_ex(buffer, font, 660 , 50, makecol(255, 0, 0), -1, "SSY %i", SSY);                            
+                           }
+                           else
+                           if (mouse_x>=x1 && mouse_x<=x2 && mouse_y>=y1 && mouse_y<=y2)
+            {                    
+                            textprintf_ex(buffer, font, 600 , 30, makecol(255, 0, 0), -1, "x1 %i", x1);
+                            textprintf_ex(buffer, font, 600 , 40, makecol(255, 0, 0), -1, "x2 %i", x2);
+                            textprintf_ex(buffer, font, 660 , 30, makecol(255, 0, 0), -1, "y1 %i", y1);
+                            textprintf_ex(buffer, font, 660 , 40, makecol(255, 0, 0), -1, "y2 %i", y2);
+                            textprintf_ex(buffer, font, 600 , 50, makecol(255, 0, 0), -1, "SSX %i", SSX);
+                            textprintf_ex(buffer, font, 660 , 50, makecol(255, 0, 0), -1, "SSY %i", SSY);                            
+                           }
+             
+                           
+            }
        void OBJECTS::OSTATUS(BITMAP *buffer)
        {
-          
 
+
+
+FOBJECTS << objectsdrawn;
+FOBJECTS << " // Total objects drawn";
+FOBJECTS << endl;
+
+          
+objectsdrawn+=1;
 
        if (ID!=NULL)
        {
@@ -392,18 +442,22 @@ void OBJECTS::draw()
                     reload(buffer);
                     }
                     
-     if (player.gunfireT==2 && equipped==true && player.gunfire==true)
+     if (player.gunfireT==2 && equipped==true && player.gunfire==true && ammo>0)
      {
                                ammo-=1;
                                }
                                
-                               if (player.gunfire==true && ammo<=0 && equipped==true)
+                               if (key[KEY_SPACE] && equipped==true)
+                               if (ammo<=0)
                                {
-                               player.gunfire1=false;
-                               player.gunfire=false;
                                player.gshotX=-1000;
                                player.gshotY=-1000;
+                               player.gunfire=false;
                                }
+                               else if (ammo>0)
+                               {
+                                    player.gunfire=true;
+                                    }
                         }
                     
     saveobjects(buffer);
@@ -488,11 +542,54 @@ else
         
     collision();
     
+ activeF(buffer);
  
-
-     if (mbmap!=true && bmap!=true)
+if (showobjectframes==true)
+{
+     if (mbmap!=true && bmap!=true && collide!=true)
      line(buffer, x1+cam, y1+cam2, x2+cam, y2+cam2, makecol(255, 0, 0));
      
+     
+     else if (mbmap!=true && bmap!=true && collide==true)
+     line(buffer, x1+cam, y1+cam2, x2+cam, y2+cam2, makecol(0, 255, 0));
+     
+     
+     if ((mbmap==true || bmap==true) && collide==true )
+     {
+     rect(buffer, x1+cam, y1+cam2, x1+SSX+cam, y1+SSY+cam2, makecol(255, 0, 0));
+     line(buffer, x1+cam, y1+cam2, x1+SSX+cam, y1+SSY+cam2, makecol(255, 0, 0));
+     line(buffer, x1+cam, SSY+y1+cam2, x1+SSX+cam, y1+cam2, makecol(255, 0, 0));
+}
+
+if ((mbmap==true || bmap==true) && isitem==true )
+     {
+     rect(buffer, x1+cam, y1+cam2, x1+SSX+cam, y1+SSY+cam2, makecol(255, 255, 255));
+     line(buffer, x1+cam, y1+cam2, x1+SSX+cam, y1+SSY+cam2, makecol(255, 255, 255));
+     line(buffer, x1+cam, SSY+y1+cam2, x1+SSX+cam, y1+cam2, makecol(255, 255, 255));
+}
+
+     else if ((mbmap==true || bmap==true) && collide!=true)
+     {
+     rect(buffer, x1+cam, y1+cam2, x1+SSX+cam, y1+SSY+cam2, makecol(0, 255, 0));
+     line(buffer, x1+cam, y1+cam2, x1+SSX+cam, y1+SSY+cam2, makecol(0, 255, 0));
+     line(buffer, x1+cam, SSY+y1+cam2, x1+SSX+cam, y1+cam2, makecol(0, 255, 0));
+     }
+     if (isdoor==true)
+     {
+                    if (isopen!=true)
+                    {
+                     rect(buffer, x1+cam, y1+cam2, x1+SSX+cam, y1+SSY+cam2, makecol(255, 0, 0));
+     line(buffer, x1+cam, y1+cam2, x1+SSX+cam, y1+SSY+cam2, makecol(255, 0, 0));
+     line(buffer, x1+cam, SSY+y1+cam2, x1+SSX+cam, y1+cam2, makecol(255, 0, 0));
+     }
+                     else if (isopen==true)
+                     {
+                      rect(buffer, x1+cam, y1+cam2, x1+SSX+cam, y1+SSY+cam2, makecol(0, 255, 0));
+     line(buffer, x1+cam, y1+cam2, x1+SSX+cam, y1+SSY+cam2, makecol(0, 255, 0));
+     line(buffer, x1+cam, SSY+y1+cam2, x1+SSX+cam, y1+cam2, makecol(0, 255, 0));
+                    }
+                    }
+}
 
 if (isHud==true)
 {
@@ -511,5 +608,15 @@ if (isHud==true)
       masked_blit(bitmap, buffer, 0, 0, hud[0].x1+15+459, hud[0].y1+10, 18, 10);
       
       }
+      if (showobjectframes==true)
+      {
+      mousefuncs(buffer);
       
+      if (ID!=NULL && ispersistent!=true)
+      textprintf_ex(buffer, font, x1+cam, y1-10+cam2, makecol(0, 0, 0), -1, "%s", ID);
+
+
+      else if (ID!=NULL && ispersistent==true)
+     textprintf_ex(buffer, font, x1, y1-10, makecol(0, 0, 0), -1, "%s", ID);
+}
      }
