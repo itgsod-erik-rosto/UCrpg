@@ -8,6 +8,8 @@ struct MSGBOX
       int x_2;
       int y_2;
       
+      char* ID;
+      
        int textColor;
        int bgColor;
        int borderColor;
@@ -18,6 +20,7 @@ struct MSGBOX
       
       int T;
       int T_max;
+      int mtimer[100];
       
       bool MsgEnd;
       bool hasborder;
@@ -33,6 +36,7 @@ struct MSGBOX
        {
              char* buttonID;
              char* OK;
+             char* H6;
              
               bool ispressed;
               
@@ -41,15 +45,35 @@ struct MSGBOX
               
               void OPTIONS::buttonpress()
               {
+                                         
+                                         
                    if (mouse_b & 1)
                    if (mouse_x>=x_1 && mouse_x<=x_2 && mouse_y>=y_1 && mouse_y<=y_2)
+                   {
+                                  
                    ispressed=true;
-                   
+                   }
                    if (ispressed==true)
                    {
                                        if (buttonID=="OK")
                                         MsgEnd=true; 
+                                        
+                                        if (buttonID=="6H")
+                                        {
+                                                    if (MsgEnd!=true)
+                                                    {
+                                         tclockH+=6; 
+                                         
+                                         MsgEnd=true;
                                          }
+                                        }
+                                        
+                                        
+                                        
+                                         }
+                                         
+                                               ispressed=false;         
+                   
                    }
               void MSGBOX::load_options(BITMAP *buffer)
               {
@@ -62,6 +86,14 @@ struct MSGBOX
                    Option[0].text="OK";
                    Option[0].buttonID="OK";
                    
+                   Option[1].x_1=x_1+60;
+                   Option[1].x_2=Option[1].x_1+40;
+                   Option[1].y_1=y_2-50;
+                   Option[1].y_2=y_2-10;
+                   Option[1].hastimer=false;
+                   Option[1].bgColor=makecol(255, 255, 255);
+                   Option[1].text="6";
+                   Option[1].buttonID="6H";
                    
                    }
               
@@ -70,8 +102,14 @@ struct MSGBOX
             load_options(buffer);
             
             Option[0].buttonpress();
+            Option[1].buttonpress();
             if (Option[0].MsgEnd==true)
             MsgEnd=true;
+            
+            if (Option[1].ispressed==false)
+            MsgEnd=Option[1].MsgEnd;
+            
+            
             
             if (hastimer==true)
             {
@@ -90,6 +128,9 @@ struct MSGBOX
                                            
                                            if (hasoptions==true )
                                            {
+                                                                if (ID=="BED1")
+                                                                Option[1].draw(buffer);
+                                                                else
                                            Option[0].draw(buffer);
                                                                 
                                                                 }
@@ -111,18 +152,19 @@ void load_messageboxes(BITMAP *buffer)
      TEST.text="Testing messageboxes.";
      TEST.T_max=50;
      
-     //BED_msg.hasoptions=true;
+     BED_msg.hasoptions=true;
      BED_msg.textColor=makecol(0, 0, 0);
      BED_msg.bgColor=makecol(255, 255, 255);
      BED_msg.borderColor=makecol(0, 0, 0);
      BED_msg.hasborder=true;
-     BED_msg.hastimer=true;
+     BED_msg.hastimer=false;
      BED_msg.x_1=SW/2-100;
      BED_msg.x_2=SW/2+200;
      BED_msg.y_1=SH/2+50;
      BED_msg.y_2=SH/2+90;
      BED_msg.text="How long do you want to sleep? ";
      BED_msg.T_max=100;
+     BED_msg.ID="BED1";
      }
 
 void draw_messageboxes(BITMAP *buffer)

@@ -22,6 +22,7 @@ struct OBJECTS
        
        int status[];
        
+       bool objcollides;
        bool equipped;
        int x2;
        int y2;
@@ -111,9 +112,18 @@ void collision();
             {
             if (isactivated==true)
             {
+                                  BED_msg.MsgEnd=false;
+                                  BED_msg:Option[1].MsgEnd=false;
                          BED_msg.draw(buffer);
                          
+                         if (Option[1].ispressed==true)
+                         {
+                         Option[1].MsgEnd=true;
+                         isactivated=false;
+                         Option[1].ispressed=false;
                          }
+                         }
+                         
                          }            
             }
        void OBJECTS::mousefuncs(BITMAP *buffer)
@@ -344,8 +354,11 @@ if (NPC[n1].x>=x1-20 && NPC[n1].x<=x2+20
  && isopen!=true 
  && isdoor==true))
 {
+      objcollides=true;
+ 
     NPC[n1].iscollided=true;
 }
+
 }
     
                   
@@ -375,6 +388,8 @@ if (player.gshotX>=x1-20+cam && player.gshotX<=x2+20+cam
  && isopen!=true 
  && isdoor==true))
 {
+    
+    objcollides=true;
     circlefill(buffer, player.gshotX, player.gshotY, 5, makecol(255, 255, 0));
               
               player.gshotX=-1000;
@@ -394,10 +409,14 @@ if (!key[KEY_LCONTROL])
 
     if (actor[0].isNPC!=true)
     {                 
+                      
+                objcollides=true;    
+                      
                       player.iscollided=true;
     
 }
 }
+
 
 
 if (isdoor==true)
@@ -591,6 +610,16 @@ if ((mbmap==true || bmap==true) && isitem==true )
                     }
 }
 
+if (objcollides==true)
+{
+                      if (mbmap==true || collide==true)
+                      rect(buffer, x1+cam, y1+cam2, x1+SSX+cam, y1+SSY+cam2, makecol(255, 0, 0));
+                      
+                      else
+                      rect(buffer, x1+cam, y1+cam2, x2+cam, y2+cam2, makecol(255, 0, 0));
+                
+                objcollides=false;
+                      }
 if (isHud==true)
 {
                  masked_blit(bitmap, buffer, SSX1, SSY1, 0, 0, SSX, SSY);

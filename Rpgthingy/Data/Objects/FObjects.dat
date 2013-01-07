@@ -324,7 +324,7 @@ NO ID //ID
 0 //isdoor
 0 //ishouse
 0 //ispersistent
-1 //isactivated
+0 //isactivated
 62 //SSX
 102 //SSY
 220 //SSX1
@@ -345,7 +345,7 @@ NO ID //ID
 0 //isdoor
 0 //ishouse
 0 //ispersistent
-1 //isactivated
+0 //isactivated
 62 //SSX
 102 //SSY
 220 //SSX1
@@ -618,7 +618,7 @@ NO ID //ID
 0 //isdoor
 0 //ishouse
 0 //ispersistent
-1 //isactivated
+0 //isactivated
 450 //SSX
 450 //SSY
 1 //SSX1
@@ -639,7 +639,7 @@ NO ID //ID
 0 //isdoor
 0 //ishouse
 0 //ispersistent
-1 //isactivated
+0 //isactivated
 450 //SSX
 390 //SSY
 1 //SSX1
@@ -744,7 +744,7 @@ Door 1 //ID
 1 //isdoor
 0 //ishouse
 0 //ispersistent
-1 //isactivated
+0 //isactivated
 86 //SSX
 87 //SSY
 0 //SSX1
@@ -765,7 +765,7 @@ Door 2 //ID
 1 //isdoor
 0 //ishouse
 0 //ispersistent
-1 //isactivated
+0 //isactivated
 86 //SSX
 87 //SSY
 0 //SSX1
@@ -975,7 +975,7 @@ NO ID //ID
 0 //isdoor
 0 //ishouse
 0 //ispersistent
-0 //isactivated
+1 //isactivated
 40 //SSX
 100 //SSY
 41 //SSX1
@@ -1038,7 +1038,7 @@ NO ID //ID
 0 //isdoor
 0 //ishouse
 0 //ispersistent
-1 //isactivated
+0 //isactivated
 31 //SSX
 75 //SSY
 355 //SSX1
@@ -1164,11 +1164,11 @@ Deagle 1 //ID
 0 //isdoor
 0 //ishouse
 0 //ispersistent
-1 //isactivated
+0 //isactivated
 16 //SSX
-17 //SSY
-1 //SSX1
-12 //SSY1
+10 //SSY
+0 //SSX1
+0 //SSY1
 1 //isitem
 0 //isopen
 0 //collide
