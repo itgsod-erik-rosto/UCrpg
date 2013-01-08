@@ -214,7 +214,7 @@ int gunfireT;
   }
    void PLAYER::LOADSTATUS(BITMAP *buffer)
    {
-    
+
        LOADNPCS >> HP;
        
        LOADNPCS >> x;
@@ -231,84 +231,220 @@ int gunfireT;
        
        LOADNPCS >> isMoving;
        
+       LOADNPCS >> isPatrolling;
+       
+       LOADNPCS >> dir;
+       
        LOADNPCS >> isDead;
        
        LOADNPCS >> iscollided;
        
        LOADNPCS >> activate;
        
+       LOADNPCS >> item[0];
+       
        LOADNPCS >> itemeq;
        
        LOADNPCS >> isShot;
        
        LOADNPCS >> itemout;
-    
+       
+       LOADNPCS >> Wtarget;
+       
+       LOADNPCS >> hasTarget;
+       
+       LOADNPCS >> Stime[0];
+       LOADNPCS >> Etime[0];
+       LOADNPCS >> StimeM[0];
+       LOADNPCS >> EtimeM[0];
+       
+       LOADNPCS >> Stime[1];
+       LOADNPCS >> Etime[1];
+       LOADNPCS >> StimeM[1];
+       LOADNPCS >> EtimeM[1];
+       
+       LOADNPCS >> Stime[2];
+       LOADNPCS >> Etime[2];
+       LOADNPCS >> StimeM[2];
+       LOADNPCS >> EtimeM[2];
+       
+       LOADNPCS >> Ti;
+       
+       LOADNPCS >> Ti_max;
+       
+       LOADNPCS >> targetX[-1];
+       LOADNPCS >> targetY[-1];
+       
+       LOADNPCS >> targetX[0];
+       LOADNPCS >> targetY[0];
+       
+       LOADNPCS >> targetX[1];
+       LOADNPCS >> targetY[1];
+       
+       LOADNPCS >> targetX[2];
+       LOADNPCS >> targetY[2];
+       
+       LOADNPCS >> targetX[3];
+       LOADNPCS >> targetY[3];
+       
+       LOADNPCS >> targetX[4];
+       LOADNPCS >> targetY[4];
+       
+       LOADNPCS >> targetX[5];
+       LOADNPCS >> targetY[5];
+       
+       LOADNPCS >> targetX[6];
+       LOADNPCS >> targetY[6];
+       
+       
    
         } 
     void PLAYER::STATUS(BITMAP *buffer)
     {
         
-        FNPCS << name;
-        FNPCS << " //Name";
-       FNPCS << endl;
-    
+
        FNPCS << HP;
-       FNPCS << " //HP";
        FNPCS << endl;
        
        FNPCS << x;
-       FNPCS << " //x";
        FNPCS << endl;
        
        FNPCS << y;
-       FNPCS << " //y";
        FNPCS << endl;
        
        FNPCS << r;
-       FNPCS << " //r";
        FNPCS << endl;
        
        FNPCS << tempX;
-       FNPCS << "// tempX";
        FNPCS << endl;
        
        FNPCS << tempY;
-       FNPCS << " //tempY";
        FNPCS << endl;
        
        FNPCS << isNPC;
-       FNPCS << " //isNPC";
        FNPCS << endl;
        
        FNPCS << isMoving;
-       FNPCS << " //isMoving";
+       FNPCS << endl;
+       
+       FNPCS << isPatrolling;
+       FNPCS << endl;
+       
+       FNPCS << dir;
        FNPCS << endl;
        
        FNPCS << isDead;
-       FNPCS << " //isDead";
        FNPCS << endl;
        
        FNPCS << iscollided;
-       FNPCS << " //isCollided";
        FNPCS << endl;
        
        FNPCS << activate;
-       FNPCS << " //Activate";
+       FNPCS << endl;
+       
+       FNPCS << item[0];
        FNPCS << endl;
        
        FNPCS << itemeq;
-       FNPCS << " //itemequipped";
        FNPCS << endl;
        
        FNPCS << isShot;
-       FNPCS << " //isShot";
        FNPCS << endl;
        
        FNPCS << itemout;
-       FNPCS << " //itemout";
+       FNPCS << endl;
+       
+       FNPCS << Wtarget;
+       FNPCS << endl;
+       
+       FNPCS << hasTarget;
+       FNPCS << endl;
+       
+       FNPCS << Stime[0];
+       FNPCS << endl;
+       
+       FNPCS << Etime[0];
+       FNPCS << endl;
+           
+       FNPCS << StimeM[0];
+       FNPCS << endl;
+           
+       FNPCS << EtimeM[0];
+       FNPCS << endl;
+       
+       FNPCS << Stime[1];
+       FNPCS << endl;
+       
+       FNPCS << Etime[1];
+       FNPCS << endl;
+           
+       FNPCS << StimeM[1];
+       FNPCS << endl;
+           
+       FNPCS << EtimeM[1];
+       FNPCS << endl;
+       
+       FNPCS << Stime[2];
+       FNPCS << endl;
+       
+       FNPCS << Etime[2];
+       FNPCS << endl;
+           
+       FNPCS << StimeM[2];
+       FNPCS << endl;
+           
+       FNPCS << EtimeM[2];
+       FNPCS << endl;
+       
+       FNPCS << Ti;
+       FNPCS << endl;
+       
+       FNPCS << Ti_max;
+       FNPCS << endl;
+       
+       FNPCS << targetX[-1];
+       FNPCS << endl;
+       FNPCS << targetY[-1];
+       FNPCS << endl;
+       
+       FNPCS << targetX[0];
+       FNPCS << endl;
+       FNPCS << targetY[0];
+       FNPCS << endl;
+       
+       FNPCS << targetX[1];
+       FNPCS << endl;
+       FNPCS << targetY[1];
+       FNPCS << endl;
+       
+       FNPCS << targetX[2];
+       FNPCS << endl;
+       FNPCS << targetY[2];
+       FNPCS << endl;
+       
+       FNPCS << targetX[3];
+       FNPCS << endl;
+       FNPCS << targetY[3];
+       FNPCS << endl;
+       
+       FNPCS << targetX[4];
+       FNPCS << endl;
+       FNPCS << targetY[4];
+       FNPCS << endl;
+       
+       FNPCS << targetX[5];
+       FNPCS << endl;
+       FNPCS << targetY[5];
+       FNPCS << endl;
+       
+       FNPCS << targetX[6];
+       FNPCS << endl;
+       FNPCS << targetY[6];
        FNPCS << endl;
        FNPCS << endl;
-
+       
+       
+       FNPCS << endl;
   
      
     
@@ -665,11 +801,12 @@ circlefill(buffer, *POS+cam, *POS2+2+cam2, 10, makecol(255, 0, 0));
                        if (isDead!=true)
                        {
                                         target();
+     
+     if (GAME_PAUSE!=true)
+     {
      animation(buffer);
-     
-   
      controls();
-     
+     }
      
  
  

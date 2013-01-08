@@ -33,29 +33,45 @@ LOCK_VARIABLE(fpsclock);
  
 SETUP(buffer);
 GAME_RUNNING=true;  
+
+          //  load_NPC.open("Data/NPCS/NPCS.dat");
+            
+            //load_NPC >> NPC[0].name;
+            //load_NPC >> NPC[0].HP;
+            
+            //load_NPC.close();
+            
+            
        loadF(buffer);   
-    
+       load_npcs(buffer);
     
 while (GAME_RUNNING==true)
 {
+
+   
      
      if (GAME_PAUSE!=true)
      {
      schedules(buffer);
      
-       drawworld();  
+       
       timer1F(buffer);
       }
+      drawworld();  
+      
       if (tclockH>=7 && tclockH<=15)
-      rest(10);
+      rest(8);
       else
       rest(5);
 
 
+
+                                     
 commands(buffer);
 
 if (quit!=true)  
 {
+                 
 Wclock(buffer);
 fpscounter(buffer);
 }

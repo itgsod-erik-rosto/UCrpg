@@ -14,8 +14,23 @@ void loadF(BITMAP *buffer)
             load >> tclockM;
             load >> cday_i;
             load.close();
+            
+           
 
      }
+     
+     void load_npcs(BITMAP *buffer)
+     {
+          
+    LOADNPCS.open("Data/NPCS/NPCS.dat");
+    
+NPC[0].LOADSTATUS(buffer);
+NPC[1].LOADSTATUS(buffer);
+NPC[2].LOADSTATUS(buffer);
+
+LOADNPCS.close();
+
+          }
      
      void saveF(BITMAP *buffer)
      {

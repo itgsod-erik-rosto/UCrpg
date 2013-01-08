@@ -944,10 +944,17 @@ void load_bitmaps(BITMAP *buffer)
                         set_trans_blender(sh[0]+35, sh[1]+35, sh[2]+35, sh[3]+35);
                  
                           draw_trans_sprite(buffer, nightF, 0, 0);
-                          
+                          clear_bitmap(nightF);
                     }
                           }
                           
+                          void draw_messageboxes(BITMAP *buffer)
+{
+     //TEST.draw(buffer);
+if (bed[0].isactivated==true)
+BED_msg.draw(buffer);
+     
+                         }
                         
                            void drawobjects(BITMAP *buffer)
                  {
@@ -985,6 +992,7 @@ draw_architectureINT(buffer);
 draw_furniture(buffer);
 draw_weapons(buffer);
 draw_walls(buffer);
+
 draw_hud(buffer);
 
 

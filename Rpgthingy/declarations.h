@@ -36,6 +36,7 @@ ofstream cache;
 ifstream CONFIGS;
 ifstream LOADNPCS;
 ifstream load;
+ifstream load_NPC;
 
             char* currentday[7]={"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"} ;
 
@@ -45,10 +46,18 @@ ifstream load;
     long int tclockM=0;
     long int tclockH=12;
               
+              
+              long int GetGamehour=tclockH;
+              long int GetGameminute=tclockM;
+              
+              
               string str;
             
             int P_timer;  
               int CRi; 
+            
+        int npc_i[100];
+        int act_timer;
         int max_npc=3;
         int n1;
         int FSW;
@@ -58,6 +67,9 @@ ifstream load;
         int fps1;
         int objMAX=1000;
         int cday_i;
+        
+        int GetCurrentday=cday_i;
+        
         int cAct=0;
         int wallmax=100;
         int itemtimer=0;
@@ -86,10 +98,12 @@ ifstream load;
         int objectamount=0;
             
         bool GAME_PAUSE=false;
+        bool GAME_RUNNING;
+        
         bool showobjectframes;
         bool LOAD=false;
         bool issaved=false;
         bool quit;
         bool startdone=false;
-        bool GAME_RUNNING;
+    
 

@@ -107,23 +107,23 @@ void collision();
        
        void OBJECTS::activeF(BITMAP *buffer)
        {
+           
             
-            if (isBed==true)
+                          if (isactivated==true && isBed==true)
             {
-            if (isactivated==true)
-            {
-                                  BED_msg.MsgEnd=false;
-                                  BED_msg:Option[1].MsgEnd=false;
-                         BED_msg.draw(buffer);
+                          BED_msg.MsgEnd=false;
+                          Option[1].MsgEnd=false;
+                          Option[2].MsgEnd=false;
+                          
+                           BED_msg.draw(buffer);
                          
-                         if (Option[1].ispressed==true)
-                         {
-                         Option[1].MsgEnd=true;
-                         isactivated=false;
-                         Option[1].ispressed=false;
-                         }
-                         }
                          
+            
+                                               if (BED_msg.MsgEnd==true || Option[1].MsgEnd==true || mouse_b & 2)
+                                               {
+                                                                        isactivated=false;
+                                                                        }
+            
                          }            
             }
        void OBJECTS::mousefuncs(BITMAP *buffer)
@@ -276,6 +276,8 @@ isactivated=true;
 if (player.dir==4 && x1+SSX+cam>=player.x-30 && x1-30+cam <=player.x && y1+cam2<=player.y && y1+SSY+15+cam2>=player.y && player.activate==true)
 isactivated=true;
 
+
+                                     
 if (isactivated==true && isitem==true)
 {
                       equipped=true;
@@ -284,12 +286,14 @@ if (isactivated==true && isitem==true)
 
    player.activate=false;
    
+   
 }
 
 if (isactivated==true && isitem==true && key[KEY_Q] && player.itemeq==true && player.gunfire==false)
 {
                       player.SSY=0;
                       equipped=false;
+                      player.item[0]=0;
                       player.itemeq=false;
                       isactivated=false;
                       player.itemout=false;
@@ -561,7 +565,7 @@ else
         
     collision();
     
- activeF(buffer);
+ 
  
 if (showobjectframes==true)
 {
@@ -620,6 +624,9 @@ if (objcollides==true)
                 
                 objcollides=false;
                       }
+                      
+                      
+                      
 if (isHud==true)
 {
                  masked_blit(bitmap, buffer, SSX1, SSY1, 0, 0, SSX, SSY);
@@ -648,4 +655,5 @@ if (isHud==true)
       else if (ID!=NULL && ispersistent==true)
      textprintf_ex(buffer, font, x1, y1-10, makecol(0, 0, 0), -1, "%s", ID);
 }
+activeF(buffer);
      }

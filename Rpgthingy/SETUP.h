@@ -9,7 +9,7 @@
 
 using namespace std;
 
-#include <worldfuncs.h>
+
 
 
 #include <weapons.h>
@@ -22,7 +22,7 @@ using namespace std;
 #include <objectstruct.h>
 
 #include <objects.h>    
-
+#include <worldfuncs.h>
 #include <loadsave.h>
  
   void SETUP(BITMAP *buffer)
@@ -50,6 +50,7 @@ clear_to_color(screen, makecol(255, 255, 255));
 
   textprintf_ex(screen,font,510,SH/2, makecol(255, 0, 0), -1, "Loading characters...", NULL);
     loadch(buffer);
+    
     
     
 
@@ -124,6 +125,7 @@ textprintf_ex(buffer,font,400,43,makecol(255,0,0), 0," B: %i", b);
 
 void timerfunc(void)
                                               {
+                                                               
                                                                fpsclock+=1;
                                                                if (fpsclock==2)
                                                                {
@@ -131,6 +133,8 @@ void timerfunc(void)
                                                                               fps1=0; 
                                                                fpsclock=0;
                                                                }
+                                                               if (GAME_PAUSE!=true)
+                                                               {
                                                    tclockM+=1;
                                                    if (tclockM>=60)
                                                    {
@@ -141,6 +145,7 @@ void timerfunc(void)
                                                    {
                                                                    cday_i+=1;
                                                    tclockH-=24;
+                                                   }
                                                    }
                                                    
                                                    }

@@ -2,20 +2,25 @@ void commands(BITMAP *buffer)
 {
      if (key[KEY_P] && P_timer<=0)
      {
-                    
+                    if (GAME_PAUSE!=true)
+                    {
+                    P_timer=0;
                     GAME_PAUSE=true;
                     }
-                    if (GAME_PAUSE==true)
+                    }
+                    if (GAME_PAUSE==true && P_timer<=100)
                     {
                                          P_timer++;
                                          }
                     if (key[KEY_P] && GAME_PAUSE==true && P_timer>=10)
                     {
+                                   
                     GAME_PAUSE=false;
                     
                     }
-                    if (GAME_PAUSE==false)
+                    if (GAME_PAUSE==false && P_timer>=-100)
                     {
+                                          
                                           P_timer--;
                                           }
                                           
@@ -39,6 +44,7 @@ void fpscounter(BITMAP *buffer)
      if (fpsclock==1)
      fps=fps1;
          textprintf_ex(buffer,font,150,630, makecol(255, 0, 0), -1, "FPS: %i", fps);
+         
                   //textprintf_ex(buffer,font,150,650, makecol(0, 0, 0), -1, "FPSclock: %i", fpsclock);
      }
 void settime(long int H, long int M)
