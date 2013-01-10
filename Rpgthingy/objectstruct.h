@@ -5,11 +5,12 @@ struct OBJECTS
      
      int ammo;
      int ammo_max;
+     int reload_timer;
+     int reload_timer_max;
      
      
-     
-       int x1;
-       int y1;
+       float x1;
+       float y1;
        
        bool isHud;
         bool slotfill[3];
@@ -24,8 +25,8 @@ struct OBJECTS
        
        bool objcollides;
        bool equipped;
-       int x2;
-       int y2;
+       float x2;
+       float y2;
        
        
        
@@ -40,6 +41,7 @@ bool isopen;
  bool isitem;
  bool ispersistent;
  bool isblood;
+ bool isreloading;
  
        int w;
        int h;
@@ -111,6 +113,7 @@ void collision();
             
                           if (isactivated==true && isBed==true)
             {
+                          
                           BED_msg.MsgEnd=false;
                           Option[1].MsgEnd=false;
                           Option[2].MsgEnd=false;
@@ -119,7 +122,13 @@ void collision();
                          
                          
             
-                                               if (BED_msg.MsgEnd==true || Option[1].MsgEnd==true || mouse_b & 2)
+                                               if (BED_msg.MsgEnd==true 
+                                               || Option[1].MsgEnd==true 
+                                               || mouse_b & 2 
+                                               || (player.x+cam<=x1-40 
+                                               && player.x+cam>=x1+SSX+40
+                                               && player.y+cam2<=y1-40 
+                                               && player.y+cam2>=y1+SSY+40))
                                                {
                                                                         isactivated=false;
                                                                         }
@@ -333,9 +342,40 @@ if (istarget!=true)
                
                if (n1>2)
                n1=0;    
-                   
-if (NPC[n1].x>=x1-20 && NPC[n1].x<=x2+20
-&& NPC[n1].y>=y1-20 && NPC[n1].y<=y2+20 && collide!=true
+        
+        
+ if (NPC[n1].isSelected==true && SSX==0 && SSY==0)
+ {
+                              
+                              
+                              if (NPC[n1].l_end_x>NPC[n1].targetX[NPC[n1].Ti])// && NPC[n1].l_end_x<=x1 && NPC[n1].l_end_x>=x2 && NPC[n1].l_end_y<=y1 && NPC[n1].l_end_y>=y2)
+                              NPC[n1].l_end_x--;
+                              
+                              if (NPC[n1].l_end_x<NPC[n1].targetX[NPC[n1].Ti])// && NPC[n1].l_end_x<=x1 && NPC[n1].l_end_x>=x2 && NPC[n1].l_end_y<=y1 && NPC[n1].l_end_y>=y2)
+                              NPC[n1].l_end_x++;
+                              
+                              if (NPC[n1].l_end_y>NPC[n1].targetY[NPC[n1].Ti])// && NPC[n1].l_end_y<=y1 && NPC[n1].l_end_y>=y2  && NPC[n1].l_end_x<=x1 && NPC[n1].l_end_x>=x2 )
+                              NPC[n1].l_end_y--;
+                              
+                              if (NPC[n1].l_end_y<NPC[n1].targetY[NPC[n1].Ti])// && NPC[n1].l_end_y<=y1 && NPC[n1].l_end_y>=y2 && NPC[n1].l_end_x<=x1 && NPC[n1].l_end_x>=x2 )
+                              NPC[n1].l_end_y++;
+                              
+                              if (collide==true && bmap!=true || mbmap!=true)
+                              {
+                              //if (NPC[n1].l_end_y+cam2<=y1+cam2 && NPC[n1].l_end_y+cam2>=y2+cam2 && NPC[n1].l_end_x+cam<=x1+cam && NPC[n1].l_end_x+cam>=x2+cam)
+if (NPC[n1].l_end_x!=x1 && NPC[n1].l_end_y!=y1)
+line(buffer, NPC[n1].x+cam, NPC[n1].y+cam2, NPC[n1].l_end_x+cam, NPC[n1].l_end_y+cam2, makecol(0, 255, 0));
+else
+{
+line(buffer, NPC[n1].x+cam, NPC[n1].y+cam2, NPC[n1].l_end_x+cam, NPC[n1].l_end_y+cam2, makecol(255, 0, 0));              
+}       
+}
+                              }           
+if (NPC[n1].x>=x1-20 
+&& NPC[n1].x<=x2+20
+&& NPC[n1].y>=y1-20 
+&& NPC[n1].y<=y2+20 
+&& collide!=true
 || (NPC[n1].x>=x1-10 
 && NPC[n1].x<=x1+SSX+10
 && NPC[n1].y>=y1-10 
@@ -368,8 +408,11 @@ if (NPC[n1].x>=x1-20 && NPC[n1].x<=x2+20
                   
                   if (istarget!=true)
 {
-if (player.gshotX>=x1-20+cam && player.gshotX<=x2+20+cam
-&& player.gshotY>=y1-20+cam2 && player.gshotY<=y2+20+cam2 && collide!=true
+if (player.gshotX>=x1-20+cam 
+&& player.gshotX<=x2+20+cam
+&& player.gshotY>=y1-20+cam2 
+&& player.gshotY<=y2+20+cam2 
+&& collide!=true
 || (player.gshotX>=x1-10+cam 
 && player.gshotX<=x1+SSX+10+cam
 && player.gshotY>=y1-10 +cam2
@@ -402,10 +445,33 @@ if (player.gshotX>=x1-20+cam && player.gshotX<=x2+20+cam
                   }
                   
 if (!key[KEY_LCONTROL])
-      if (actor[0].y>=y1+cam2-actor[0].r && actor[0].y<=y2+cam2+actor[0].r && actor[0].x>=x1+cam-actor[0].r && actor[0].x <=x2+cam+actor[0].r && collide!=true 
-      || (SSY1==87 && actor[cAct].x>=x1-15+cam && actor[cAct].x<=x1+15+cam && actor[cAct].y>=y1+cam2 && actor[cAct].y<=y1+SSY+cam2 && isopen!=true && isdoor==true)
-      ||(SSY1==0 && actor[cAct].x>=x1+cam && actor[cAct].x<=x1+SSX+cam && actor[cAct].y>=y1-15+cam2 && actor[cAct].y<=y1+15+cam2 && isopen!=true && isdoor==true)
-      ||(actor[cAct].x>=x1+cam-10 && actor[cAct].x<=x1+SSX+10+cam && actor[cAct].y>=y1-10+cam2 && actor[cAct].y<=y1+SSY+10+cam2 && collide==true))
+      if (actor[0].y >= y1+cam2-actor[0].r/1.1 
+      && actor[0].y <= y2+cam2+actor[0].r/1.1
+      && actor[0].x >= x1+cam-actor[0].r/1.1 
+      && actor[0].x <= x2+cam+actor[0].r/1.1 
+      && collide!=true 
+      
+      || (SSY1==87 
+      && actor[cAct].x>=x1-15+cam 
+      && actor[cAct].x<=x1+15+cam 
+      && actor[cAct].y>=y1+cam2 
+      && actor[cAct].y<=y1+SSY+cam2 
+      && isopen!=true 
+      && isdoor==true)
+      
+      ||(SSY1==0 
+      && actor[cAct].x>=x1+cam 
+      && actor[cAct].x<=x1+SSX+cam 
+      && actor[cAct].y>=y1-15+cam2 
+      && actor[cAct].y<=y1+15+cam2 
+      && isopen!=true 
+      && isdoor==true)
+      
+      ||(actor[cAct].x>=x1+cam-10 
+      && actor[cAct].x<=x1+SSX+10+cam 
+      && actor[cAct].y>=y1-10+cam2 
+      && actor[cAct].y<=y1+SSY+10+cam2 
+      && collide==true))
     {
                               
                                   
@@ -452,7 +518,18 @@ if (isopen==true && SSX1==0)
 
      void OBJECTS::reload(BITMAP *buffer)
      {
+          reload_timer++;
+          
+          
+          player.speed=player.speed/4;
+          
+          if (reload_timer>=reload_timer_max)
+          {
+                                   
           ammo=ammo_max;
+           isreloading=false;
+          reload_timer=0;
+          }
           }
 void OBJECTS::draw()
 {
@@ -460,10 +537,17 @@ void OBJECTS::draw()
      if (equipped==true)
      {
                         
-     if (key[KEY_R] && player.itemout==true)
+     if (key[KEY_R] && player.itemout==true && isreloading!=true && player.gunfire!=true)
      {
-                    reload(buffer);
+                    isreloading=true;
+                    
                     }
+                    
+                    
+                    if (isreloading==true)
+                    
+                    reload(buffer);
+                   
                     
      if (player.gunfireT==2 && equipped==true && player.gunfire==true && ammo>0)
      {

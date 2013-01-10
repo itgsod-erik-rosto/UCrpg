@@ -8,12 +8,14 @@
 
   using namespace std;
 
+BITMAP *buffer;
+BITMAP *sub_buffer_1;
+BITMAP *sub_buffer_2;
 
 BITMAP *nightF;              
 BITMAP *shadow;
 BITMAP *HUD;
 BITMAP *background;
-BITMAP *buffer;
 BITMAP *playerB;
 BITMAP *testB;
 BITMAP *pHouse;
@@ -42,7 +44,12 @@ ifstream load_NPC;
 
         float load_time;
  
-    long int fpsclock;     
+ float t_speed=10;
+ 
+ float TIME_2=t_speed*100;
+ float TIME=1/t_speed*10;
+                
+    float fpsclock;     
     long int tclockM=0;
     long int tclockH=12;
               
@@ -76,8 +83,8 @@ ifstream load_NPC;
         int Tobjects=2;
         int objectsdrawn;
         int timer1=0;
-        int ofX=-650;
-        int ofY=-470;
+        float ofX=-650;
+        float ofY=-470;
         int i;
         int colordepth=32;
         int SW=1080;
@@ -99,6 +106,8 @@ ifstream load_NPC;
             
         bool GAME_PAUSE=false;
         bool GAME_RUNNING;
+        
+       
         
         bool showobjectframes;
         bool LOAD=false;

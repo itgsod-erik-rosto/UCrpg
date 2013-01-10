@@ -24,6 +24,7 @@ using namespace std;
 #include <objects.h>    
 #include <worldfuncs.h>
 #include <loadsave.h>
+#include <menu.h>
  
   void SETUP(BITMAP *buffer)
   {
@@ -37,7 +38,7 @@ clear_to_color(screen, makecol(255, 255, 255));
 
   textprintf_ex(screen,font,510,SH/2, makecol(255, 0, 0), -1, "Loading models...", NULL);
 
-
+load_menu(buffer);
 load_flora(buffer);
 load_architecture(buffer);
 load_furniture(buffer);
@@ -54,21 +55,11 @@ clear_to_color(screen, makecol(255, 255, 255));
     
     
 
-clear_to_color(screen, makecol(255, 255, 255));
+//clear_to_color(screen, makecol(255, 255, 255));
        
-         textprintf_ex(screen,font,510,SH/2, makecol(255, 0, 0), -1, "Loading saved game...", NULL);
-
-string line;
-
-ifstream FOBJECTS;
-  FOBJECTS.open("Data/Objects/FObjects.dat");
-  
-    getline (FOBJECTS, line);
-  str=line;
+        // textprintf_ex(screen,font,510,SH/2, makecol(255, 0, 0), -1, "Loading saved game...", NULL);
 
 
-
-  FOBJECTS.close();
     }
 
 void drawworld (void)
@@ -147,5 +138,6 @@ void timerfunc(void)
                                                    tclockH-=24;
                                                    }
                                                    }
-                                                   
+       
+                                            
                                                    }

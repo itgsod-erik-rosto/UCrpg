@@ -43,6 +43,8 @@ void fpscounter(BITMAP *buffer)
      }
      if (fpsclock==1)
      fps=fps1;
+     
+     fps=fps;
          textprintf_ex(buffer,font,150,630, makecol(255, 0, 0), -1, "FPS: %i", fps);
          
                   //textprintf_ex(buffer,font,150,650, makecol(0, 0, 0), -1, "FPSclock: %i", fpsclock);
@@ -54,6 +56,12 @@ void settime(long int H, long int M)
      }
 void Wclock(BITMAP *buffer)
 {
+     
+      if (TIME==0)
+        GAME_PAUSE=true;
+        else 
+        GAME_PAUSE=false;
+        
      if (tclockH>15)
      {
      sh[0]=tclockH*5;
@@ -102,6 +110,7 @@ textprintf_ex(buffer,font,34,12, makecol(0, 0, 0), -1, " %i", tclockM);
 }
 }
 
+      
 void timer1F(BITMAP *buffer)
 {
  

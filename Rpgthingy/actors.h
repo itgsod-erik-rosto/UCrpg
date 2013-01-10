@@ -97,7 +97,7 @@ void loadch(BITMAP *buffer)
            NPC[0].Wtarget=0;
            
            NPC[0].Stime[0]=7;
-           NPC[0].Etime[0]=12;
+           NPC[0].Etime[0]=13;
            
            NPC[0].StimeM[0]=0;
            NPC[0].EtimeM[0]=59;
@@ -148,8 +148,8 @@ void schedules(BITMAP *buffer)
                            NPC[0].isPatrolling=true;
                            
                               NPC[0].Ti_max=5;
-           NPC[0].targetX[-1]=1360;
-           NPC[0].targetY[-1]=-140;
+           NPC[0].targetX[-1]=1240;
+           NPC[0].targetY[-1]=-310;
            
            NPC[0].targetX[0]=1320;
            NPC[0].targetY[0]=-70;
@@ -166,8 +166,11 @@ void schedules(BITMAP *buffer)
            NPC[0].targetX[4]=1250;
            NPC[0].targetY[4]=960;
            
-           NPC[0].targetX[5]=1260;
+           NPC[0].targetX[5]=1240;
            NPC[0].targetY[5]=960;
+           
+           NPC[0].targetX[6]=1240;
+           NPC[0].targetY[6]=950;
            
                            }
            if (NPC[1].Wtarget==0)

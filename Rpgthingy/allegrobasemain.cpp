@@ -11,12 +11,11 @@ int main(){
     install_timer();
 
 LOCK_VARIABLE(fpsclock);
-	LOCK_VARIABLE(tclockH);
-	LOCK_VARIABLE(tclockM);
 	LOCK_VARIABLE(cday_i);
 	LOCK_VARIABLE(load_time);
-	LOCK_FUNCTION(timerfunc);
-	install_int_ex(timerfunc, BPS_TO_TIMER(1));
+	
+	
+	install_int_ex(timerfunc, MSEC_TO_TIMER(TIME_2));
 	
   mouse_x=20;
  mouse_y=20;
@@ -26,13 +25,18 @@ LOCK_VARIABLE(fpsclock);
     set_color_depth (colordepth);
     set_gfx_mode( GFX_AUTODETECT_WINDOWED, SW, SH, 0, 0);
     set_window_title("Tjocka katter.");
+    
+    
     buffer = create_bitmap (SW, SH);
     
     load_bitmaps(buffer);
     
  
-SETUP(buffer);
-GAME_RUNNING=true;  
+
+     
+
+      
+
 
           //  load_NPC.open("Data/NPCS/NPCS.dat");
             
@@ -41,15 +45,46 @@ GAME_RUNNING=true;
             
             //load_NPC.close();
             
+            SETUP(buffer);
             
+            if (menu.LOAD==true)
+            {
+                                
+                                 clear_to_color(screen, makecol(255, 255, 255));
+ 
+  textprintf_ex(screen,font,510,SH/2, makecol(255, 0, 0), -1, "Loading saved game...", NULL);
+  
        loadF(buffer);   
        load_npcs(buffer);
-    
+       
+       string line;
+       
+ifstream FOBJECTS;
+  FOBJECTS.open("Data/Objects/FObjects.dat");
+    getline (FOBJECTS, line);
+  str=line;
+  FOBJECTS.close();
+}
+if (menu.LOAD==true || menu.NEW==true)
+{
+                    
+                    GAME_RUNNING=true;  
+                    }
+
 while (GAME_RUNNING==true)
 {
 
+      
+if (key[KEY_T])
+{
+               t_speed=50;
+                TIME_2=t_speed*100;
+                TIME=1/t_speed*10;
+               
+               install_int_ex(timerfunc, MSEC_TO_TIMER(TIME_2));
+               }
    
-     
+                    
      if (GAME_PAUSE!=true)
      {
      schedules(buffer);
@@ -88,6 +123,7 @@ cache.close();
 
             }            
 blit (buffer, screen, 0, 0, 0, 0, SW, SH);
+
 clear_bitmap(buffer);
 }
     return 0;   

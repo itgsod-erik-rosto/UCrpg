@@ -4,11 +4,17 @@
                     int* POS;
                     int* POS2;
                         
+                        float l_end_x;
+                        
+                        float l_end_y;
+                              
                         int Stime[100];
                         int Etime[100];
                         int StimeM[100];
                         int EtimeM[100];
                         int Wtarget;
+                        
+                        bool do_once;
                         
                         int routewalked[100];
                        
@@ -29,12 +35,12 @@
                      
                     int HP;
                     
-                        int x;
-                        int y;
-                        int r;
+                        float x;
+                        float y;
+                        float r;
                         
-                    int tempX;
-                    int tempY;
+                    float tempX;
+                    float tempY;
                        
                        bool gunfire1;
                        
@@ -79,7 +85,7 @@ int gunfireT;
                         int SSX;
                         int SSY;
                         
-                        int speed;
+                        float speed;
                         int dir;
                         
                         int posx;
@@ -160,7 +166,7 @@ int gunfireT;
                         
                         
                         }
-                        if (Ti==Ti_max && y==targetY[Ti] && x==targetX[Ti] && tclockH<Etime[Wtarget] && tclockM>=StimeM[Wtarget] && tclockM<=EtimeM[Wtarget])
+                        if (Ti>=Ti_max && y==targetY[Ti] && x==targetX[Ti] && tclockH<Etime[Wtarget] && tclockM>=StimeM[Wtarget] && tclockM<=EtimeM[Wtarget])
                         {
                                   Ti=0;
                                            }
@@ -197,8 +203,18 @@ int gunfireT;
                                           
                      
                                           
-                                          if (isSelected==true)
+                                          if (isSelected==true && isNPC==true)
                                           {
+                     
+                     //line(buffer, x+cam, y+cam2, targetX[Ti]+cam, targetY[Ti]+cam2, makecol(0, 255, 0));
+                     textprintf_ex(buffer,font,x+r+cam,y+r-10+cam2, makecol(255, 0, 0), 1, "Ti_max: %i", Ti_max);
+                     textprintf_ex(buffer,font,x+r+cam,y+r-20+cam2, makecol(255, 0, 0), 1, "Ti: %i", Ti);
+                     textprintf_ex(buffer,font,x+r+cam,y+r-30+cam2, makecol(255, 0, 0), 1, "Wtarget: %i", Wtarget);
+                     textprintf_ex(buffer,font,x+r+cam,y+r-40+cam2, makecol(255, 0, 0), 1, "Name: %s", name);
+                     textprintf_ex(buffer,font,x-r-40+cam,y+r+cam2, makecol(255, 255, 255), 1, "x: %f", x);
+                     textprintf_ex(buffer,font,x-r-40+cam,y+r+10+cam2, makecol(255, 255, 255), 1, "y: %f", y);
+                     textprintf_ex(buffer,font,x+r-22+cam,y+r+cam2, makecol(0, 0, 255), 1, "T_x: %i", targetX[Ti]);                                                               
+                     textprintf_ex(buffer,font,x+r-22+cam,y+r+10+cam2, makecol(0, 0, 255), 1, "T_y: %i", targetY[Ti]);
                                                                hascontrols=true;
                                                                
                                                                }
@@ -469,13 +485,13 @@ void PLAYER::controls()
      if (iscollided==true)
      {
      if (dir==1)
-    ofY+=speed;
+    ofY+=speed*TIME;
     else if (dir==3)
-    ofY-=speed;
+    ofY-=speed*TIME;
     else if (dir==2)
-    ofX+=speed;
+    ofX+=speed*TIME;
     else if (dir==4)
-    ofX-=speed;
+    ofX-=speed*TIME;
     
     iscollided=false;
 }
@@ -491,13 +507,13 @@ else if (isNPC==true)
                   if (iscollided==true)
                   {
                        if (dir==1)
-                  y-=speed+20;
+                  y-=speed*TIME+20;
                   else if (dir==3)
-                  y+=speed+20;
+                  y+=speed*TIME+20;
                   else if (dir==2)
-                  x-=speed+20;
+                  x-=speed*TIME+20;
                   else if (dir==4)
-                  x+=speed+20;
+                  x+=speed*TIME+20;
                   
                   
                       iscollided=false;
@@ -520,13 +536,13 @@ else if (isNPC==true)
 if (iscollided==true && isShot!=true)
 {
                      if (dir==1)
-                  y+=speed*max_npc;
+                  y+=speed*TIME*max_npc;
                   else if (dir==3)
-                  y-=speed*max_npc;
+                  y-=speed*TIME*max_npc;
                   else if (dir==2)
-                  x+=speed*max_npc;
+                  x+=speed*TIME*max_npc;
                   else if (dir==4)
-                  x-=speed*max_npc; 
+                  x-=speed*TIME*max_npc; 
                   
                   if (hasTarget!=true)
                   isMoving=false;
@@ -618,16 +634,16 @@ ctimer=0;
      {
          if (dir==1)
          
-         y-=speed;   
+         y-=speed*TIME;   
          
          if (dir==2)
-         x-=speed;   
+         x-=speed*TIME;   
          
          if (dir==3)
-         y+=speed;   
+         y+=speed*TIME;   
          
          if (dir==4)
-         x+=speed;   
+         x+=speed*TIME;   
       
     }
      dTimer++;
@@ -671,7 +687,7 @@ ctimer=0;
     {
                    isMoving=true;
         SSX=0;
-    ofY-=speed;
+    ofY-=speed*TIME;
     if (!key[KEY_SPACE])
     dir=1;
     
@@ -682,7 +698,7 @@ else if (key[KEY_S] && isNPC!=true)
         SSX=0;
         if (!key[KEY_SPACE])
          dir=3;
-    ofY+=speed;
+    ofY+=speed*TIME;
    
 }
     else if (key[KEY_A] && isNPC!=true)
@@ -691,7 +707,7 @@ else if (key[KEY_S] && isNPC!=true)
         SSX=0;
         if (!key[KEY_SPACE])
          dir=2;
-    ofX-=speed;
+    ofX-=speed*TIME;
      
 }
   
@@ -701,7 +717,7 @@ else if (key[KEY_S] && isNPC!=true)
         SSX=0;
         if (!key[KEY_SPACE])
          dir=4;
-    ofX+=speed;
+    ofX+=speed*TIME;
      
 }
 if (!key[KEY_W] && !key[KEY_D] && !key[KEY_S] && !key[KEY_D])
@@ -741,11 +757,15 @@ if (key[KEY_LSHIFT] && isNPC!=true)
 }
 void PLAYER::draw()
 { 
-     
+     if (do_once!=true)
+     {
+                        l_end_x=x;
+                        l_end_y=y;
+                        do_once=true;
+                        }
+                        
     if (isSelected==true && key[KEY_N])
                      {
-                                          POS=new int(x);
-                                          POS2=new int(y);
                                           }
      
     if (quit==true)

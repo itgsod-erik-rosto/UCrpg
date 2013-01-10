@@ -725,6 +725,8 @@ void load_bitmaps(BITMAP *buffer)
                  deagle[0].item=Deagle;
                  deagle[0].ammo_max=9;
                  deagle[0].ammo=9;
+                 deagle[0].reload_timer_max=50;
+                 
                  
                  deagle[1].ID="Deagle 2";
                  deagle[1].isitem=true;

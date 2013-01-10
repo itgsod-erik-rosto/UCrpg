@@ -66,7 +66,8 @@ struct MSGBOX
                    
                                                     if (MsgEnd!=true)
                                                     {
-                                         tclockH+=6; 
+                                                                     
+                                         tclockH+=6;
                                          
                                          MsgEnd=true;
                                          
