@@ -13,6 +13,7 @@
                         int StimeM[100];
                         int EtimeM[100];
                         int Wtarget;
+                        int getcell;
                         
                         bool do_once;
                         
@@ -130,7 +131,7 @@ int gunfireT;
                                                                     {
                                                                                         if (iscollided==true)
                                                                                         {
-                                                                                                             Ti++;
+                                                                                                             Ti=0;
                                                                                                              }
                                                                                       
                                                                                                                                        
@@ -757,6 +758,11 @@ if (key[KEY_LSHIFT] && isNPC!=true)
 }
 void PLAYER::draw()
 { 
+     if (targetX==0 && targetY==0)
+     {
+                    targetX[Ti]=x;
+                    targetY[Ti]=y;
+                    }
      if (do_once!=true)
      {
                         l_end_x=x;

@@ -7,7 +7,7 @@ struct OBJECTS
      int ammo_max;
      int reload_timer;
      int reload_timer_max;
-     
+     int cellnumber;
      
        float x1;
        float y1;
@@ -34,6 +34,7 @@ struct OBJECTS
       
 
 bool hB;
+bool isloaded;
 
 bool ishouse;
 bool isobject;
@@ -42,6 +43,7 @@ bool isopen;
  bool ispersistent;
  bool isblood;
  bool isreloading;
+ bool iscell;
  
        int w;
        int h;
@@ -74,8 +76,10 @@ void activeF(BITMAP *buffer);
 void mousefuncs(BITMAP *buffer);
   void OSTATUS(BITMAP *buffer);
   void saveobjects(BITMAP *buffer);
+void L_objects(BITMAP *buffer);
     void reload(BITMAP *buffer);
 void collision();
+
 
        void draw();
        
@@ -105,7 +109,8 @@ void collision();
        stove[1000],
        kitchensink[1000],
        bloodstain[1000],
-       door[1000];
+       door[1000],
+       cell[1000];
        
        void OBJECTS::activeF(BITMAP *buffer)
        {
@@ -160,112 +165,125 @@ void collision();
              
                            
             }
+            
+            void OBJECTS::L_objects(BITMAP *buffer)
+            {
+                 
+                 
+       LOADOBJECTS >> x1;
+       
+       LOADOBJECTS >> y1;
+       
+       LOADOBJECTS >> x2;
+       
+       LOADOBJECTS >> y2;
+       
+        LOADOBJECTS >> bmap;
+       
+       LOADOBJECTS >> mbmap;
+       
+       LOADOBJECTS >> isdoor;
+       
+       LOADOBJECTS >> ishouse;
+       
+       LOADOBJECTS >> ispersistent;
+       
+       LOADOBJECTS >> isactivated;
+       
+       LOADOBJECTS >> SSX;
+       
+       LOADOBJECTS >> SSY;
+       
+       LOADOBJECTS >> SSX1;
+       
+       LOADOBJECTS >> SSY1;
+       
+       LOADOBJECTS >> isitem;
+       
+       LOADOBJECTS >> isopen;
+       
+      LOADOBJECTS >> collide;
+       
+       LOADOBJECTS >> isobject;
+      
+                 }
        void OBJECTS::OSTATUS(BITMAP *buffer)
        {
 
 
 
-FOBJECTS << objectsdrawn;
-FOBJECTS << " // Total objects drawn";
-FOBJECTS << endl;
 
-          
-objectsdrawn+=1;
 
-       if (ID!=NULL)
-       {
-       FOBJECTS << ID;
-       FOBJECTS << " //ID";
-       FOBJECTS << endl;
-    }
-    
-      else
-       {
-       FOBJECTS << "NO ID";
-       FOBJECTS << " //ID";
-       FOBJECTS << endl;
-    }
+       
        
        FOBJECTS << x1;
-       FOBJECTS << " //x1";
        FOBJECTS << endl;
        
        FOBJECTS << y1;
-       FOBJECTS << " //y1";
        FOBJECTS << endl;
        
        FOBJECTS << x2;
-       FOBJECTS << "// x2";
        FOBJECTS << endl;
        
        FOBJECTS << y2;
-       FOBJECTS << " //y2";
        FOBJECTS << endl;
        
         FOBJECTS << bmap;
-       FOBJECTS << "// bmap";
        FOBJECTS << endl;
        
        FOBJECTS << mbmap;
-       FOBJECTS << " //mbmap";
        FOBJECTS << endl;
        
        FOBJECTS << isdoor;
-       FOBJECTS << " //isdoor";
        FOBJECTS << endl;
        
        FOBJECTS << ishouse;
-       FOBJECTS << " //ishouse";
        FOBJECTS << endl;
        
        FOBJECTS << ispersistent;
-       FOBJECTS << " //ispersistent";
        FOBJECTS << endl;
        
        FOBJECTS << isactivated;
-       FOBJECTS << " //isactivated";
        FOBJECTS << endl;
        
        FOBJECTS << SSX;
-       FOBJECTS << " //SSX";
        FOBJECTS << endl;
        
        FOBJECTS << SSY;
-       FOBJECTS << " //SSY";
        FOBJECTS << endl;
        
        FOBJECTS << SSX1;
-       FOBJECTS << " //SSX1";
        FOBJECTS << endl;
        
        FOBJECTS << SSY1;
-       FOBJECTS << " //SSY1";
        FOBJECTS << endl;
        
        FOBJECTS << isitem;
-       FOBJECTS << " //isitem";
        FOBJECTS << endl;
        
        FOBJECTS << isopen;
-       FOBJECTS << " //isopen";
        FOBJECTS << endl;
        
        FOBJECTS << collide;
-       FOBJECTS << " //collide";
        FOBJECTS << endl;
        
        FOBJECTS << isobject;
-       FOBJECTS << " //isobject";
        FOBJECTS << endl;
+       
+       
+
        FOBJECTS << endl;
         }
          
          void OBJECTS::saveobjects(BITMAP *buffer)
 {
      
+     
 if (quit==true)
+{
+               if (isitem==true)
 OSTATUS(buffer);
-
+}
 }
 
 void OBJECTS::collision()
@@ -519,8 +537,6 @@ if (isopen==true && SSX1==0)
      void OBJECTS::reload(BITMAP *buffer)
      {
           reload_timer++;
-          
-          
           player.speed=player.speed/4;
           
           if (reload_timer>=reload_timer_max)
@@ -533,7 +549,8 @@ if (isopen==true && SSX1==0)
           }
 void OBJECTS::draw()
 {
-    
+
+
      if (equipped==true)
      {
                         
@@ -646,14 +663,14 @@ else
      {
          circlefill(buffer, x1, y1, 3, makecol(255, 0, 0));   
         }
-        
+         if (iscell==false)
     collision();
     
  
  
 if (showobjectframes==true)
 {
-     if (mbmap!=true && bmap!=true && collide!=true)
+     if (mbmap!=true && bmap!=true && collide!=true && iscell!=true)
      line(buffer, x1+cam, y1+cam2, x2+cam, y2+cam2, makecol(255, 0, 0));
      
      
@@ -728,6 +745,19 @@ if (isHud==true)
       masked_blit(bitmap, buffer, 0, 0, hud[0].x1+15+459, hud[0].y1+10, 18, 10);
       
       }
+      
+          if (iscell==true)
+    {
+          if (player.x>=x1+cam && player.x<=x1+SW+cam && player.y>=y1+cam2 && player.y<=y1+SH+cam2)
+          {
+                               player.getcell=cellnumber;
+                               }
+                          if (showobjectframes==true)
+                          {     
+                     rect(buffer, x1+cam, y1+cam2, x1+SW+cam, y1+SH+cam2, makecol(255, 255, 255));
+                     }
+                     }
+                     
       if (showobjectframes==true)
       {
       mousefuncs(buffer);

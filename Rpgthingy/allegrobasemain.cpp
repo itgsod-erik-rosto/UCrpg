@@ -28,6 +28,7 @@ LOCK_VARIABLE(fpsclock);
     
     
     buffer = create_bitmap (SW, SH);
+    MAP = create_bitmap(SW, SH);
     
     load_bitmaps(buffer);
     
@@ -51,19 +52,16 @@ LOCK_VARIABLE(fpsclock);
             {
                                 
                                  clear_to_color(screen, makecol(255, 255, 255));
- 
+ clear_to_color(MAP, makecol(255, 255, 255));
   textprintf_ex(screen,font,510,SH/2, makecol(255, 0, 0), -1, "Loading saved game...", NULL);
   
        loadF(buffer);   
        load_npcs(buffer);
        
-       string line;
+
+
        
-ifstream FOBJECTS;
-  FOBJECTS.open("Data/Objects/FObjects.dat");
-    getline (FOBJECTS, line);
-  str=line;
-  FOBJECTS.close();
+
 }
 if (menu.LOAD==true || menu.NEW==true)
 {
@@ -73,8 +71,7 @@ if (menu.LOAD==true || menu.NEW==true)
 
 while (GAME_RUNNING==true)
 {
-
-      
+ 
 if (key[KEY_T])
 {
                t_speed=50;
@@ -93,7 +90,8 @@ if (key[KEY_T])
       timer1F(buffer);
       }
       drawworld();  
-      
+        
+
       if (tclockH>=7 && tclockH<=15)
       rest(8);
       else
@@ -122,9 +120,13 @@ cache.open("Data/Objects/objects.dat");
 cache.close();
 
             }            
+            if (!key[KEY_M])
+            {
 blit (buffer, screen, 0, 0, 0, 0, SW, SH);
 
 clear_bitmap(buffer);
+}
+else blit (MAP, screen, 0, 0, 0, 0, SW, SH);
 }
     return 0;   
 }   

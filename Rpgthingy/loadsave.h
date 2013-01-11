@@ -2,12 +2,16 @@
 
 void loadF(BITMAP *buffer)
 {
-     
+
+
+
 
             load.open("Data/Save/save.dat");
   
+            load >> DISABLE_HUD;
             load >> ofX;
             load >> ofY;
+            load >> current_cell;
             load >> player.HP;
             load >> player.dir;
             load >> tclockH;
@@ -28,7 +32,10 @@ NPC[0].LOADSTATUS(buffer);
 NPC[1].LOADSTATUS(buffer);
 NPC[2].LOADSTATUS(buffer);
 
+
+
 LOADNPCS.close();
+
 
           }
      
@@ -37,9 +44,13 @@ LOADNPCS.close();
           
             
             Fpos.open("Data/Save/save.dat");
+            Fpos << DISABLE_HUD;
+            Fpos << endl;
             Fpos << ofX;
             Fpos << endl;
             Fpos << ofY;
+            Fpos << endl;
+            Fpos << current_cell;
             Fpos << endl;
             Fpos << player.HP;
             Fpos << endl;

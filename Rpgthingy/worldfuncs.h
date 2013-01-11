@@ -1,5 +1,34 @@
+
+void coc(int t_cell_i)
+{
+     player.getcell=cell[t_cell_i].cellnumber;
+     ofX=cell[t_cell_i].x2+cell[t_cell_i].x1-640;
+     ofY=cell[t_cell_i].y2+cell[t_cell_i].y1-700;
+     }
+void DRAW_MAP()
+{
+     
+     
+     }
 void commands(BITMAP *buffer)
 {
+     if (key[KEY_0])
+     coc(0);
+     if (key[KEY_1])
+     coc(1);
+     if (key[KEY_2])
+     coc(2);
+     if (key[KEY_3])
+     coc(3);
+     if (key[KEY_4])
+     coc(4);      
+     if (key[KEY_5])
+     coc(5);
+     if (key[KEY_6])
+     coc(6);      
+     if (key[KEY_7])
+     coc(7);
+        
      if (key[KEY_P] && P_timer<=0)
      {
                     if (GAME_PAUSE!=true)
@@ -36,7 +65,7 @@ showobjectframes=false;
      }
 void fpscounter(BITMAP *buffer)
 {
-      textprintf_ex(buffer,font,700,12, makecol(0, 0, 0), -1, "Drawn objects: %i", objectsdrawn);
+      
      if (fpsclock==0)
      {    
      fps1++;
@@ -108,6 +137,8 @@ else
 textprintf_ex(buffer,font,36,12, makecol(0, 0, 0), -1, ":", NULL);
 textprintf_ex(buffer,font,34,12, makecol(0, 0, 0), -1, " %i", tclockM);
 }
+
+textprintf_ex(buffer,font,150,640, makecol(255, 0, 0), -1, "Current cell: %i", player.getcell);
 }
 
       

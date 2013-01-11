@@ -9,6 +9,7 @@
   using namespace std;
 
 BITMAP *buffer;
+BITMAP *MAP;
 BITMAP *sub_buffer_1;
 BITMAP *sub_buffer_2;
 
@@ -37,6 +38,7 @@ ofstream cache;
  
 ifstream CONFIGS;
 ifstream LOADNPCS;
+ifstream LOADOBJECTS;
 ifstream load;
 ifstream load_NPC;
 
@@ -63,6 +65,7 @@ ifstream load_NPC;
             int P_timer;  
               int CRi; 
             
+        int current_cell;
         int npc_i[100];
         int act_timer;
         int max_npc=3;
@@ -114,5 +117,6 @@ ifstream load_NPC;
         bool issaved=false;
         bool quit;
         bool startdone=false;
+        bool DISABLE_HUD;
     
 

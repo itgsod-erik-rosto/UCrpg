@@ -22,7 +22,7 @@ using namespace std;
 #include <objectstruct.h>
 
 #include <objects.h>    
-#include <worldfuncs.h>
+
 #include <loadsave.h>
 #include <menu.h>
  
@@ -61,7 +61,7 @@ clear_to_color(screen, makecol(255, 255, 255));
 
 
     }
-
+#include <worldfuncs.h>
 void drawworld (void)
       {
            i++;
@@ -89,10 +89,12 @@ clear_bitmap(buffer);
           
        
               
-                                   
+          if (DISABLE_HUD!=true)
+          {                         
            hud[0].draw(); 
             hud[1].draw(); 
 hud[2].draw(); 
+}
 
        if (quit==true)
  FOBJECTS.close();

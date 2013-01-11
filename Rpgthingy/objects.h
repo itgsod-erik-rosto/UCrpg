@@ -28,6 +28,40 @@ void load_bitmaps(BITMAP *buffer)
                  
                 void load_architecture(BITMAP *buffer)
                  {
+                     
+                     
+                     cell[0].x1=30;
+                     cell[0].y1=50;
+                     cell[0].cellnumber=0;
+                     
+                     cell[1].x1=cell[1-1].x1;
+                     cell[1].y1=cell[1-1].y1+SH;
+                     cell[1].cellnumber=1;
+                     
+                     cell[2].x1=cell[2-1].x1;
+                     cell[2].y1=cell[2-1].y1+SH;
+                     cell[2].cellnumber=2;
+                     
+                     cell[3].x1=cell[3-1].x1;
+                     cell[3].y1=cell[3-1].y1+SH;
+                     cell[3].cellnumber=3;
+                     
+                     cell[4].x1=cell[4-4].x1+SW;
+                     cell[4].y1=cell[4-4].y1;
+                     cell[4].cellnumber=4;
+                     
+                     cell[5].x1=cell[5-1].x1;
+                     cell[5].y1=cell[5-1].y1+SH;
+                     cell[5].cellnumber=5;
+                     
+                     cell[6].x1=cell[6-1].x1;
+                     cell[6].y1=cell[6-1].y1+SH;
+                     cell[6].cellnumber=6;
+                     
+                     cell[7].x1=cell[7-1].x1;
+                     cell[7].y1=cell[7-1].y1+SH;
+                     cell[7].cellnumber=0;
+                     
                  road[0].bmap=true;
                  road[0].bitmap=road1;
                  road[0].x1=730;
@@ -921,8 +955,18 @@ void load_bitmaps(BITMAP *buffer)
     }
     void draw_hud(BITMAP *buffer)
     {
-
+       
+cell[0].draw();
+    cell[1].draw();
+    cell[2].draw();
+    cell[3].draw();
+    cell[4].draw();
+    cell[5].draw();
+    cell[6].draw();
+    cell[7].draw();
+    //cell[8].draw();
     }
+    
                      
                     void draw_brightness(BITMAP *buffer)
                     {
@@ -976,6 +1020,8 @@ fence[i2].y2=-882;
 
 door[i2].isdoor=true;
 
+cell[i2].collide=false;
+cell[i2].iscell=true;
 
                
 i2++;
