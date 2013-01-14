@@ -15,6 +15,16 @@
                         int Wtarget;
                         int getcell;
                         
+                        bool dtC_collides;
+                        
+                        int dtC_x1;
+                        int dtC_x2;
+                        
+                        int dtC_y1;
+                        int dtC_y2;
+                        
+                        int distancetocollision;
+                        char* collidingobject;
                         bool do_once;
                         
                         int routewalked[100];
@@ -216,6 +226,7 @@ int gunfireT;
                      textprintf_ex(buffer,font,x-r-40+cam,y+r+10+cam2, makecol(255, 255, 255), 1, "y: %f", y);
                      textprintf_ex(buffer,font,x+r-22+cam,y+r+cam2, makecol(0, 0, 255), 1, "T_x: %i", targetX[Ti]);                                                               
                      textprintf_ex(buffer,font,x+r-22+cam,y+r+10+cam2, makecol(0, 0, 255), 1, "T_y: %i", targetY[Ti]);
+                     textprintf_ex(buffer,font,x+r-22+cam,y+r+20+cam2, makecol(0, 0, 255), 1, "D to C %i", distancetocollision);
                                                                hascontrols=true;
                                                                
                                                                }
@@ -820,8 +831,189 @@ circlefill(buffer, *POS+cam, *POS2+2+cam2, 10, makecol(255, 0, 0));
                        line(buffer, gshotX, gshotY, gshotX, gshotY+10, makecol(255,255,0));
         }
          
+         if (isNPC!=true)
+         {
+                         
+         dtC_x1=x;
+         dtC_y1=y;
+         
+         
+         if (dtC_x2-dtC_x1 > 500 || dtC_x2-dtC_x1 < -500 && (dir==2 || dir==4))
+         {
+         dtC_x2=x;
+         dtC_y2=y;                    
+         }
+         else if (dtC_y2-dtC_y1 > 500 || dtC_y2-dtC_y1 < -500 && (dir==1 || dir==3))
+         {
+         dtC_x2=x;
+         dtC_y2=y;                     
+         }
+         
+         if (dtC_collides==true)
+         {
+                                if (dir==2 || dir==4)
+                                {
+                                           
+                                distancetocollision=dtC_x2-dtC_x1;
+                                }
+                                else 
+                                {
+                                     distancetocollision=dtC_y2-dtC_y1;
+                                     }
+                                     
+                                     if (distancetocollision<0)
+                                distancetocollision=distancetocollision*-1;
+                                
+         dtC_x2=x;
+         dtC_y2=y;
+         dtC_collides=false;
+         }
+         
+         if (dir==1)
+         {
+                    if (dtC_y2>y)
+                    dtC_y2=y;
+         dtC_x2=x;
+         if (dtC_collides!=true)
+         dtC_y2-=10;
+         }
+         if (dir==2)
+         {
+                    
+                    if (dtC_x2>x)
+                    dtC_x2=x;
+                    
+         dtC_y2=y;
+         
+         
+         if (dtC_collides!=true)
+         dtC_x2-=10;
+         }
+         if (dir==3)
+         {
+                    
+                    if (dtC_y2<y)
+                    dtC_y2=y;
+                    
+         dtC_x2=x;
+         
+         if (dtC_collides!=true)
+         dtC_y2+=10;
+         }
+         if (dir==4)
+         {
+                    
+                    if (dtC_x2<x)
+                    dtC_x2=x;
+                    
+         dtC_y2=y;
+         
+         if (dtC_collides!=true)
+         dtC_x2+=10;
+         }
+         
+         if (showobjectframes==true)
+         {
+                                   
+                               textprintf_ex( buffer, font, 30, 300, makecol (0,0,255), -1, " D to Col: %i", distancetocollision);  
+                               if (collidingobject!=NULL)    
+         textprintf_ex( buffer, font, 30, 320, makecol (0,0,255), -1, " Collidingobj: %s", collidingobject);      
+         
+         if (dtC_collides!=true)
+        line(buffer, dtC_x1, dtC_y1, dtC_x2, dtC_y2, makecol(0, 0, 255)); 
+        else
+        line(buffer, dtC_x1, dtC_y1, dtC_x2, dtC_y2, makecol(255, 0, 0)); 
+        }
+        }
         
-      
+        else if (isNPC==true)
+         {
+                         
+         dtC_x1=x+cam;
+         dtC_y1=y+cam2;
+         
+         
+         if (dtC_x2-dtC_x1 > 500 || dtC_x2-dtC_x1 < -500 && (dir==2 || dir==4))
+         {
+         dtC_x2=x;
+         dtC_y2=y;                    
+         }
+         else if (dtC_y2-dtC_y1 > 500 || dtC_y2-dtC_y1 < -500 && (dir==1 || dir==3))
+         {
+         dtC_x2=x;
+         dtC_y2=y;                     
+         }
+         
+         if (dtC_collides==true)
+         {
+                                if (dir==2 || dir==4)
+                                {
+                                distancetocollision=dtC_x2-dtC_x1;
+                                }
+                                else 
+                                {
+                                     distancetocollision=dtC_y2-dtC_y1;
+                                     }
+                                     
+                                     if (distancetocollision<0)
+                                distancetocollision=distancetocollision*-1;
+                                
+         dtC_x2=x+cam;
+         dtC_y2=y+cam2;
+         dtC_collides=false;
+         }
+         
+         if (dir==1)
+         {
+                    if (dtC_y2>y+cam2)
+                    dtC_y2=y+cam2;
+         dtC_x2=x+cam;
+         if (dtC_collides!=true)
+         dtC_y2-=10;
+         }
+         if (dir==2)
+         {
+                    
+                    if (dtC_x2>x+cam)
+                    dtC_x2=x+cam;
+                    
+         dtC_y2=y+cam2;
+         
+         
+         if (dtC_collides!=true)
+         dtC_x2-=10;
+         }
+         if (dir==3)
+         {
+                    
+                    if (dtC_y2<y+cam2)
+                    dtC_y2=y+cam2;
+                    
+         dtC_x2=x+cam;
+         
+         if (dtC_collides!=true)
+         dtC_y2+=10;
+         }
+         if (dir==4)
+         {
+                    
+                    if (dtC_x2<x+cam)
+                    dtC_x2=x+cam;
+                    
+         dtC_y2=y+cam2;
+         
+         if (dtC_collides!=true)
+         dtC_x2+=10;
+         }
+         
+         if (showobjectframes==true)
+         {
+                                    if (dtC_collides!=true)
+        line(buffer, dtC_x1, dtC_y1, dtC_x2, dtC_y2, makecol(0, 0, 255)); 
+        else
+        line(buffer, dtC_x1, dtC_y1, dtC_x2, dtC_y2, makecol(255, 0, 0)); 
+        }
+        }
 
 
                        if (isDead!=true)

@@ -291,6 +291,81 @@ void OBJECTS::collision()
      
      
      
+     if (showobjectframes==true)
+     {
+     textprintf_ex(buffer,font,mouse_x-20, mouse_y-10, makecol(255, 0, 0), -1, "x: %i", mouse_x);
+     textprintf_ex(buffer,font,mouse_x-20, mouse_y, makecol(255, 0, 0), -1, "y: %i", mouse_y);
+     
+     
+      textprintf_ex(buffer,font,player.dtC_x2 ,player.dtC_y2-20, makecol(255, 0, 0), -1, "x: %i", player.dtC_x2);
+      textprintf_ex(buffer,font,player.dtC_x2 ,player.dtC_y2-10, makecol(255, 0, 0), -1, "y: %i", player.dtC_y2);
+}
+
+      if ((player.dtC_x2 >= x1+cam-15
+      && player.dtC_x2 <= x2+cam+15
+      && player.dtC_y2 >= y1+cam2-15
+      && player.dtC_y2 <= y2+cam2+15
+      && collide!=true)
+      
+      ||(player.dtC_x2 >= x1+cam-10 
+      && player.dtC_x2 <= x1+SSX+10+cam 
+      && player.dtC_y2 >= y1-10+cam2 
+      && player.dtC_y2 <= y1+SSY+10+cam2 
+      && collide==true)
+      
+      || (SSY1==87 
+      && player.dtC_x2>=x1-15+cam 
+      && player.dtC_x2<=x1+15+cam 
+      && player.dtC_y2>=y1+cam2 
+      && player.dtC_y2<=y1+SSY+cam2 
+      && isopen!=true 
+      && isdoor==true)
+      
+      ||(SSY1==0 
+      && player.dtC_x2>=x1+cam 
+      && player.dtC_x2<=x1+SSX+cam 
+      && player.dtC_y2>=y1-15+cam2 
+      && player.dtC_y2<=y1+15+cam2 
+      && isopen!=true 
+      && isdoor==true))
+      {
+                       if (ID!=NULL)
+                       player.collidingobject=ID;
+     player.dtC_collides=true;
+     }
+     if ((NPC[n1].dtC_x2 >= x1+cam-15
+      && NPC[n1].dtC_x2 <= x2+cam+15
+      && NPC[n1].dtC_y2 >= y1+cam2-15
+      && NPC[n1].dtC_y2 <= y2+cam2+15
+      && collide!=true)
+      
+      ||(NPC[n1].dtC_x2 >= x1+cam-10 
+      && NPC[n1].dtC_x2 <= x1+SSX+10+cam 
+      && NPC[n1].dtC_y2 >= y1-10+cam2 
+      && NPC[n1].dtC_y2 <= y1+SSY+10+cam2 
+      && collide==true)
+      
+      || (SSY1==87 
+      && NPC[n1].dtC_x2>=x1-15+cam 
+      && NPC[n1].dtC_x2<=x1+15+cam 
+      && NPC[n1].dtC_y2>=y1+cam2 
+      && NPC[n1].dtC_y2<=y1+SSY+cam2 
+      && isopen!=true 
+      && isdoor==true)
+      
+      ||(SSY1==0 
+      && NPC[n1].dtC_x2>=x1+cam 
+      && NPC[n1].dtC_x2<=x1+SSX+cam 
+      && NPC[n1].dtC_y2>=y1-15+cam2 
+      && NPC[n1].dtC_y2<=y1+15+cam2 
+      && isopen!=true 
+      && isdoor==true))
+      {
+                       
+                       
+     NPC[n1].dtC_collides=true;
+     }
+     
 if (player.dir==2 && x1+SSX+cam>=player.x-30 && x1-10+cam <=player.x && y1-10+cam2<=player.y && y1+SSY+15+cam2>=player.y && player.activate==true)
 isactivated=true;
 

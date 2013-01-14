@@ -126,7 +126,7 @@ void load_bitmaps(BITMAP *buffer)
                  
                  //house2
                 
-                
+                 fence[0].ID="Fence 0";
                  fence[0].mbmap=true;
                  fence[0].bitmap=fence1;
                  fence[0].x1=-90;
@@ -136,6 +136,7 @@ void load_bitmaps(BITMAP *buffer)
                  fence[0].SSX=500;
                  fence[0].SSY=6;
                  
+                 fence[1].ID="Fence 1";
                  fence[1].mbmap=true;
                  fence[1].bitmap=fence1;
                  fence[1].x1=-90+250+110;
@@ -145,6 +146,7 @@ void load_bitmaps(BITMAP *buffer)
                  fence[1].SSX=500;
                  fence[1].SSY=6;
                  
+                 fence[2].ID="Fence 2";
                  fence[2].mbmap=true;
                  fence[2].bitmap=fence1;
                  fence[2].x1=-90+250+250+310;
@@ -156,6 +158,7 @@ void load_bitmaps(BITMAP *buffer)
                  fence[2].SSX1=1;
                  fence[2].SSY1=7;
                  
+                 fence[3].ID="Fence 3";
                  fence[3].mbmap=true;
                  fence[3].bitmap=fence1;
                  fence[3].x1=-90+250+250+310;
@@ -165,6 +168,7 @@ void load_bitmaps(BITMAP *buffer)
                  fence[3].SSX1=1;
                  fence[3].SSY1=7;
                  
+                 fence[4].ID="Fence 4";
                  fence[4].mbmap=true;
                  fence[4].bitmap=fence1;
                  fence[4].x1=-90+250+250+310;
@@ -174,6 +178,7 @@ void load_bitmaps(BITMAP *buffer)
                  fence[4].SSX1=1;
                  fence[4].SSY1=7;
                  
+                 fence[5].ID="Fence 5";
                  fence[5].mbmap=true;
                  fence[5].bitmap=fence1;
                  fence[5].x1=-90+250+110;
@@ -181,6 +186,7 @@ void load_bitmaps(BITMAP *buffer)
                  fence[5].SSX=500;
                  fence[5].SSY=6;
                  
+                 fence[6].ID="Fence 6";
                  fence[6].mbmap=true;
                  fence[6].bitmap=fence1;
                  fence[6].x1=-90+250+110-360;
@@ -188,6 +194,7 @@ void load_bitmaps(BITMAP *buffer)
                  fence[6].SSX=500;
                  fence[6].SSY=6;
                  
+                 fence[7].ID="Fence 7";
                  fence[7].mbmap=true;
                  fence[7].bitmap=fence1;
                  fence[7].x1=-90;
@@ -197,6 +204,7 @@ void load_bitmaps(BITMAP *buffer)
                  fence[7].SSX1=1;
                  fence[7].SSY1=7;
                  
+                 fence[8].ID="Fence 8";
                  fence[8].mbmap=true;
                  fence[8].bitmap=fence1;
                  fence[8].x1=-90;
@@ -205,6 +213,7 @@ void load_bitmaps(BITMAP *buffer)
                  fence[8].SSY=390;
                  fence[8].SSX1=1;
                  fence[8].SSY1=7;
+                 
                  
                  trail[0].mbmap=true;
                  trail[0].bitmap=hfurniture;
@@ -518,6 +527,7 @@ void load_bitmaps(BITMAP *buffer)
                  grass[11].y1=800;
                
                
+                 bush[0].ID="Bush 0";
                  bush[0].bmap=true;
                  bush[0].bitmap=hfurniture;
                  bush[0].x1=605;
@@ -527,6 +537,7 @@ void load_bitmaps(BITMAP *buffer)
                  bush[0].SSX1=283;
                  bush[0].collide=true;
                  
+                 bush[1].ID="Bush 1";
                  bush[1].bmap=true;
                  bush[1].bitmap=hfurniture;
                  bush[1].x1=605;
@@ -536,6 +547,7 @@ void load_bitmaps(BITMAP *buffer)
                  bush[1].SSX1=283+36;
                  bush[1].collide=true;
                  
+                 bush[2].ID="Bush 2";
                  bush[2].bmap=true;
                  bush[2].bitmap=hfurniture;
                  bush[2].x1=605;
@@ -550,6 +562,7 @@ void load_bitmaps(BITMAP *buffer)
                
                void load_furniture(BITMAP *buffer)
                {
+                    bed[0].ID="Bed 0";
                     bed[0].isBed=true;
                  bed[0].bmap=true;
                  bed[0].bitmap=hfurniture;
@@ -559,6 +572,7 @@ void load_bitmaps(BITMAP *buffer)
                  bed[0].SSY=100;
                  bed[0].SSX1=41;
                  bed[0].collide=true;
+                 
                  
                  toilet[0].mbmap=true;
                  toilet[0].bitmap=hfurniture;
@@ -570,6 +584,7 @@ void load_bitmaps(BITMAP *buffer)
                  toilet[0].SSY1=0;
                  toilet[0].collide=false;
                  
+                 sink[0].ID="Sink 0";
                  sink[0].mbmap=true;
                  sink[0].bitmap=hfurniture;
                  sink[0].x1=69;
@@ -580,6 +595,7 @@ void load_bitmaps(BITMAP *buffer)
                  sink[0].SSY1=0;
                  sink[0].collide=true;
                  
+                 kitchensink[0].ID="Kitchensink 0";
                  kitchensink[0].bmap=true;
                  kitchensink[0].bitmap=hfurniture;
                  kitchensink[0].x1=165+36+36;
@@ -590,6 +606,7 @@ void load_bitmaps(BITMAP *buffer)
                  kitchensink[0].SSY1=0;
                  kitchensink[0].collide=true;
                  
+                 stove[0].ID="Stove 0";
                  stove[0].bmap=true;
                  stove[0].bitmap=hfurniture;
                  stove[0].x1=165+36;
@@ -600,6 +617,7 @@ void load_bitmaps(BITMAP *buffer)
                  stove[0].SSY1=0;
                  stove[0].collide=true;
                  
+                 fridge[0].ID="Fridge 0";
                  fridge[0].bmap=true;
                  fridge[0].bitmap=hfurniture;
                  fridge[0].x1=165;
@@ -610,6 +628,7 @@ void load_bitmaps(BITMAP *buffer)
                  fridge[0].SSY1=0;
                  fridge[0].collide=true;
                  
+                 bathtub[0].ID="Bathtub 0";
                  bathtub[0].mbmap=true;
                  bathtub[0].bitmap=hfurniture;
                  bathtub[0].x1=96;
@@ -666,6 +685,7 @@ void load_bitmaps(BITMAP *buffer)
                  cupboard[0].SSX1=355;
                  cupboard[0].collide=true;
                  
+                 shopcounterGR[0].ID="ShopcounterGR 0";
                  shopcounterGR[0].bmap=true;
                  shopcounterGR[0].bitmap=hfurniture;
                  shopcounterGR[0].x1=1200;
@@ -676,6 +696,7 @@ void load_bitmaps(BITMAP *buffer)
                  shopcounterGR[0].SSY1=101;
                  shopcounterGR[0].collide=true;
                  
+                 shopcounterGR[1].ID="ShopcounterGR 1";
                  shopcounterGR[1].bmap=true;
                  shopcounterGR[1].bitmap=hfurniture;
                  shopcounterGR[1].x1=1270;
@@ -686,6 +707,7 @@ void load_bitmaps(BITMAP *buffer)
                  shopcounterGR[1].SSY1=101;
                  shopcounterGR[1].collide=true;
                  
+                 shopcounterGR[2].ID="ShopcounterGR 2";
                  shopcounterGR[2].mbmap=true;
                  shopcounterGR[2].bitmap=hfurniture;
                  shopcounterGR[2].x1=1190;
@@ -696,6 +718,7 @@ void load_bitmaps(BITMAP *buffer)
                  shopcounterGR[2].SSY1=101;
                  shopcounterGR[2].collide=true;
                  
+                 shoppay[0].ID="Shoppay 0";
                  shoppay[0].bmap=true;
                  shoppay[0].bitmap=hfurniture;
                  shoppay[0].x1=1270;
@@ -706,6 +729,7 @@ void load_bitmaps(BITMAP *buffer)
                  shoppay[0].SSY1=101;
                  shoppay[0].collide=true;
                  
+                 shoppay[1].ID="Shoppay 1";
                  shoppay[1].mbmap=true;
                  shoppay[1].bitmap=hfurniture;
                  shoppay[1].x1=1270;
