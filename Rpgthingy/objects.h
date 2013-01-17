@@ -1,6 +1,7 @@
 
 void load_bitmaps(BITMAP *buffer)
             {
+                         map=load_bitmap("Data/Images/wmap.bmp", NULL);
                          background=load_bitmap("Data/Images/worldmap.bmp", NULL);
                          nightF=load_bitmap("Data/Images/night.bmp", NULL);
                     background=load_bitmap("Data/Images/worldmap.bmp", NULL);
@@ -22,6 +23,7 @@ void load_bitmaps(BITMAP *buffer)
            shadow=load_bitmap("Data/Images/shadow.bmp", NULL);
               NPC[2].bitmap=load_bitmap("Data/Images/player.bmp", NULL);
               player.bitmap=load_bitmap("Data/Images/sofia.bmp", NULL);
+              
                     }
                     
                    

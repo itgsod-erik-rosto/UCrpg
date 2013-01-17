@@ -12,6 +12,26 @@ void DRAW_MAP()
      }
 void commands(BITMAP *buffer)
 {
+     
+     
+if (GAME_SAVE==true)
+{
+saveF(buffer);
+}
+
+if (GAME_LOAD==true)
+{
+                     clear_to_color(screen, makecol(255, 255, 255));
+ clear_to_color(MAP, makecol(255, 255, 255));
+ textprintf_ex(screen,font,510,SH/2, makecol(255, 0, 0), -1, "Loading saved game...", NULL);
+  
+  
+       loadF(buffer);   
+       load_npcs(buffer);
+                    GAME_LOAD=false;
+                    }
+                    
+                    
      if (key[KEY_0])
      coc(0);
      if (key[KEY_1])

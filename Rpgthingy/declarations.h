@@ -10,6 +10,7 @@
 
 BITMAP *buffer;
 BITMAP *MAP;
+BITMAP *map;
 BITMAP *sub_buffer_1;
 BITMAP *sub_buffer_2;
 
@@ -54,7 +55,8 @@ ifstream load_NPC;
     float fpsclock;     
     long int tclockM=0;
     long int tclockH=12;
-              
+              long int tclockM_standard=0;
+              long int tclockH_standard=12;
               
               long int GetGamehour=tclockH;
               long int GetGameminute=tclockM;
@@ -109,8 +111,9 @@ ifstream load_NPC;
             
         bool GAME_PAUSE=false;
         bool GAME_RUNNING;
+        bool GAME_SAVE;
+        bool GAME_LOAD;
         
-       
         
         bool showobjectframes;
         bool LOAD=false;
