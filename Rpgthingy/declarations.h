@@ -42,7 +42,10 @@ ifstream LOADNPCS;
 ifstream LOADOBJECTS;
 ifstream load;
 ifstream load_NPC;
+ifstream consoledat;
 
+int var;
+int value;
             char* currentday[7]={"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"} ;
 
         float load_time;
@@ -121,5 +124,6 @@ ifstream load_NPC;
         bool quit;
         bool startdone=false;
         bool DISABLE_HUD;
+        bool consoleactive;
     
 

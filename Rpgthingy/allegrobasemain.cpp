@@ -59,6 +59,24 @@ while (GAME_RUNNING==true)
       }
       drawworld();  
         
+        if (key[KEY_C])
+        {
+                       consoleactive=true;
+                       }
+                       if (consoleactive==true)
+                       {
+        consoledat.open("/../console.dat");
+    
+         system("Data\\ucrpgconsole.exe");
+         
+         consoledat >> var;
+         consoledat >> value;
+         consoledat.close();
+         
+         var=value+1;
+         
+         consoleactive=false;
+                                               }
 
       if (tclockH>=7 && tclockH<=15)
       rest(8);
