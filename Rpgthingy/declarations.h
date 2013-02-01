@@ -30,6 +30,7 @@ BITMAP *house_1;
 BITMAP *house_2;
 BITMAP *grass1;
 BITMAP *road1;
+BITMAP *roadinter1;
 BITMAP *fence1;
 BITMAP *hSS1;
 BITMAP *hfurniture;

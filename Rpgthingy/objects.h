@@ -12,6 +12,7 @@ void load_bitmaps(BITMAP *buffer)
                     Store1=load_bitmap("Data/Images/Architecture/House1.bmp", NULL);
                     grass1=load_bitmap("Data/Images/Flora/grass1.bmp", NULL);
                     road1=load_bitmap("Data/Images/Architecture/road1.bmp", NULL);
+                    roadinter1=load_bitmap("Data/Images/Architecture/roadinter1.bmp", NULL);
                     fence1=load_bitmap("Data/Images/Architecture/fence1.bmp", NULL);
                     hSS1=load_bitmap("Data/Images/hSS1.bmp", NULL);
                     hfurniture=load_bitmap("Data/Images/Furniture/Hfurniture.bmp", NULL);
@@ -66,6 +67,13 @@ void load_bitmaps(BITMAP *buffer)
                      cell[7].y1=cell[7-1].y1+SH;
                      cell[7].cellnumber=0;
                      
+                 roadinter[0].mbmap=true;
+                 roadinter[0].bitmap=roadinter1;
+                 roadinter[0].x1=392;
+                 roadinter[0].y1=1641;
+                 roadinter[0].SSX=1140;
+                 roadinter[0].SSY=606;
+                 
                  road[0].bmap=true;
                  road[0].bitmap=road1;
                  road[0].x1=730;
@@ -529,7 +537,18 @@ void load_bitmaps(BITMAP *buffer)
                  
                  grass[11].x1=630+821;
                  grass[11].y1=800;
+                 
+                 grass[12].x1=-90-821;
+                 grass[12].y1=800+842;
+                 
+                 grass[13].x1=-90;
+                 grass[13].y1=800+842;
+                 
+                 grass[14].x1=-90+821;
+                 grass[14].y1=800+841;
                
+                 grass[15].x1=-90+821+821;
+                 grass[15].y1=800+841;
                
                  bush[0].ID="Bush 0";
                  bush[0].bmap=true;
@@ -672,10 +691,30 @@ void load_bitmaps(BITMAP *buffer)
                  door[2].SSX1=0;
                  door[2].SSY1=87;
                  
+                 couch[0].bmap=true;
+                 couch[0].bitmap=hfurniture;
+                 couch[0].x1=310;
+                 couch[0].y1=502;
+                 couch[0].SSX=353-319;
+                 couch[0].SSY=183-91;
+                 couch[0].SSX1=320;
+                 couch[0].SSY1=92;
+                 couch[0].collide=false;
+                 
+                 tv[0].bmap=true;
+                 tv[0].bitmap=hfurniture;
+                 tv[0].x1=205;
+                 tv[0].y1=502;
+                 tv[0].SSX=379-354;
+                 tv[0].SSY=183-91;
+                 tv[0].SSX1=355;
+                 tv[0].SSY1=92;
+                 tv[0].collide=true;
+                 
                  mat[0].bmap=true;
                  mat[0].bitmap=hfurniture;
                  mat[0].x1=280;
-                 mat[0].y1=410;
+                 mat[0].y1=390;
                  mat[0].SSX=62;
                  mat[0].SSY=100;
                  mat[0].SSX1=82;
@@ -851,8 +890,11 @@ void load_bitmaps(BITMAP *buffer)
                       grass[9].draw();
                       grass[10].draw();
                       grass[11].draw();
-    
-    
+                      grass[12].draw();
+                      grass[13].draw();
+                      grass[14].draw();
+                      grass[15].draw();
+                      grass[16].draw();
      bush[0].draw();
                         bush[1].draw();                        
                         bush[2].draw();
@@ -881,6 +923,8 @@ void load_bitmaps(BITMAP *buffer)
                            road[0].draw();
                            road[1].draw();
                            road[2].draw();   
+                           
+                           roadinter[0].draw();
                            
                              fence[0].draw();
                       fence[1].draw();
@@ -969,6 +1013,10 @@ void load_bitmaps(BITMAP *buffer)
                            
                         mat[0].draw();
                         mat[1].draw();
+                        
+                        couch[0].draw();
+                        
+                        tv[0].draw();
                         
                         cupboard[0].draw();
                         
