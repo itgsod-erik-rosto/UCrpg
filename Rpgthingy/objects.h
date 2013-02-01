@@ -3,28 +3,30 @@ void load_bitmaps(BITMAP *buffer)
             {
                          map=load_bitmap("Data/Images/wmap.bmp", NULL);
                          background=load_bitmap("Data/Images/worldmap.bmp", NULL);
-                         nightF=load_bitmap("Data/Images/night.bmp", NULL);
+                         menuscreen=load_bitmap("Data/Images/Menu/menuscreen.bmp", NULL);
+                         nightF=load_bitmap("Data/Images/Misc/night.bmp", NULL);
                     background=load_bitmap("Data/Images/worldmap.bmp", NULL);
-                    pHouse=load_bitmap("Data/Images/pHouse.bmp", NULL);
-                    house_1=load_bitmap("Data/Images/house_1.bmp", NULL);
-                    house_2=load_bitmap("Data/Images/house_2.bmp", NULL);
-                    Store1=load_bitmap("Data/Images/House1.bmp", NULL);
-                    grass1=load_bitmap("Data/Images/grass1.bmp", NULL);
-                    road1=load_bitmap("Data/Images/road1.bmp", NULL);
-                    fence1=load_bitmap("Data/Images/fence1.bmp", NULL);
+                    pHouse=load_bitmap("Data/Images/Architecture/pHouse.bmp", NULL);
+                    house_1=load_bitmap("Data/Images/Architecture/house_1.bmp", NULL);
+                    house_2=load_bitmap("Data/Images/Architecture/house_2.bmp", NULL);
+                    Store1=load_bitmap("Data/Images/Architecture/House1.bmp", NULL);
+                    grass1=load_bitmap("Data/Images/Flora/grass1.bmp", NULL);
+                    road1=load_bitmap("Data/Images/Architecture/road1.bmp", NULL);
+                    fence1=load_bitmap("Data/Images/Architecture/fence1.bmp", NULL);
                     hSS1=load_bitmap("Data/Images/hSS1.bmp", NULL);
-                    hfurniture=load_bitmap("Data/Images/Hfurniture.bmp", NULL);
-                    SSanim=load_bitmap("Data/Images/SSanim.bmp", NULL);
-                    items=load_bitmap("Data/Images/items.bmp", NULL);
-                    HUD=load_bitmap("Data/Images/hud.bmp", NULL);
+                    hfurniture=load_bitmap("Data/Images/Furniture/Hfurniture.bmp", NULL);
+                    SSanim=load_bitmap("Data/Images/Architecture/SSanim.bmp", NULL);
+                    items=load_bitmap("Data/Images/Items/items.bmp", NULL);
+                    HUD=load_bitmap("Data/Images/Misc/hud.bmp", NULL);
                     
-                    NPC[1].bitmap=load_bitmap("Data/Images/NPC_2.bmp", NULL);
-           NPC[0].bitmap=load_bitmap("Data/Images/NPC_1.bmp", NULL);
-           shadow=load_bitmap("Data/Images/shadow.bmp", NULL);
-              NPC[2].bitmap=load_bitmap("Data/Images/player.bmp", NULL);
-              player.bitmap=load_bitmap("Data/Images/sofia.bmp", NULL);
+                    NPC[1].bitmap=load_bitmap("Data/Images/Characters/NPC_2.bmp", NULL);
+           NPC[0].bitmap=load_bitmap("Data/Images/Characters/NPC_1.bmp", NULL);
+           shadow=load_bitmap("Data/Images/Characters/shadow.bmp", NULL);
+              NPC[2].bitmap=load_bitmap("Data/Images/Characters/player.bmp", NULL);
+              player.bitmap=load_bitmap("Data/Images/Characters/sofia.bmp", NULL);
               
                     }
+                    
                     
                    
                  

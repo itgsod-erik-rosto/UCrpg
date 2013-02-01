@@ -279,7 +279,7 @@ void collision();
 {
      
      
-if (quit==true)
+if (GAME.QUIT==true)
 {
                if (isitem==true)
 OSTATUS(buffer);
@@ -406,25 +406,25 @@ if (isactivated==true && isitem==true && key[KEY_Q] && player.itemeq==true && pl
                              
                              if (player.dir==2)
                              {
-                             x1=ofX+SW+85-player.r;
-                             y1=ofY+SH+380-player.r;
+                             x1=ofX.varvalue+SW+85-player.r;
+                             y1=ofY.varvalue+SH+380-player.r;
                              }
                              
                              else if (player.dir==4)
                              {
-                             x1=ofX+SW+140-player.r;
-                             y1=ofY+SH+380-player.r;
+                             x1=ofX.varvalue+SW+140-player.r;
+                             y1=ofY.varvalue+SH+380-player.r;
                              }
                              else if (player.dir==1)
                              {
-                             x1=ofX+SW+115-player.r;
-                             y1=ofY+SH+355-player.r;
+                             x1=ofX.varvalue+SW+115-player.r;
+                             y1=ofY.varvalue+SH+355-player.r;
                              }
                              
                              else if (player.dir==3)
                              {
-                             x1=ofX+SW+115-player.r;
-                             y1=ofY+SH+405-player.r;
+                             x1=ofX.varvalue+SW+115-player.r;
+                             y1=ofY.varvalue+SH+405-player.r;
                              }
                              }
                              
@@ -646,7 +646,7 @@ void OBJECTS::draw()
                                ammo-=1;
                                }
                                
-                               if (key[KEY_SPACE] && equipped==true)
+                               if (key[KEY_SPACE] && equipped==true && player.itemout==true)
                                if (ammo<=0)
                                {
                                player.gshotX=-1000;

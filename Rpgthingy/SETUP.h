@@ -1,14 +1,92 @@
 #include <allegro.h>
-
+//#include <windows.h>
 #include <iostream>
-#include <string>
 #include <fstream>
-
+#include <string>
 #include <declarations.h>
 #include <config.h>
 
 using namespace std;
 
+struct VAR
+         {
+                string varID;
+                float varvalue;
+                
+                int WIDTH;
+                int HEIGHT;
+                int DEPTH;
+                
+                bool LOAD;
+                bool SAVE;
+                bool RUNNING;
+                bool PAUSE;
+                bool NEW;
+                bool QUIT;
+                bool LOCK;
+                
+         void EXIT(BITMAP *buffer);
+                void varfunc();   
+                             
+                }ofX, ofY, currentcell, save_delete, NPCS_delete, GAME, menu, SCREEN;
+                
+                void VAR::varfunc()
+                {       
+    if (var==varID)
+    {
+                varvalue=value;   
+                
+                   }
+                     }
+                     
+                     void VAR::EXIT(BITMAP *buffer)
+{
+                     
+                       if (savetimer<=2 && !key[KEY_LSHIFT])
+                       {
+                                        
+                                        if (QUIT!=true)
+                                        {
+                       savetimer=0;
+                QUIT=true;
+                }
+                
+                
+                   if (savetimer>=2)
+                   RUNNING=false;
+                   }
+                   
+                   else if (key[KEY_LSHIFT])
+                   RUNNING=false;
+
+}
+
+                     void load_vars()
+                     {
+                          ofX.varID="ofX";
+                      ofX.varvalue=-655;
+
+
+                          ofY.varID="ofY";
+                          ofY.varvalue=-540;
+                           
+                        currentcell.varID="current_cell";
+                        
+                        save_delete.varID="deletesave";
+                        
+                        NPCS_delete.varID="deletenpcs";
+                        
+                        GAME.RUNNING=false;
+                        GAME.PAUSE=false;
+                        
+                        menu.LOAD=true;
+                        menu.RUNNING=true;
+                        
+                        SCREEN.LOCK=true;
+                        SCREEN.WIDTH=1080;
+                        SCREEN.HEIGHT=670;
+                        SCREEN.DEPTH=32;
+                          }
 
 
 
@@ -38,7 +116,6 @@ clear_to_color(screen, makecol(255, 255, 255));
 
   textprintf_ex(screen,font,510,SH/2, makecol(255, 0, 0), -1, "Loading models...", NULL);
 
-load_menu(buffer);
 load_flora(buffer);
 load_architecture(buffer);
 load_furniture(buffer);
@@ -50,7 +127,9 @@ load_messageboxes(buffer);
 clear_to_color(screen, makecol(255, 255, 255));
 
   textprintf_ex(screen,font,510,SH/2, makecol(255, 0, 0), -1, "Loading characters...", NULL);
+    
     loadch(buffer);
+    
     
     
     
@@ -69,10 +148,10 @@ void drawworld (void)
 clear_bitmap(buffer);
 
 
-          if (quit==true)
+          if (GAME.QUIT==true)
      FOBJECTS.open("Data/Objects/FObjects.dat");
      
-     if (quit==true)
+     if (GAME.QUIT==true)
      FNPCS.open("Data/NPCS/NPCS.dat");
 
      
@@ -84,7 +163,7 @@ clear_bitmap(buffer);
             draw_messageboxes(buffer);
              
 
-     if (quit==true)       
+     if (GAME.QUIT==true)       
            FNPCS.close();   
           
        
@@ -96,7 +175,7 @@ clear_bitmap(buffer);
 hud[2].draw(); 
 }
 
-       if (quit==true)
+       if (GAME.QUIT==true)
  FOBJECTS.close();
  
  
@@ -111,11 +190,14 @@ textprintf_ex(buffer,font,400,33,makecol(255,0,0), 0," SaveTimer: %i", savetimer
 textprintf_ex(buffer,font,400,43,makecol(255,0,0), 0," B: %i", b);
 
 
-       
+ 
+}
+
+      void enablemouse(BITMAP *buffer)
+       {
                            if (mouse_x!=SW/2 && mouse_y!=SH/2)
      circlefill(buffer, mouse_x, mouse_y, 2, makecol(255,0,0));
 }
-
 void timerfunc(void)
                                               {
                                                                
@@ -126,7 +208,7 @@ void timerfunc(void)
                                                                               fps1=0; 
                                                                fpsclock=0;
                                                                }
-                                                               if (GAME_PAUSE!=true)
+                                                               if (GAME.PAUSE!=true)
                                                                {
                                                    tclockM+=1;
                                                    if (tclockM>=60)

@@ -1,6 +1,8 @@
 #include <SETUP.h>   
-            
+        
+                   
 using namespace std;
+         
 int main(){
     
  configF(buffer); 
@@ -9,8 +11,9 @@ int main(){
     install_keyboard();
     install_mouse();
     install_timer();
+    install_sound(DIGI_AUTODETECT, MIDI_AUTODETECT, "yo");
 
-LOCK_VARIABLE(fpsclock);
+    LOCK_VARIABLE(fpsclock);
 	LOCK_VARIABLE(cday_i);
 	LOCK_VARIABLE(load_time);
 	
@@ -22,101 +25,157 @@ LOCK_VARIABLE(fpsclock);
  mouse_b;
  set_mouse_speed(1, 3);
  
-    set_color_depth (colordepth);
-    set_gfx_mode( GFX_AUTODETECT_WINDOWED, SW, SH, 0, 0);
+ load_vars();
+    set_color_depth (SCREEN.DEPTH);
+    set_gfx_mode( GFX_AUTODETECT_WINDOWED, SCREEN.WIDTH, SCREEN.HEIGHT, 0, 0);
     set_window_title("Tjocka katter.");
     
     
     
     
-    buffer = create_bitmap (SW, SH);
-    MAP = create_bitmap (SW, SH);
+    buffer = create_bitmap (SCREEN.WIDTH, SCREEN.HEIGHT);
+    MAP = create_bitmap (SCREEN.WIDTH, SCREEN.HEIGHT);
     
     load_bitmaps(buffer);
     
     
+
             
             SETUP(buffer);
             
-            if (menu.LOAD==true)
-            {
-  GAME_LOAD=true;
-}
-
-if (menu.LOAD==true || menu.NEW==true)
-{       
-                    GAME_RUNNING=true;  
-                    }
-
-while (GAME_RUNNING==true)
-{
-   
+            
+            
                     
-     if (GAME_PAUSE!=true)
+                    while (GAME.RUNNING==true || menu.RUNNING==true)
+{
+                    commands(buffer);
+                    
+                    menuF(buffer);
+
+
+if (GAME.RUNNING==true)
+{
+      
+                    if (key[KEY_G])
+                    {   
+                        SAMPLE *sample = load_wav("Data/Sound/Test/G.wav");
+                         int sound = play_sample(sample, 255, 0, 2000, 0);
+
+                                   }
+                                   
+     if (GAME.PAUSE!=true)
      {
-     schedules(buffer);  
+     //schedules(buffer);  
       timer1F(buffer);
       }
       drawworld();  
         
-        if (key[KEY_C])
+        if (key[KEY_C] && consoleactive!=true)
         {
                        consoleactive=true;
                        }
                        if (consoleactive==true)
                        {
-        consoledat.open("/../console.dat");
+         
+         consoledat.open(".././Rpgthingy/console.dat");
+            
     
          system("Data\\ucrpgconsole.exe");
-         
-         consoledat >> var;
-         consoledat >> value;
-         consoledat.close();
-         
-         var=value+1;
-         
+ 
+ getline(consoledat, var1);
+ var = (consoledat, var1);
+ 
+ consoledat >> value1;
+ value = (consoledat, value1);
+
+            
+            vfunc(buffer);
+            
+    consoledat.close();         
+   
+            
+    
+    rest(300);     
+            
          consoleactive=false;
-                                               }
+         }
+         
+            
+ 
+             
+//if (var!="")
+//textprintf_ex(buffer,font,400,630, makecol(255, 0, 0), -1, "var: %s", var);
+textprintf_ex(buffer,font,400,640, makecol(255, 0, 0), -1, "value: %i", value);
 
       if (tclockH>=7 && tclockH<=15)
       rest(8);
       else
       rest(5);
 
-                           
-commands(buffer);
 
-if (quit!=true)  
+if (save_delete.varvalue==1)
+{
+               remove("Data/Save/save.dat");
+               }           
+               if (NPCS_delete.varvalue==1)
+               {
+                                           remove("Data/NPCS/NPCS.dat");
+                                           }                
+
+
+if (GAME.QUIT!=true)  
 {
                  
 Wclock(buffer);
 fpscounter(buffer);
 }
 
-GAME_EXIT(buffer);
+if (key[KEY_ESC])
+GAME.EXIT(buffer);
 
 
-
-if (quit==true)
+if (GAME.QUIT==true)
 {
-    GAME_SAVE=true;
+                    savetimer+=2;
+                    
+                    clear_to_color(buffer, makecol(50, 50, 50));
+                       textprintf_ex(buffer,font,510-40,20, makecol(255, 0, 0), -1, "%i", savetimer);
+                       textprintf_ex(buffer,font,510-40,20, makecol(255, 0, 0), -1, "  %c Finished", 37);
+                    textprintf_ex(buffer,font,400,SH/2, makecol(255, 0, 0), -1, "Waiting for the game to save...", NULL);
+                    
+                
+                    
+    GAME.SAVE=true;
     
-
-            }            
+fpscounter(buffer); 
+               
+            }      
+                  
+}
+if (menu.RUNNING==true)
+{
+                       if (key[KEY_ESC])
+                       {
+                       GAME.RUNNING=false;
+                       menu.RUNNING=false;
+                       }
+                       }
+enablemouse(buffer);
+                        
             if (!key[KEY_M])
             {
-blit (buffer, screen, 0, 0, 0, 0, SW, SH);
+blit (buffer, screen, 0, 0, 0, 0, SCREEN.WIDTH, SCREEN.HEIGHT);
 
 clear_bitmap(buffer);
 }
 else if (key[KEY_M])
 {
-blit (map, MAP, 0, 0, 0, 0, SW, SH);
-blit (MAP, screen, 0, 0, 0, 0, SW, SH);
+blit (map, MAP, 0, 0, 0, 0, SCREEN.WIDTH, SCREEN.HEIGHT);
+blit (MAP, screen, 0, 0, 0, 0, SCREEN.WIDTH, SCREEN.HEIGHT);
 
 clear_bitmap(MAP);
 }
-}
+                       }
     return 0;   
 }   
 END_OF_MAIN();

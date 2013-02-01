@@ -5,7 +5,7 @@
 
 using namespace std;
 
-char var[100];
+string var;
 int value;
 
 int main(int argc, char *argv[])
@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     cin >> value;
     
     consoledat << var;
-    consoledat << " ";
+    consoledat << endl;
     consoledat << value;
     
     consoledat.close();

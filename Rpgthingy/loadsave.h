@@ -9,9 +9,9 @@ void loadF(BITMAP *buffer)
             load.open("Data/Save/save.dat");
   
             load >> DISABLE_HUD;
-            load >> ofX;
-            load >> ofY;
-            load >> current_cell;
+            load >> ofX.varvalue;
+            load >> ofY.varvalue;
+            load >> currentcell.varvalue;
             load >> player.HP;
             load >> player.dir;
             load >> tclockH;
@@ -19,7 +19,7 @@ void loadF(BITMAP *buffer)
             load >> cday_i;
             load.close();
             
-           
+       
 
      }
      
@@ -46,11 +46,11 @@ LOADNPCS.close();
             Fpos.open("Data/Save/save.dat");
             Fpos << DISABLE_HUD;
             Fpos << endl;
-            Fpos << ofX;
+            Fpos << ofX.varvalue;
             Fpos << endl;
-            Fpos << ofY;
+            Fpos << ofY.varvalue;
             Fpos << endl;
-            Fpos << current_cell;
+            Fpos << currentcell.varvalue;
             Fpos << endl;
             Fpos << player.HP;
             Fpos << endl;

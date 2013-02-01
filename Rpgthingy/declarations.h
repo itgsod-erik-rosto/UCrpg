@@ -1,8 +1,12 @@
+ 
+
+ 
+
 #define black makecol( 0, 0, 0)
 #define white makecol( 255, 255, 255)
 #define red makecol(255, 0, 0)
-#define cam int (ofX)*-1-640
-#define cam2 int (ofY)*-1-700
+#define cam int (ofX.varvalue)*-1-640
+#define cam2 int (ofY.varvalue)*-1-700
 
 
 
@@ -13,6 +17,7 @@ BITMAP *MAP;
 BITMAP *map;
 BITMAP *sub_buffer_1;
 BITMAP *sub_buffer_2;
+BITMAP *menuscreen;
 
 BITMAP *nightF;              
 BITMAP *shadow;
@@ -44,8 +49,12 @@ ifstream load;
 ifstream load_NPC;
 ifstream consoledat;
 
-int var;
+string var;
+string var1;
+
 int value;
+int value1;
+
             char* currentday[7]={"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"} ;
 
         float load_time;
@@ -70,7 +79,7 @@ int value;
             int P_timer;  
               int CRi; 
             
-        int current_cell;
+        //int current_cell;
         int npc_i[100];
         int act_timer;
         int max_npc=3;
@@ -91,8 +100,8 @@ int value;
         int Tobjects=2;
         int objectsdrawn;
         int timer1=0;
-        float ofX=-650;
-        float ofY=-470;
+        //float ofX=-650;
+        //float ofY=-470;
         int i;
         int colordepth=32;
         int SW=1080;
@@ -112,18 +121,13 @@ int value;
         int starttimer=0;
         int objectamount=0;
             
-        bool GAME_PAUSE=false;
-        bool GAME_RUNNING;
-        bool GAME_SAVE;
-        bool GAME_LOAD;
-        
         
         bool showobjectframes;
         bool LOAD=false;
         bool issaved=false;
-        bool quit;
+       
         bool startdone=false;
         bool DISABLE_HUD;
         bool consoleactive;
-    
+        bool console2active;
 

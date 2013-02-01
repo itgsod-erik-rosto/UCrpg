@@ -6,8 +6,9 @@ void loadch(BITMAP *buffer)
      player.activate=false;
      player.Wtarget=-2;
       player.speed=2;
-                 player.x=SW/2;
-                 player.y=SH/2;
+                 
+     player.x=SW/2;
+     player.y=SH/2;
             player.r=20;     
            player.dTimer=0;     
            player.isPatrolling=false;
@@ -110,6 +111,7 @@ void loadch(BITMAP *buffer)
            
             
             
+           
         actor[0]=player;
      }
 

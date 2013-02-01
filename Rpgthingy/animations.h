@@ -32,7 +32,7 @@ if ((key[KEY_W] || key[KEY_A] || key[KEY_S] || key[KEY_D]) && isNPC!=true)
                else SSY=0;
                }
                
-               if (itemout==true && key[KEY_SPACE] && isNPC!=true && gunfireT==0)
+               if (itemout==true && itemeq==true && key[KEY_SPACE] && isNPC!=true && gunfireT==0)
                {
                                  gunfireT++;
                                  gunfire1=true;
@@ -76,11 +76,11 @@ if ((key[KEY_W] || key[KEY_A] || key[KEY_S] || key[KEY_D]) && isNPC!=true)
                                            if (gunfireT<7) 
                                            {
                                                 
-                                            ofX++;
+                                            ofX.varvalue++;
                                         }
                                             
                                            if (gunfireT>=7)
-                                            ofX--;
+                                            ofX.varvalue--;
                                             }
                                             
                                  if (dir==4)
@@ -91,11 +91,11 @@ if ((key[KEY_W] || key[KEY_A] || key[KEY_S] || key[KEY_D]) && isNPC!=true)
                                            if (gunfireT<7) 
                                            {
                                                   
-                                            ofX--;
+                                            ofX.varvalue--;
                                         }
                                             
                                            if (gunfireT>=7)
-                                            ofX++;
+                                            ofX.varvalue++;
                                             }
                                  
                                  if (dir==1)
@@ -104,10 +104,10 @@ if ((key[KEY_W] || key[KEY_A] || key[KEY_S] || key[KEY_D]) && isNPC!=true)
                                         masked_blit(items, buffer, 1, 30, x-r/2+2, y-r*2-3, 13, 43-30);
                                            
                                            if (gunfireT<7) 
-                                            ofY++;
+                                            ofY.varvalue++;
                                             
                                            if (gunfireT>=7)
-                                            ofY--;
+                                            ofY.varvalue--;
                                             }
                                             
                                  if (dir==3)
@@ -116,10 +116,10 @@ if ((key[KEY_W] || key[KEY_A] || key[KEY_S] || key[KEY_D]) && isNPC!=true)
                                         masked_blit(items, buffer, 29, 30, x-r/2+5, y+r+9, 13, 43-30);
                                            
                                            if (gunfireT<7) 
-                                            ofY--;
+                                            ofY.varvalue--;
                                             
                                            if (gunfireT>=7)
-                                            ofY++;
+                                            ofY.varvalue++;
                                             }
                                  }
                                  

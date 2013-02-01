@@ -124,6 +124,8 @@ int gunfireT;
     #include <actors.h>
     void PLAYER::target()
     {
+         
+   
          if (tclockH>=Stime[Wtarget+1] && tclockH<=Etime[Wtarget+1])
          Wtarget+=1;
          
@@ -497,13 +499,13 @@ void PLAYER::controls()
      if (iscollided==true)
      {
      if (dir==1)
-    ofY+=speed*TIME;
+    ofY.varvalue+=speed*TIME;
     else if (dir==3)
-    ofY-=speed*TIME;
+    ofY.varvalue-=speed*TIME;
     else if (dir==2)
-    ofX+=speed*TIME;
+    ofX.varvalue+=speed*TIME;
     else if (dir==4)
-    ofX-=speed*TIME;
+    ofX.varvalue-=speed*TIME;
     
     iscollided=false;
 }
@@ -512,7 +514,11 @@ void PLAYER::controls()
 else if (isNPC==true)
 {
      
-     
+ if (targetX[Ti]==0 && targetY[Ti]==0)
+ {
+                    hasTarget=false;
+                }    
+                
      if (isShot==true)
      {
                       
@@ -668,7 +674,7 @@ ctimer=0;
                     {
                                       itemtimer++;
                                       
-                                      if (key[KEY_G])
+                                      if (key[KEY_G] || key[KEY_Q])
                                       {
                                                    
                                                     itemout=false; 
@@ -699,7 +705,7 @@ ctimer=0;
     {
                    isMoving=true;
         SSX=0;
-    ofY-=speed*TIME;
+    ofY.varvalue-=speed*TIME;
     if (!key[KEY_SPACE])
     dir=1;
     
@@ -710,7 +716,7 @@ else if (key[KEY_S] && isNPC!=true)
         SSX=0;
         if (!key[KEY_SPACE])
          dir=3;
-    ofY+=speed*TIME;
+    ofY.varvalue+=speed*TIME;
    
 }
     else if (key[KEY_A] && isNPC!=true)
@@ -719,7 +725,7 @@ else if (key[KEY_S] && isNPC!=true)
         SSX=0;
         if (!key[KEY_SPACE])
          dir=2;
-    ofX-=speed*TIME;
+    ofX.varvalue-=speed*TIME;
      
 }
   
@@ -729,7 +735,7 @@ else if (key[KEY_S] && isNPC!=true)
         SSX=0;
         if (!key[KEY_SPACE])
          dir=4;
-    ofX+=speed*TIME;
+    ofX.varvalue+=speed*TIME;
      
 }
 if (!key[KEY_W] && !key[KEY_D] && !key[KEY_S] && !key[KEY_D])
@@ -769,11 +775,13 @@ if (key[KEY_LSHIFT] && isNPC!=true)
 }
 void PLAYER::draw()
 { 
-     if (targetX==0 && targetY==0)
+     if (SCREEN.LOCK==true)
      {
-                    targetX[Ti]=x;
-                    targetY[Ti]=y;
-                    }
+     player.x=SW/2;
+     player.y=SH/2;
+     }
+    
+    
      if (do_once!=true)
      {
                         l_end_x=x;
@@ -785,11 +793,12 @@ void PLAYER::draw()
                      {
                                           }
      
-    if (quit==true)
+    if (GAME.QUIT==true)
     {
                    
     STATUS(buffer);
 }
+
 if (POS!=0)
 circlefill(buffer, *POS+cam, *POS2+2+cam2, 10, makecol(255, 0, 0));
     if (isNPC!=true && isTravelroute!=true)
@@ -1018,9 +1027,9 @@ circlefill(buffer, *POS+cam, *POS2+2+cam2, 10, makecol(255, 0, 0));
 
                        if (isDead!=true)
                        {
-                                        target();
+                                        //target();
      
-     if (GAME_PAUSE!=true)
+     if (GAME.PAUSE!=true)
      {
      animation(buffer);
      controls();
