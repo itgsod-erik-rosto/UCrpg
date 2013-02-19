@@ -1,4 +1,35 @@
 
+struct STATICS : OBJECTS
+{
+       
+       }
+       couch[1000],
+       trail[1000], 
+       fence[1000], 
+       target[1000],
+       mat[1000], 
+       simonsbreda[1000],
+       shopcounterGR[1000],
+       shoppay[1000],
+       bush[1000],
+       wall[1000], 
+       road[1000], 
+       roadinter[1000];
+       
+       struct ACTIVATORS : OBJECTS
+       {
+              
+              }
+       cupboard[1000],
+       sink[1000],
+       toilet[1000],
+       bathtub[1000],
+       fridge[1000],
+       stove[1000],
+       kitchensink[1000],
+       tv[1000],
+       bed[1000];
+       
 void load_bitmaps(BITMAP *buffer)
             {
                          map=load_bitmap("Data/Images/wmap.bmp", NULL);
@@ -134,6 +165,7 @@ void load_bitmaps(BITMAP *buffer)
                  house[4].SSY=343;
                  house[4].isobject=false;
                  house[4].ishouse=true;
+                 house[4].housetype=1;
                  
                  
                  //house2
@@ -263,6 +295,7 @@ void load_bitmaps(BITMAP *buffer)
                  
                  void load_walls(BITMAP *buffer)
                     {    
+                         //Player house
                  wall[0].x1=200;
                  wall[0].x2=200;
                  wall[0].y1=300;
@@ -362,32 +395,90 @@ void load_bitmaps(BITMAP *buffer)
                  wall[19].x2=415;
                  wall[19].y1=80;
                  wall[19].y2=245;
+                 //
                  
-                 wall[20].x1=1205;
-                 wall[20].x2=1205;
-                 wall[20].y1=223+5;
-                 wall[20].y2=348+5;
                  
-                 wall[21].x1=1205;
-                 wall[21].x2=1615;
-                 wall[21].y1=223+5;
-                 wall[21].y2=223+5;
+                 //Store
+                 wall[30].x1=1152;
+                 wall[30].x2=1152;
+                 wall[30].y1=700;
+                 wall[30].y2=900;
                  
-                  wall[22].x1=1615;
-                 wall[22].x2=1615;
-                 wall[22].y1=223+5;
-                 wall[22].y2=565;
+                 wall[31].x1=1152;
+                 wall[31].x2=1152+house[2].SSX-10;
+                 wall[31].y1=700;
+                 wall[31].y2=700;
                  
-                  wall[23].x1=1205;
-                 wall[23].x2=1615;
-                 wall[23].y1=565;
-                 wall[23].y2=565;
+                 wall[32].x1=1152+house[2].SSX;
+                 wall[32].x2=1152+house[2].SSX;
+                 wall[32].y1=700;
+                 wall[32].y2=700+house[2].SSY;
                  
-                  wall[24].x1=1205;
-                 wall[24].x2=1205;
-                 wall[24].y1=435;
-                 wall[24].y2=565;
+                 wall[33].x1=1152;
+                 wall[33].x2=1152;
+                 wall[33].y1=998;
+                 wall[33].y2=700+house[2].SSY;
                  
+                 wall[34].x1=1152;
+                 wall[34].x2=1152+house[2].SSX-10;
+                 wall[34].y1=700+house[2].SSY;
+                 wall[34].y2=700+house[2].SSY;
+                 //
+                 
+               //house 5
+                 wall[35].x1=house[4].x1+4;
+                 wall[35].x2=house[4].x1+4;
+                 wall[35].y1=house[4].y1+4;
+                 wall[35].y2=house[4].y1+124;
+                 
+                 wall[36].x1=house[4].x1+4;
+                 wall[36].x2=house[4].x1+house[4].SSX-4;
+                 wall[36].y1=house[4].y1+4;
+                 wall[36].y2=house[4].y1+4;
+                 
+                  wall[37].x1=house[4].x1+house[4].SSX-4;
+                 wall[37].x2=house[4].x1+house[4].SSX-4;
+                 wall[37].y1=house[4].y1+4;
+                 wall[37].y2=house[4].y1+house[4].SSY-4;
+                 
+                  wall[38].x1=house[4].x1+4;
+                 wall[38].x2=house[4].x1+house[4].SSX-4;
+                 wall[38].y1=house[4].y1+house[4].SSY-4;
+                 wall[38].y2=house[4].y1+house[4].SSY-4;
+                 
+                  wall[39].x1=house[4].x1+4;
+                 wall[39].x2=house[4].x1+4;
+                 wall[39].y1=house[4].y1+204;
+                 wall[39].y2=house[4].y1+house[4].SSY-4;
+                 
+                 wall[40].x1=house[4].x1+4;
+                 wall[40].x2=house[4].x1+330;
+                 wall[40].y1=house[4].y1+124;
+                 wall[40].y2=house[4].y1+124;
+                 
+                 
+                 wall[41].x1=house[4].x1+5;
+                 wall[41].x2=house[4].x1+190;
+                 wall[41].y1=house[4].y1+204;
+                 wall[41].y2=house[4].y1+204;
+                 
+                 wall[42].x1=house[4].x1+190;
+                 wall[42].x2=house[4].x1+190;
+                 wall[42].y1=house[4].y1+204;
+                 wall[42].y2=house[4].y1+270;
+                 
+                 wall[43].x1=house[4].x1+315;
+                 wall[43].x2=house[4].x1+315;
+                 wall[43].y1=house[4].y1+204;
+                 wall[43].y2=house[4].y1+270;
+                 
+                 wall[44].x1=house[4].x1+315;
+                 wall[44].x2=house[4].x1+415;
+                 wall[44].y1=house[4].y1+204;
+                 wall[44].y2=house[4].y1+204;
+                 //
+                 
+                 //house 4
                  wall[25].x1=house[3].x1+5;
                  wall[25].x2=house[3].x1+330;
                  wall[25].y1=house[3].y1+123;
@@ -414,82 +505,33 @@ void load_bitmaps(BITMAP *buffer)
                  wall[29].y1=house[3].y1+205;
                  wall[29].y2=house[3].y1+205;
                  
-                 wall[30].x1=1152;
-                 wall[30].x2=1152;
-                 wall[30].y1=700;
-                 wall[30].y2=900;
                  
-                 wall[31].x1=1152;
-                 wall[31].x2=1152+house[2].SSX-10;
-                 wall[31].y1=700;
-                 wall[31].y2=700;
+                 wall[20].x1=house[3].x1+4;
+                 wall[20].x2=house[3].x1+4;
+                 wall[20].y1=house[3].y1+4;
+                 wall[20].y2=house[3].y1+124;
                  
-                 wall[32].x1=1152+house[2].SSX;
-                 wall[32].x2=1152+house[2].SSX;
-                 wall[32].y1=700;
-                 wall[32].y2=700+house[2].SSY;
+                 wall[21].x1=house[3].x1+4;
+                 wall[21].x2=house[3].x1+house[3].SSX-4;
+                 wall[21].y1=house[3].y1+4;
+                 wall[21].y2=house[3].y1+4;
                  
-                 wall[33].x1=1152;
-                 wall[33].x2=1152;
-                 wall[33].y1=998;
-                 wall[33].y2=700+house[2].SSY;
+                  wall[22].x1=house[3].x1+house[3].SSX-4;
+                 wall[22].x2=house[3].x1+house[3].SSX-4;
+                 wall[22].y1=house[3].y1+4;
+                 wall[22].y2=house[3].y1+house[3].SSY-4;
                  
-                 wall[34].x1=1152;
-                 wall[34].x2=1152+house[2].SSX-10;
-                 wall[34].y1=700+house[2].SSY;
-                 wall[34].y2=700+house[2].SSY;
+                  wall[23].x1=house[3].x1+4;
+                 wall[23].x2=house[3].x1+house[3].SSX-4;
+                 wall[23].y1=house[3].y1+house[3].SSY-4;
+                 wall[23].y2=house[3].y1+house[3].SSY-4;
                  
-               //house2
-                 wall[35].x1=1205;
-                 wall[35].x2=1205;
-                 wall[35].y1=223+5-600;
-                 wall[35].y2=348+5-600;
+                  wall[24].x1=house[3].x1+4;
+                 wall[24].x2=house[3].x1+4;
+                 wall[24].y1=house[3].y1+204;
+                 wall[24].y2=house[3].y1+house[3].SSY-4;
                  
-                 wall[36].x1=1205;
-                 wall[36].x2=1615;
-                 wall[36].y1=223+5-600;
-                 wall[36].y2=223+5-600;
-                 
-                  wall[37].x1=1615;
-                 wall[37].x2=1615;
-                 wall[37].y1=223+5-600;
-                 wall[37].y2=565-600;
-                 
-                  wall[38].x1=1205;
-                 wall[38].x2=1615;
-                 wall[38].y1=565-600;
-                 wall[38].y2=565-600;
-                 
-                  wall[39].x1=1205;
-                 wall[39].x2=1205;
-                 wall[39].y1=435-600;
-                 wall[39].y2=565-600;
-                 
-                 wall[40].x1=house[3].x1+5;
-                 wall[40].x2=house[3].x1+330;
-                 wall[40].y1=house[3].y1+123-600;
-                 wall[40].y2=house[3].y1+123-600;
-                 
-                 
-                 wall[41].x1=house[3].x1+5;
-                 wall[41].x2=house[3].x1+190;
-                 wall[41].y1=house[3].y1+205-600;
-                 wall[41].y2=house[3].y1+205-600;
-                 
-                 wall[42].x1=house[3].x1+190;
-                 wall[42].x2=house[3].x1+190;
-                 wall[42].y1=house[3].y1+205-600;
-                 wall[42].y2=house[3].y1+270-600;
-                 
-                 wall[43].x1=house[3].x1+315;
-                 wall[43].x2=house[3].x1+315;
-                 wall[43].y1=house[3].y1+205-600;
-                 wall[43].y2=house[3].y1+270-600;
-                 
-                 wall[44].x1=house[3].x1+315;
-                 wall[44].x2=house[3].x1+415;
-                 wall[44].y1=house[3].y1+205-600;
-                 wall[44].y2=house[3].y1+205-600;
+               //
                
                  wall[45].x1=415;
                  wall[45].x2=415;
@@ -1047,7 +1089,7 @@ cell[0].draw();
                     void draw_brightness(BITMAP *buffer)
                     {
                         
-                        if (tclockH<=15 && tclockH>=7)
+                        if (tclockH<15 && tclockH>7)
                         {
                           set_trans_blender(128, 128, 128, 128);
                           
@@ -1058,13 +1100,9 @@ cell[0].draw();
     }
                     
                     
-                    else if (tclockH>15 || tclockH<7)
+                    else if (tclockH>=15 || tclockH<=7)
                     {
-                        if (tclockH>15)
                  set_trans_blender(sh[0], sh[1], sh[2], sh[3]);
-                        else if (tclockH<7)
-                        set_trans_blender(sh[0]+35, sh[1]+35, sh[2]+35, sh[3]+35);
-                 
                           draw_trans_sprite(buffer, nightF, 0, 0);
                           clear_bitmap(nightF);
                     }

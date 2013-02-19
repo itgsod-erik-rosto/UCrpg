@@ -7,7 +7,12 @@
 #include <config.h>
 
 using namespace std;
-
+struct WORLD
+{
+       char* ID;
+       
+       };
+       
 struct VAR
          {
                 string varID;

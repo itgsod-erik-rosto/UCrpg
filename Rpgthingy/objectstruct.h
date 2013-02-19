@@ -1,7 +1,7 @@
-struct OBJECTS
+struct OBJECTS : WORLD
 {
 
-     char *ID;
+    
      
      int ammo;
      int ammo_max;
@@ -22,6 +22,8 @@ struct OBJECTS
        bool mbmap;
        
        int status[];
+       
+       int housetype;
        
        bool objcollides;
        bool equipped;
@@ -87,30 +89,9 @@ void collision();
         
        deagle[1000],
        gunFIRE[1000],
-       wall[1000], 
-       road[1000], 
-       roadinter[1000],
        hud[1000],
-       trail[1000], 
        house[1000], 
        grass[1000], 
-       fence[1000], 
-       bed[1000], 
-       target[1000],
-       mat[1000], 
-       couch[1000],
-       tv[1000],
-       shopcounterGR[1000],
-       shoppay[1000],
-       bush[1000], 
-       cupboard[1000],
-       sink[1000],
-       simonsbreda[1000],
-       toilet[1000],
-       bathtub[1000],
-       fridge[1000],
-       stove[1000],
-       kitchensink[1000],
        bloodstain[1000],
        door[1000],
        cell[1000];
@@ -121,25 +102,25 @@ void collision();
             
                           if (isactivated==true && isBed==true)
             {
+                          tclockH+=6;
+                          //BED_msg.MsgEnd=false;
+                          //Option[1].MsgEnd=false;
+                          //Option[2].MsgEnd=false;
                           
-                          BED_msg.MsgEnd=false;
-                          Option[1].MsgEnd=false;
-                          Option[2].MsgEnd=false;
-                          
-                           BED_msg.draw(buffer);
+                           //BED_msg.draw(buffer);
                          
                          
             
-                                               if (BED_msg.MsgEnd==true 
-                                               || Option[1].MsgEnd==true 
-                                               || mouse_b & 2 
-                                               || (player.x+cam<=x1-40 
-                                               && player.x+cam>=x1+SSX+40
-                                               && player.y+cam2<=y1-40 
-                                               && player.y+cam2>=y1+SSY+40))
-                                               {
+                                               //if (BED_msg.MsgEnd==true 
+                                               //|| Option[1].MsgEnd==true 
+                                               //|| mouse_b & 2 
+                                               //|| (player.x+cam<=x1-40 
+                                               //&& player.x+cam>=x1+SSX+40
+                                               //&& player.y+cam2<=y1-40 
+                                               //&& player.y+cam2>=y1+SSY+40))
+                                               //{
                                                                         isactivated=false;
-                                                                        }
+                                                                     //  }
             
                          }            
             }

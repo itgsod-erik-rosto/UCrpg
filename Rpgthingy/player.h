@@ -1,5 +1,5 @@
 
-             struct PLAYER
+             struct PLAYER : WORLD
                  {
                     int* POS;
                     int* POS2;

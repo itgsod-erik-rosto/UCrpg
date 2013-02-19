@@ -113,28 +113,121 @@ void Wclock(BITMAP *buffer)
         else 
         GAME.PAUSE=false;
         
-     if (tclockH>15)
+     if (tclockH>=15)
      {
-     sh[0]=tclockH*5;
-     sh[1]=tclockH*5;
-     sh[2]=tclockH*5;
-     sh[3]=tclockH*5;
+     sh[0]=10;
+     sh[1]=10;
+     sh[2]=10;
+     sh[3]=10;
      }
-     if (tclockH==0)
+     if (tclockH>=16)
      {
-               sh[0]=tclockH+30*5;
-     sh[1]=tclockH+30*5;
-     sh[2]=tclockH+30*5;
-     sh[3]=tclockH+30*5;      
+     sh[0]=30;
+     sh[1]=30;
+     sh[2]=30;
+     sh[3]=30;    
                     }
-                    if (tclockH>0 && tclockH<=6)
+     if (tclockH>=17)
                     {
-     sh[0]=(tclockH+35);
-     sh[1]=(tclockH+35);
-     sh[2]=(tclockH+35);
-     sh[3]=(tclockH+35); 
+     sh[0]=50;
+     sh[1]=50;
+     sh[2]=50;
+     sh[3]=50;
      }
-                      
+     if (tclockH>=18)
+                    {
+     sh[0]=70;
+     sh[1]=70;
+     sh[2]=70;
+     sh[3]=70;
+     }
+     if (tclockH>=19)
+                    {
+     sh[0]=100;
+     sh[1]=100;
+     sh[2]=100;
+     sh[3]=100;
+     }
+     if (tclockH>=20)
+                    {
+     sh[0]=120;
+     sh[1]=120;
+     sh[2]=120;
+     sh[3]=120;
+     }
+     if (tclockH>=21)
+                    {
+     sh[0]=140;
+     sh[1]=140;
+     sh[2]=140;
+     sh[3]=140;
+     }
+     if (tclockH>=22)
+                    {
+     sh[0]=160;
+     sh[1]=160;
+     sh[2]=160;
+     sh[3]=160;
+     }
+     if (tclockH>=23)
+                    {
+     sh[0]=170;
+     sh[1]=170;
+     sh[2]=170;
+     sh[3]=170;
+     }
+     if(tclockH<7)
+     {
+     if (tclockH>=0)
+                    {
+     sh[0]=180;
+     sh[1]=180;
+     sh[2]=180;
+     sh[3]=180;
+     }
+     if (tclockH>=1)
+                    {
+     sh[0]=170;
+     sh[1]=170;
+     sh[2]=170;
+     sh[3]=170;
+     }
+     if (tclockH>=2)
+                    {
+     sh[0]=140;
+     sh[1]=140;
+     sh[2]=140;
+     sh[3]=140;
+     }
+     if (tclockH>=3)
+                    {
+     sh[0]=100;
+     sh[1]=100;
+     sh[2]=100;
+     sh[3]=100;
+     }
+     if (tclockH>=4)
+                    {
+     sh[0]=70;
+     sh[1]=70;
+     sh[2]=70;
+     sh[3]=70;
+     }
+     if (tclockH>=5)
+                    {
+     sh[0]=40;
+     sh[1]=40;
+     sh[2]=40;
+     sh[3]=40;
+     }
+     if (tclockH>=6)
+                    {
+     sh[0]=20;
+     sh[1]=20;
+     sh[2]=20;
+     sh[3]=20;
+     }
+     }      
                                   
      if (cday_i>=7)
      cday_i=0;
