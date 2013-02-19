@@ -1,4 +1,57 @@
-
+struct ANIMATIONS : PLAYER
+{
+       BITMAP *bitmap;
+       
+       int F_i;
+       int F_time;
+       int F_time_max;
+       int F_amount;
+       int F[10];
+       int FH[10];
+       int F_current;
+       int F_W;
+       int F_H;
+       int ANIM_time_total;
+       int ANIM_time_total_counter;
+       
+      void playanimation();
+       }test;
+       void ANIMATIONS::playanimation()
+       {
+            ANIM_time_total=F_time_max*F_amount-1;
+            ANIM_time_total_counter++;
+            if (ANIM_time_total_counter<=ANIM_time_total)
+            {
+            player.isinanimation=true;
+            
+            F_time++;
+            
+            
+        masked_blit (TESTAN, buffer, F[F_i], FH[F_i]-1, x+520, y+315, F_W, F_H);              
+                    
+            if (F_time>=F_time_max && F_i<F_amount-1)
+            {
+                                   F_i++;
+                                   F_time=0;
+                                   
+                    }
+                    }
+                    else player.isinanimation=false;
+                      }
+                      void load_anims()
+                      {
+                           test.bitmap=TESTAN;
+                           test.F_time_max=20;
+                           test.F_amount=3;
+                           test.F[0]=1;
+                           test.F[1]=41;
+                           test.F[2]=82;
+                           test.FH[0]=42;
+                           test.FH[1]=42;
+                           test.FH[2]=42;
+                           test.F_W=39;
+                           test.F_H=39;
+                           }
  
 void PLAYER::animation(BITMAP *buffer)
 {

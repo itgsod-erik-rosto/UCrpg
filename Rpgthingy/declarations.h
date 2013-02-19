@@ -38,6 +38,8 @@ BITMAP *SSanim;
 BITMAP *Store1;
 BITMAP *items;
 
+BITMAP *TESTAN;
+
 ofstream Fpos;
 ofstream FNPCS;
 ofstream FOBJECTS;

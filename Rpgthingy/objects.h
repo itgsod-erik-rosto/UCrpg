@@ -56,6 +56,7 @@ void load_bitmaps(BITMAP *buffer)
            shadow=load_bitmap("Data/Images/Characters/shadow.bmp", NULL);
               NPC[2].bitmap=load_bitmap("Data/Images/Characters/player.bmp", NULL);
               player.bitmap=load_bitmap("Data/Images/Characters/sofia.bmp", NULL);
+              test.bitmap=load_bitmap("Data/Images/Characters/sofia.bmp", NULL);
               
                     }
                     

@@ -111,7 +111,8 @@ struct VAR
  
   void SETUP(BITMAP *buffer)
   {
-   
+   TESTAN=load_bitmap("Data/Images/Characters/sofia.bmp", NULL);
+
  clear_to_color(screen, makecol(255, 255, 255));
  
   textprintf_ex(screen,font,510,SH/2, makecol(255, 0, 0), -1, "Loading textures...", NULL);
@@ -128,6 +129,11 @@ load_weapons(buffer);
 load_walls(buffer);
 load_hud(buffer);
 load_messageboxes(buffer);
+
+clear_to_color(screen, makecol(255, 255, 255));
+
+  textprintf_ex(screen,font,510,SH/2, makecol(255, 0, 0), -1, "Loading animations...", NULL);
+load_anims();
 
 clear_to_color(screen, makecol(255, 255, 255));
 

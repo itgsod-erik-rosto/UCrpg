@@ -69,7 +69,8 @@ if (GAME.RUNNING==true)
       timer1F(buffer);
       }
       drawworld();  
-        
+        if (key[KEY_J])
+        test.playanimation();
         if (key[KEY_C] && consoleactive!=true)
         {
                        consoleactive=true;

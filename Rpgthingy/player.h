@@ -15,6 +15,7 @@
                         int Wtarget;
                         int getcell;
                         
+                        bool isinanimation;
                         bool dtC_collides;
                         
                         int dtC_x1;
@@ -807,6 +808,7 @@ circlefill(buffer, *POS+cam, *POS2+2+cam2, 10, makecol(255, 0, 0));
          if (isSelected==true)
                 circlefill(buffer, x, y, 15, makecol(255, 0, 0));
                 
+                if (isinanimation!=true)
      masked_blit(bitmap, buffer, SSX, SSY, x-r, y-r, 40, 40);
 
      }
